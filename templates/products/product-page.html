@@ -1,0 +1,251 @@
+{% extends 'base.html' %}
+{% block title %} {{product.title}} - PirateDeals {% endblock title %}
+{% block breadcrumb %}
+  	<ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
+		<!--begin::Item-->
+		<li class="breadcrumb-item text-white opacity-75">
+			<a href="/" class="text-gray-800 text-hover-primary">Home</a>
+		</li>
+		<!--end::Item-->
+		<!--begin::Item-->
+		<li class="breadcrumb-item">
+			<span class="bullet bg-gray opacity-75 w-5px h-2px"></span>
+		</li>
+		<!--end::Item-->
+		<!--begin::Item-->
+		<li class="breadcrumb-item text-white opacity-75">
+			<a href="/category/{{product.category.slug}}" class="text-gray-800 text-hover-primary">{{product.category}}</a>
+		</li>
+		<!--end::Item-->
+		<!--begin::Item-->
+		<li class="breadcrumb-item">
+			<span class="bullet bg-gray opacity-75 w-5px h-2px"></span>
+		</li>
+		<!--end::Item-->
+		<!--begin::Item-->
+		<li class="breadcrumb-item text-gray-800 opacity-75">{{product.title}}</li>
+		<!--end::Item-->
+		<!--begin::Item-->
+		<li class="breadcrumb-item">
+	</ul>
+{% endblock breadcrumb %}
+{% block content %}
+{% load custom_tags %}
+  <div class="row">
+   <div class="col-md-8">
+	<div class="card p-7 sflex-lg-row-fluid ">
+    <!--begin::Post content-->
+    <div class="mb-17">
+        <!--begin::Wrapper-->
+        <div class="mb-8">
+            <!--begin::Info-->
+            <a href="/store/{{product.store.slug}}"><img class="float-end" style="width:80px" src="{{product.store.featureimg}}" alt=""> </a>
+            <div class="d-flex flex-wrap mb-6">
+                <!--begin::Item-->
+                <div class="me-9 my-1">
+                    <!--begin::Icon-->
+                    <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
+                    <i class="fas fa-calendar-day mx-1"></i>
+                    <!--end::Svg Icon-->
+                    <!--end::Icon-->
+                    <!--begin::Label-->
+                    <span class="fw-bolder text-gray-400">{{product.date}}</span>
+                    <!--end::Label-->
+                </div>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <div class="me-9 my-1">
+                    <!--begin::Icon-->
+                    <!--SVG file not found: icons/duotune/finance/fin006.svgFolder.svg-->
+                    <!--end::Icon-->
+                    <!--begin::Label-->
+                   <a href="/category/{{product.category.slug}}"> <span class="fw-bolder text-hover-primary text-gray-400">{{product.category}}</span></a>
+                    <!--begin::Label-->
+                </div>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <div class="my-1">
+                    <!--begin::Icon-->
+                    <i class="fas fa-comment"></i>
+                    <!--end::Icon-->
+                    <!--begin::Label-->
+                    <span class="fw-bolder text-gray-400">24 Comments</span>
+                    <!--end::Label-->
+                </div>
+                <!--end::Item-->
+            </div>
+            
+            <!--end::Info-->
+            <!--begin::Title-->
+            <!--end::Title-->
+            <!--begin::Container-->
+            <div class="row">
+			  <div class="col-md-5 p-5 ">
+                <center><img src="{{product.featureimg}}" class="h-200px align-items-center" alt=""></center>
+			  </div>
+			  <div class="col-md-6 p-5">
+			    <h2>{{product.title}}</h2>
+               {% if product.coupon != "" %}
+                 <a href="#" id="clipboard" data-clipboard-text="{{product.coupon}}"  class="btn float-end btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary">{{product.coupon}}</a>
+               {% endif %}
+				<h3 class="pt-3 text-gray-700 mb-5">₹{{product.sale_price}} <del class="text-gray-400">₹{{product.original_price}}</del></h3>
+				<a href="/redirect/{{product.id}}" class="btn-sm text-white btn-primary">Buy Now</a>
+			  </div>
+			</div>
+            <!--end::Container-->
+        </div>
+        <!--end::Wrapper-->
+        {% if product.offers %}
+          <!--begin::notice-->
+        <div class="notice d-flex bg-light-primary rounded border-primary border border-dashed mb-9 p-6">
+            <!--begin::Icon-->
+            <!--begin::Svg Icon | path: icons/duotune/art/art006.svg-->
+            <span class="me-3 justify-content-center">
+                <i class="fas text-primary fa-info-circle fa-2x"></i>
+            </span>
+            <!--end::Svg Icon-->
+            <!--end::Icon-->
+            <!--begin::Wrapper-->
+            <div class="d-flex flex-stack flex-grow-1">
+                <!--begin::Content-->
+                <div class="fw-bold">
+                    <div class="fs-6 text-gray-700">{{product.offers}}</div>
+                </div>
+                <!--end::Content-->
+            </div>
+            <!--end::Wrapper-->
+        </div>
+        <!--end::Notice-->
+        {% endif %}
+
+        <!--begin::Description-->
+        <div class="fs-5 fw-bold text-gray-600">
+           <p>
+		     {{product.description | safe}}
+		   </p>
+        </div>
+        <!--end::Description-->
+        <!--begin::Block-->
+        <div class="d-flex align-items-center border-dashed card-rounded my-5 p-5 p-lg-10 mb-14">
+            <!--begin::Section-->
+            <div class="text-center flex-shrink-0 me-7 me-lg-13">
+                <!--begin::Avatar-->
+                <div class="symbol symbol-70px symbol-circle mb-2">
+                    <img src="https://scontent-bom1-1.xx.fbcdn.net/v/t1.6435-9/65027506_758994481162632_575367348119142400_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=EKrPaY_XN6IAX8qW3MD&_nc_ht=scontent-bom1-1.xx&oh=7f6aa219061d208f84d246aee8d4cf19&oe=61654959" class="" alt="" />
+                </div>
+                <!--end::Avatar-->
+                <!--begin::Info-->
+                <div class="mb-0">
+                    <span class="text-gray-700 fw-bolder">{{product.author.first_name}} {{product.author.last_name}}</span>
+                    <span class="text-gray-400 fs-7 fw-bold d-block mt-1">{{product.author.profile.role}}</span>
+                </div>
+                <!--end::Info-->
+            </div>
+            <!--end::Section-->
+            <!--begin::Text-->
+            <div class="mb-0 fs-6">
+                <div class="text-muted fw-bold lh-lg mb-2">
+                   {{product.author.profile.bio}}
+                </div>
+                 <!--begin::Icons-->
+        <div class="float-start">
+            <!--begin::Icon-->
+            <a href="{{product.author.profile.facebook}}" class="mx-2">
+                <i class="fab fa-facebook fa-lg text-hover-primary"></i>
+            </a>
+            <!--end::Icon-->
+            <!--begin::Icon-->
+            <a href="{{product.author.profile.insta}}">
+                <i class="fab fa-instagram fa-lg text-hover-danger"></i>
+            </a>
+            <!--end::Icon-->
+        </div>
+        <!--end::Icons-->
+            </div>
+            <!--end::Text-->
+        </div>
+        <!--end::Block-->
+    </div>
+    <!--end::Post content-->
+</div>
+
+   </div>
+   <div class="col-md-4">
+     <div class="card p-7 flex-column flex-lg-row-auto w-100 mb-10">
+    <!--begin::Catigories-->
+    <div class="mb-16">
+        <h4 class="text-black mb-7">Categories</h4>
+        {% categories cate as cate %}
+        {% for c in cate %}
+          <!--begin::Item-->
+        <a href="/category/{{c.slug}}" class="d-flex flex-stack fw-bold btn btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary fs-5 text-muted mb-4">
+            <!--begin::Text-->
+            
+            <span class="text-muted text-hover-primary pe-2">{{c.title}}</span>
+            <!--end::Text-->
+            <!--begin::Number-->
+            <div class="m-0">{{c.count}}</div>
+            <!--end::Number-->
+        </a>
+        <!--end::Item-->
+        {% endfor %}
+    </div>
+    <!--end::Catigories-->
+    <!--begin::Recent deals-->
+    <div class="m-0">
+        <h4 class="text-black mb-7">Recent Deals</h4>
+        {% for r in recent %}
+          <!--begin::Item-->
+        <div class="d-flex flex-stack mb-7">
+            <!--begin::Symbol-->
+            <div class="symbol symbol-60px symbol-2by3 me-4">
+                <center><img src="{{r.featureimg}}" class="w-60px align-items-center" alt=""></center>
+            </div>
+            <!--end::Symbol-->
+            <!--begin::Title-->
+            <div class="m-0">
+                <a href="/shop/{{r.slug}}" class="text-dark fw-bolder text-hover-primary fs-6">{{r.title}}</a>
+                <span class="text-gray-600 fw-bold d-block pt-1 fs-7">₹{{r.sale_price}} <del>₹{{r.original_price}}</del></span>
+            </div>
+            <!--end::Title-->
+        </div>
+        <!--end::Item-->
+        {% endfor %}
+    </div>
+    <!--end::Recent deals-->
+</div>
+   </div>
+  </div>
+{% endblock content %}
+{% block script %}
+   <script>
+     // Select element
+const target = document.getElementById('clipboard');
+
+// Init clipboard -- for more info, please read the offical documentation: https://clipboardjs.com/
+clipboard = new ClipboardJS(target);
+
+// Success action handler
+clipboard.on('success', function (e) {
+    const currentLabel = target.innerHTML;
+
+    // Exit label update when already in progress
+    if (target.innerHTML === 'Copied!') {
+        return;
+    }
+
+    // Update button label
+    target.innerHTML = 'Copied!';
+
+    // Revert button label after 3 seconds
+    setTimeout(function () {
+        target.innerHTML = currentLabel;
+    }, 3000)
+});
+   </script>
+{% endblock script %}
+   
+
+  
+
+  

@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="en">
+	<!--begin::Head-->
+	<head><base href="">
+		<meta charset="utf-8" />
+        <title>{% block title %}{% endblock title %}</title>
+        <meta name="description" content="{{seo.description}}">
+        <meta name="keywords" content="{{seo.keywords}}">
+		<link rel="canonical" href="{{seo.url}}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="shortcut icon" href="/static/images/site/ga-site-icon.png" />
+		<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+		<!--begin::Fonts-->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+		<!--end::Fonts-->
+		<!--begin::Global Stylesheets Bundle(used by all pages)-->
+		<link href="/static/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="/static/css/style.bundle.css" rel="stylesheet" type="text/css" />
+
+		<!--end::Global Stylesheets Bundle-->
+	</head>
+	<!--end::Head-->
+	<!--begin::Body-->
+	<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled">
+		<!--begin::Main-->
+		<!--begin::Root-->
+		<div class="d-flex flex-column flex-root">
+			<!--begin::Page-->
+			<div class="page d-flex flex-row flex-column-fluid">
+				<!--begin::Wrapper-->
+				<div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+					<!--begin::Header-->
+					<div id="kt_header" class="header bg-primary align-items-stretch" data-kt-sticky="true" data-kt-sticky-name="header" data-kt-sticky-offset="{default: '200px', lg: '300px'}">
+						<!--begin::Container-->
+						<div class="container d-flex align-items-center">
+							<!--begin::Heaeder menu toggle-->
+							<div class="d-flex topbar align-items-center d-lg-none ms-n2 me-3" title="Show aside menu">
+								<div class="btn btn-icon btn-active-light-primary w-30px h-30px w-md-40px h-md-40px" id="kt_header_menu_mobile_toggle">
+									<!--begin::Svg Icon | path: icons/duotone/Text/Menu.svg-->
+									<i class="fas fa-bars fas-2x"></i>
+									<!--end::Svg Icon-->
+								</div>
+							</div>
+							<!--end::Heaeder menu toggle-->
+							<!--begin::Header Logo-->
+							<div class="header-logo me-5 me-md-10 flex-grow-1 flex-lg-grow-0">
+								<a href="/">
+									<img alt="Logo" src="/static/images/site/grabbersadda.png" class="logo-default h-60px" />
+									<img alt="Logo" src="/static/images/site/grabbersadda.png" class="logo-sticky h-60px" />
+								</a>
+							</div>
+							<!--end::Header Logo-->
+							<!--begin::Wrapper-->
+							<div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1">
+								<!--begin::Navbar-->
+								<div class="d-flex align-items-stretch" id="kt_header_nav">
+									<!--begin::Menu wrapper-->
+									<div class="header-menu align-items-stretch" data-kt-drawer="true" data-kt-drawer-name="header-menu" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_header_menu_mobile_toggle" data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_body', lg: '#kt_header_nav'}">
+										<!--begin::Menu-->
+										<div class="menu menu-lg-rounded menu-column menu-lg-row menu-state-bg menu-title-gray-700 menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-400 fw-bold my-5 my-lg-0 align-items-stretch" id="#kt_header_menu" data-kt-menu="true">
+											<div class="menu-item me-lg-1">
+												<a class="menu-link py-3" href="/">
+													<span class="menu-title">Home</span>
+												</a>
+											</div>
+											<div class="menu-item me-lg-1">
+												<a class="menu-link py-3" href="/store/amazon">
+													<span class="menu-title">Amazon</span>
+												</a>
+											</div>
+											<div class="menu-item me-lg-1">
+												<a class="menu-link py-3" href="/store/flipkart">
+													<span class="menu-title">Flipkart</span>
+												</a>
+											</div>
+											<div class="menu-item me-lg-1">
+												<a class="menu-link py-3" href="/store/paytm">
+													<span class="menu-title">Paytm</span>
+												</a>
+											</div>
+											<div class="menu-item me-lg-1">
+												<a class="menu-link py-3" href="/store/coupons">
+													<span class="menu-title">Coupons</span>
+												</a>
+											</div>
+										</div>
+										<!--end::Menu-->
+									</div>
+									<!--end::Menu wrapper-->
+								</div>
+								<!--end::Navbar-->
+								<!--begin::Profile-->
+								{% include 'accounts/profilenav.html' %}
+								<!--end::Profile-->
+							</div>
+							<!--end::Wrapper-->
+						</div>
+						<!--end::Container-->
+					</div>
+					<!--end::Header-->
+					<div class="container my-5">
+					  <div class="page-title d-flex flex-column me-3">
+								<!--begin::Title-->
+								<h1 class="d-flex fw-bolder my-1 fs-3">{% block pagetitle %}{% endblock pagetitle %}</h1>
+								<!--end::Title-->
+								<!--begin::Breadcrumb-->
+								{% block breadcrumb %}{% endblock breadcrumb %}
+								<!--end::Breadcrumb-->
+							</div>
+					</div>
+					<!--begin::Container-->
+					<div id="kt_content_container" class="align-items-start container">
+						{% block content %}
+                           
+                        {% endblock content %}
+					</div>
+					<!--end::Container-->
+					<!--begin::Footer-->
+					<div class="footer py-4 d-flex flex-lg-column" id="kt_footer">
+						<!--begin::Container-->
+						<div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
+							<!--begin::Copyright-->
+							<div class="text-dark order-2 order-md-1">
+								<span class="text-muted fw-bold me-1">2021©</span>
+								<a href="https://Grabbersadda.com" target="_blank" class="text-gray-800 text-hover-primary">Grabbersadda</a>
+							</div>
+							<!--end::Copyright-->
+							<!--begin::Menu-->
+							<ul class="menu menu-gray-600 menu-hover-primary fw-bold order-1">
+								<li class="menu-item">
+									<a href="https://Grabbersadda.com" target="_blank" class="menu-link px-2">About</a>
+								</li>
+								<li class="menu-item">
+									<a href="https://Grabbersadda.com/support" target="_blank" class="menu-link px-2">Support</a>
+								</li>
+								<li class="menu-item">
+									<a href="https://grabbersadda.com/privacy-policy" target="_blank" class="menu-link px-2">Privacy Policy</a>
+								</li>
+							</ul>
+							<!--end::Menu-->
+						</div>
+						<!--end::Container-->
+					</div>
+					<!--end::Footer-->
+				</div>
+				<!--end::Wrapper-->
+			</div>
+			<!--end::Page-->
+		</div>
+		<!--end::Root-->
+		<!--begin::Modals-->
+		<!--begin::Modal - Invite Friends-->
+		<div class="modal fade" id="kt_modal_invite_friends" tabindex="-1" aria-hidden="true">
+			<!--begin::Modal dialog-->
+			<div class="modal-dialog mw-650px">
+				<!--begin::Modal content-->
+				<div class="modal-content">
+					<!--begin::Modal header-->
+					<div class="modal-header pb-0 border-0 justify-content-end">
+						<!--begin::Close-->
+						<div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+							<!--begin::Svg Icon | path: icons/duotone/Navigation/Close.svg-->
+							<span class="svg-icon svg-icon-1">
+								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+									<g transform="translate(12.000000, 12.000000) rotate(-45.000000) translate(-12.000000, -12.000000) translate(4.000000, 4.000000)" fill="#000000">
+										<rect fill="#000000" x="0" y="7" width="16" height="2" rx="1" />
+										<rect fill="#000000" opacity="0.5" transform="translate(8.000000, 8.000000) rotate(-270.000000) translate(-8.000000, -8.000000)" x="0" y="7" width="16" height="2" rx="1" />
+									</g>
+								</svg>
+							</span>
+							<!--end::Svg Icon-->
+						</div>
+						<!--end::Close-->
+					</div>
+					<!--begin::Modal header-->
+					<!--begin::Modal body-->
+					<div class="modal-body scroll-y mx-5 mx-xl-18 pt-0 pb-15">
+						<!--begin::Heading-->
+						<div class="text-center mb-13">
+							<!--begin::Title-->
+							<h1 class="mb-3">Invite a Friend</h1>
+							<!--end::Title-->
+							<!--begin::Description-->
+							<div class="text-muted fw-bold fs-5">If you need more info, please check out
+							<a href="#" class="link-primary fw-bolder">FAQ Page</a>.</div>
+							<!--end::Description-->
+						</div>
+						<!--end::Heading-->
+						<!--begin::Google Contacts Invite-->
+						<div class="btn btn-light-primary fw-bolder w-100 mb-8">
+						<img alt="Logo" src="/static/media/svg/brand-logos/google-icon.svg" class="h-20px me-3" />Invite Gmail Contacts</div>
+						<!--end::Google Contacts Invite-->
+						<!--begin::Separator-->
+						<div class="separator d-flex flex-center mb-8">
+							<span class="text-uppercase bg-body fs-7 fw-bold text-muted px-3">or</span>
+						</div>
+						<!--end::Separator-->
+						<!--begin::Textarea-->
+						<textarea class="form-control form-control-solid mb-8" rows="3" placeholder="Type or paste emails here"></textarea>
+						<!--end::Textarea-->
+						<!--begin::Users-->
+						<div class="mb-10">
+							<!--begin::Heading-->
+							<div class="fs-6 fw-bold mb-2">Your Invitations</div>
+							<!--end::Heading-->
+							<!--begin::List-->
+							<div class="mh-300px scroll-y me-n7 pe-7">
+								<!--begin::User-->
+								<div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
+									<!--begin::Details-->
+									<div class="d-flex align-items-center">
+										<!--begin::Avatar-->
+										<div class="symbol symbol-35px symbol-circle">
+											<img alt="Pic" src="/static/media/avatars/150-1.jpg" />
+										</div>
+										<!--end::Avatar-->
+										<!--begin::Details-->
+										<div class="ms-5">
+											<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary mb-2">Emma Smith</a>
+											<div class="fw-bold text-muted">e.smith@kpmg.com.au</div>
+										</div>
+										<!--end::Details-->
+									</div>
+									<!--end::Details-->
+									<!--begin::Access menu-->
+									<div class="ms-2 w-100px">
+										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
+											<option value="1">Guest</option>
+											<option value="2" selected="selected">Owner</option>
+											<option value="3">Can Edit</option>
+										</select>
+									</div>
+									<!--end::Access menu-->
+								</div>
+								<!--end::User-->
+								<!--begin::User-->
+								<div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
+									<!--begin::Details-->
+									<div class="d-flex align-items-center">
+										<!--begin::Avatar-->
+										<div class="symbol symbol-35px symbol-circle">
+											<span class="symbol-label bg-light-danger text-danger fw-bold">M</span>
+										</div>
+										<!--end::Avatar-->
+										<!--begin::Details-->
+										<div class="ms-5">
+											<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary mb-2">Melody Macy</a>
+											<div class="fw-bold text-muted">melody@altbox.com</div>
+										</div>
+										<!--end::Details-->
+									</div>
+									<!--end::Details-->
+									<!--begin::Access menu-->
+									<div class="ms-2 w-100px">
+										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
+											<option value="1" selected="selected">Guest</option>
+											<option value="2">Owner</option>
+											<option value="3">Can Edit</option>
+										</select>
+									</div>
+									<!--end::Access menu-->
+								</div>
+								<!--end::User-->
+								<!--begin::User-->
+								<div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
+									<!--begin::Details-->
+									<div class="d-flex align-items-center">
+										<!--begin::Avatar-->
+										<div class="symbol symbol-35px symbol-circle">
+											<img alt="Pic" src="/static/media/avatars/150-2.jpg" />
+										</div>
+										<!--end::Avatar-->
+										<!--begin::Details-->
+										<div class="ms-5">
+											<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary mb-2">Max Smith</a>
+											<div class="fw-bold text-muted">max@kt.com</div>
+										</div>
+										<!--end::Details-->
+									</div>
+									<!--end::Details-->
+									<!--begin::Access menu-->
+									<div class="ms-2 w-100px">
+										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
+											<option value="1">Guest</option>
+											<option value="2">Owner</option>
+											<option value="3" selected="selected">Can Edit</option>
+										</select>
+									</div>
+									<!--end::Access menu-->
+								</div>
+								<!--end::User-->
+								<!--begin::User-->
+								<div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
+									<!--begin::Details-->
+									<div class="d-flex align-items-center">
+										<!--begin::Avatar-->
+										<div class="symbol symbol-35px symbol-circle">
+											<img alt="Pic" src="/static/media/avatars/150-4.jpg" />
+										</div>
+										<!--end::Avatar-->
+										<!--begin::Details-->
+										<div class="ms-5">
+											<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary mb-2">Sean Bean</a>
+											<div class="fw-bold text-muted">sean@dellito.com</div>
+										</div>
+										<!--end::Details-->
+									</div>
+									<!--end::Details-->
+									<!--begin::Access menu-->
+									<div class="ms-2 w-100px">
+										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
+											<option value="1">Guest</option>
+											<option value="2" selected="selected">Owner</option>
+											<option value="3">Can Edit</option>
+										</select>
+									</div>
+									<!--end::Access menu-->
+								</div>
+								<!--end::User-->
+								<!--begin::User-->
+								<div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
+									<!--begin::Details-->
+									<div class="d-flex align-items-center">
+										<!--begin::Avatar-->
+										<div class="symbol symbol-35px symbol-circle">
+											<img alt="Pic" src="/static/media/avatars/150-15.jpg" />
+										</div>
+										<!--end::Avatar-->
+										<!--begin::Details-->
+										<div class="ms-5">
+											<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary mb-2">Brian Cox</a>
+											<div class="fw-bold text-muted">brian@exchange.com</div>
+										</div>
+										<!--end::Details-->
+									</div>
+									<!--end::Details-->
+									<!--begin::Access menu-->
+									<div class="ms-2 w-100px">
+										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
+											<option value="1">Guest</option>
+											<option value="2">Owner</option>
+											<option value="3" selected="selected">Can Edit</option>
+										</select>
+									</div>
+									<!--end::Access menu-->
+								</div>
+								<!--end::User-->
+								<!--begin::User-->
+								<div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
+									<!--begin::Details-->
+									<div class="d-flex align-items-center">
+										<!--begin::Avatar-->
+										<div class="symbol symbol-35px symbol-circle">
+											<span class="symbol-label bg-light-warning text-warning fw-bold">M</span>
+										</div>
+										<!--end::Avatar-->
+										<!--begin::Details-->
+										<div class="ms-5">
+											<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary mb-2">Mikaela Collins</a>
+											<div class="fw-bold text-muted">mikaela@pexcom.com</div>
+										</div>
+										<!--end::Details-->
+									</div>
+									<!--end::Details-->
+									<!--begin::Access menu-->
+									<div class="ms-2 w-100px">
+										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
+											<option value="1">Guest</option>
+											<option value="2" selected="selected">Owner</option>
+											<option value="3">Can Edit</option>
+										</select>
+									</div>
+									<!--end::Access menu-->
+								</div>
+								<!--end::User-->
+								<!--begin::User-->
+								<div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
+									<!--begin::Details-->
+									<div class="d-flex align-items-center">
+										<!--begin::Avatar-->
+										<div class="symbol symbol-35px symbol-circle">
+											<img alt="Pic" src="/static/media/avatars/150-8.jpg" />
+										</div>
+										<!--end::Avatar-->
+										<!--begin::Details-->
+										<div class="ms-5">
+											<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary mb-2">Francis Mitcham</a>
+											<div class="fw-bold text-muted">f.mitcham@kpmg.com.au</div>
+										</div>
+										<!--end::Details-->
+									</div>
+									<!--end::Details-->
+									<!--begin::Access menu-->
+									<div class="ms-2 w-100px">
+										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
+											<option value="1">Guest</option>
+											<option value="2">Owner</option>
+											<option value="3" selected="selected">Can Edit</option>
+										</select>
+									</div>
+									<!--end::Access menu-->
+								</div>
+								<!--end::User-->
+								<!--begin::User-->
+								<div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
+									<!--begin::Details-->
+									<div class="d-flex align-items-center">
+										<!--begin::Avatar-->
+										<div class="symbol symbol-35px symbol-circle">
+											<span class="symbol-label bg-light-danger text-danger fw-bold">O</span>
+										</div>
+										<!--end::Avatar-->
+										<!--begin::Details-->
+										<div class="ms-5">
+											<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary mb-2">Olivia Wild</a>
+											<div class="fw-bold text-muted">olivia@corpmail.com</div>
+										</div>
+										<!--end::Details-->
+									</div>
+									<!--end::Details-->
+									<!--begin::Access menu-->
+									<div class="ms-2 w-100px">
+										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
+											<option value="1">Guest</option>
+											<option value="2" selected="selected">Owner</option>
+											<option value="3">Can Edit</option>
+										</select>
+									</div>
+									<!--end::Access menu-->
+								</div>
+								<!--end::User-->
+								<!--begin::User-->
+								<div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
+									<!--begin::Details-->
+									<div class="d-flex align-items-center">
+										<!--begin::Avatar-->
+										<div class="symbol symbol-35px symbol-circle">
+											<span class="symbol-label bg-light-primary text-primary fw-bold">N</span>
+										</div>
+										<!--end::Avatar-->
+										<!--begin::Details-->
+										<div class="ms-5">
+											<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary mb-2">Neil Owen</a>
+											<div class="fw-bold text-muted">owen.neil@gmail.com</div>
+										</div>
+										<!--end::Details-->
+									</div>
+									<!--end::Details-->
+									<!--begin::Access menu-->
+									<div class="ms-2 w-100px">
+										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
+											<option value="1" selected="selected">Guest</option>
+											<option value="2">Owner</option>
+											<option value="3">Can Edit</option>
+										</select>
+									</div>
+									<!--end::Access menu-->
+								</div>
+								<!--end::User-->
+								<!--begin::User-->
+								<div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
+									<!--begin::Details-->
+									<div class="d-flex align-items-center">
+										<!--begin::Avatar-->
+										<div class="symbol symbol-35px symbol-circle">
+											<img alt="Pic" src="/static/media/avatars/150-6.jpg" />
+										</div>
+										<!--end::Avatar-->
+										<!--begin::Details-->
+										<div class="ms-5">
+											<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary mb-2">Dan Wilson</a>
+											<div class="fw-bold text-muted">dam@consilting.com</div>
+										</div>
+										<!--end::Details-->
+									</div>
+									<!--end::Details-->
+									<!--begin::Access menu-->
+									<div class="ms-2 w-100px">
+										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
+											<option value="1">Guest</option>
+											<option value="2">Owner</option>
+											<option value="3" selected="selected">Can Edit</option>
+										</select>
+									</div>
+									<!--end::Access menu-->
+								</div>
+								<!--end::User-->
+								<!--begin::User-->
+								<div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
+									<!--begin::Details-->
+									<div class="d-flex align-items-center">
+										<!--begin::Avatar-->
+										<div class="symbol symbol-35px symbol-circle">
+											<span class="symbol-label bg-light-danger text-danger fw-bold">E</span>
+										</div>
+										<!--end::Avatar-->
+										<!--begin::Details-->
+										<div class="ms-5">
+											<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary mb-2">Emma Bold</a>
+											<div class="fw-bold text-muted">emma@intenso.com</div>
+										</div>
+										<!--end::Details-->
+									</div>
+									<!--end::Details-->
+									<!--begin::Access menu-->
+									<div class="ms-2 w-100px">
+										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
+											<option value="1">Guest</option>
+											<option value="2" selected="selected">Owner</option>
+											<option value="3">Can Edit</option>
+										</select>
+									</div>
+									<!--end::Access menu-->
+								</div>
+								<!--end::User-->
+								<!--begin::User-->
+								<div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
+									<!--begin::Details-->
+									<div class="d-flex align-items-center">
+										<!--begin::Avatar-->
+										<div class="symbol symbol-35px symbol-circle">
+											<img alt="Pic" src="/static/media/avatars/150-7.jpg" />
+										</div>
+										<!--end::Avatar-->
+										<!--begin::Details-->
+										<div class="ms-5">
+											<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary mb-2">Ana Crown</a>
+											<div class="fw-bold text-muted">ana.cf@limtel.com</div>
+										</div>
+										<!--end::Details-->
+									</div>
+									<!--end::Details-->
+									<!--begin::Access menu-->
+									<div class="ms-2 w-100px">
+										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
+											<option value="1" selected="selected">Guest</option>
+											<option value="2">Owner</option>
+											<option value="3">Can Edit</option>
+										</select>
+									</div>
+									<!--end::Access menu-->
+								</div>
+								<!--end::User-->
+								<!--begin::User-->
+								<div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
+									<!--begin::Details-->
+									<div class="d-flex align-items-center">
+										<!--begin::Avatar-->
+										<div class="symbol symbol-35px symbol-circle">
+											<span class="symbol-label bg-light-info text-info fw-bold">A</span>
+										</div>
+										<!--end::Avatar-->
+										<!--begin::Details-->
+										<div class="ms-5">
+											<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary mb-2">Robert Doe</a>
+											<div class="fw-bold text-muted">robert@benko.com</div>
+										</div>
+										<!--end::Details-->
+									</div>
+									<!--end::Details-->
+									<!--begin::Access menu-->
+									<div class="ms-2 w-100px">
+										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
+											<option value="1">Guest</option>
+											<option value="2">Owner</option>
+											<option value="3" selected="selected">Can Edit</option>
+										</select>
+									</div>
+									<!--end::Access menu-->
+								</div>
+								<!--end::User-->
+								<!--begin::User-->
+								<div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
+									<!--begin::Details-->
+									<div class="d-flex align-items-center">
+										<!--begin::Avatar-->
+										<div class="symbol symbol-35px symbol-circle">
+											<img alt="Pic" src="/static/media/avatars/150-17.jpg" />
+										</div>
+										<!--end::Avatar-->
+										<!--begin::Details-->
+										<div class="ms-5">
+											<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary mb-2">John Miller</a>
+											<div class="fw-bold text-muted">miller@mapple.com</div>
+										</div>
+										<!--end::Details-->
+									</div>
+									<!--end::Details-->
+									<!--begin::Access menu-->
+									<div class="ms-2 w-100px">
+										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
+											<option value="1">Guest</option>
+											<option value="2">Owner</option>
+											<option value="3" selected="selected">Can Edit</option>
+										</select>
+									</div>
+									<!--end::Access menu-->
+								</div>
+								<!--end::User-->
+								<!--begin::User-->
+								<div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
+									<!--begin::Details-->
+									<div class="d-flex align-items-center">
+										<!--begin::Avatar-->
+										<div class="symbol symbol-35px symbol-circle">
+											<span class="symbol-label bg-light-success text-success fw-bold">L</span>
+										</div>
+										<!--end::Avatar-->
+										<!--begin::Details-->
+										<div class="ms-5">
+											<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary mb-2">Lucy Kunic</a>
+											<div class="fw-bold text-muted">lucy.m@fentech.com</div>
+										</div>
+										<!--end::Details-->
+									</div>
+									<!--end::Details-->
+									<!--begin::Access menu-->
+									<div class="ms-2 w-100px">
+										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
+											<option value="1">Guest</option>
+											<option value="2" selected="selected">Owner</option>
+											<option value="3">Can Edit</option>
+										</select>
+									</div>
+									<!--end::Access menu-->
+								</div>
+								<!--end::User-->
+								<!--begin::User-->
+								<div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
+									<!--begin::Details-->
+									<div class="d-flex align-items-center">
+										<!--begin::Avatar-->
+										<div class="symbol symbol-35px symbol-circle">
+											<img alt="Pic" src="/static/media/avatars/150-10.jpg" />
+										</div>
+										<!--end::Avatar-->
+										<!--begin::Details-->
+										<div class="ms-5">
+											<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary mb-2">Ethan Wilder</a>
+											<div class="fw-bold text-muted">ethan@loop.com.au</div>
+										</div>
+										<!--end::Details-->
+									</div>
+									<!--end::Details-->
+									<!--begin::Access menu-->
+									<div class="ms-2 w-100px">
+										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
+											<option value="1" selected="selected">Guest</option>
+											<option value="2">Owner</option>
+											<option value="3">Can Edit</option>
+										</select>
+									</div>
+									<!--end::Access menu-->
+								</div>
+								<!--end::User-->
+								<!--begin::User-->
+								<div class="d-flex flex-stack py-4">
+									<!--begin::Details-->
+									<div class="d-flex align-items-center">
+										<!--begin::Avatar-->
+										<div class="symbol symbol-35px symbol-circle">
+											<span class="symbol-label bg-light-danger text-danger fw-bold">E</span>
+										</div>
+										<!--end::Avatar-->
+										<!--begin::Details-->
+										<div class="ms-5">
+											<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary mb-2">Emma Bold</a>
+											<div class="fw-bold text-muted">emma@intenso.com</div>
+										</div>
+										<!--end::Details-->
+									</div>
+									<!--end::Details-->
+									<!--begin::Access menu-->
+									<div class="ms-2 w-100px">
+										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
+											<option value="1">Guest</option>
+											<option value="2">Owner</option>
+											<option value="3" selected="selected">Can Edit</option>
+										</select>
+									</div>
+									<!--end::Access menu-->
+								</div>
+								<!--end::User-->
+							</div>
+							<!--end::List-->
+						</div>
+						<!--end::Users-->
+						<!--begin::Notice-->
+						<div class="d-flex flex-stack">
+							<!--begin::Label-->
+							<div class="me-5 fw-bold">
+								<label class="fs-6">Adding Users by Team Members</label>
+								<div class="fs-7 text-muted">If you need more info, please check budget planning</div>
+							</div>
+							<!--end::Label-->
+							<!--begin::Switch-->
+							<label class="form-check form-switch form-check-custom form-check-solid">
+								<input class="form-check-input" type="checkbox" value="1" checked="checked" />
+								<span class="form-check-label fw-bold text-muted">Allowed</span>
+							</label>
+							<!--end::Switch-->
+						</div>
+						<!--end::Notice-->
+					</div>
+					<!--end::Modal body-->
+				</div>
+				<!--end::Modal content-->
+			</div>
+			<!--end::Modal dialog-->
+		</div>
+		<!--end::Modal - Invite Friend-->
+		<!--begin::Modal - Upgrade plan-->
+		<div class="modal fade" id="kt_modal_upgrade_plan" tabindex="-1" aria-hidden="true">
+			<!--begin::Modal dialog-->
+			<div class="modal-dialog modal-xl">
+				<!--begin::Modal content-->
+				<div class="modal-content rounded">
+					<!--begin::Modal header-->
+					<div class="modal-header justify-content-end border-0 pb-0">
+						<!--begin::Close-->
+						<div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+							<!--begin::Svg Icon | path: icons/duotone/Navigation/Close.svg-->
+							<span class="svg-icon svg-icon-1">
+								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+									<g transform="translate(12.000000, 12.000000) rotate(-45.000000) translate(-12.000000, -12.000000) translate(4.000000, 4.000000)" fill="#000000">
+										<rect fill="#000000" x="0" y="7" width="16" height="2" rx="1" />
+										<rect fill="#000000" opacity="0.5" transform="translate(8.000000, 8.000000) rotate(-270.000000) translate(-8.000000, -8.000000)" x="0" y="7" width="16" height="2" rx="1" />
+									</g>
+								</svg>
+							</span>
+							<!--end::Svg Icon-->
+						</div>
+						<!--end::Close-->
+					</div>
+					<!--end::Modal header-->
+					<!--begin::Modal body-->
+					<div class="modal-body pt-0 pb-15 px-5 px-xl-20">
+						<!--begin::Heading-->
+						<div class="mb-13 text-center">
+							<h1 class="mb-3">Upgrade a Plan</h1>
+							<div class="text-muted fw-bold fs-5">If you need more info, please check
+							<a href="#" class="link-primary fw-bolder">Pricing Guidelines</a>.</div>
+						</div>
+						<!--end::Heading-->
+						<!--begin::Plans-->
+						<div class="d-flex flex-column">
+							<!--begin::Nav group-->
+							<div class="nav-group nav-group-outline mx-auto" data-kt-buttons="true">
+								<a href="#" class="btn btn-color-gray-400 btn-active btn-active-secondary px-6 py-3 me-2 active" data-kt-plan="month">Monthly</a>
+								<a href="#" class="btn btn-color-gray-400 btn-active btn-active-secondary px-6 py-3" data-kt-plan="annual">Annual</a>
+							</div>
+							<!--end::Nav group-->
+							<!--begin::Row-->
+							<div class="row mt-10">
+								<!--begin::Col-->
+								<div class="col-lg-6 mb-10 mb-lg-0">
+									<!--begin::Tabs-->
+									<div class="nav flex-column">
+										<!--begin::Tab link-->
+										<div class="nav-link btn btn-outline btn-outline-dashed btn-color-dark btn-active btn-active-primary d-flex flex-stack text-start p-6 active mb-6" data-bs-toggle="tab" data-bs-target="#kt_upgrade_plan_startup">
+											<!--end::Description-->
+											<div class="d-flex align-items-center me-2">
+												<!--begin::Radio-->
+												<div class="form-check form-check-custom form-check-solid form-check-success me-6">
+													<input class="form-check-input" type="radio" name="plan" checked="checked" value="startup" />
+												</div>
+												<!--end::Radio-->
+												<!--begin::Info-->
+												<div class="flex-grow-1">
+													<h2 class="d-flex align-items-center fs-2 fw-bolder flex-wrap">Startup</h2>
+													<div class="fw-bold opacity-50">Best for startups</div>
+												</div>
+												<!--end::Info-->
+											</div>
+											<!--end::Description-->
+											<!--begin::Price-->
+											<div class="ms-5">
+												<span class="mb-2">$</span>
+												<span class="fs-3x fw-bolder" data-kt-plan-price-month="39" data-kt-plan-price-annual="399">39</span>
+												<span class="fs-7 opacity-50">/
+												<span data-kt-element="period">Mon</span></span>
+											</div>
+											<!--end::Price-->
+										</div>
+										<!--end::Tab link-->
+										<!--begin::Tab link-->
+										<div class="nav-link btn btn-outline btn-outline-dashed btn-color-dark btn-active btn-active-primary d-flex flex-stack text-start p-6 mb-6" data-bs-toggle="tab" data-bs-target="#kt_upgrade_plan_advanced">
+											<!--end::Description-->
+											<div class="d-flex align-items-center me-2">
+												<!--begin::Radio-->
+												<div class="form-check form-check-custom form-check-solid form-check-success me-6">
+													<input class="form-check-input" type="radio" name="plan" value="advanced" />
+												</div>
+												<!--end::Radio-->
+												<!--begin::Info-->
+												<div class="flex-grow-1">
+													<h2 class="d-flex align-items-center fs-2 fw-bolder flex-wrap">Advanced</h2>
+													<div class="fw-bold opacity-50">Best for 100+ team size</div>
+												</div>
+												<!--end::Info-->
+											</div>
+											<!--end::Description-->
+											<!--begin::Price-->
+											<div class="ms-5">
+												<span class="mb-2">$</span>
+												<span class="fs-3x fw-bolder" data-kt-plan-price-month="339" data-kt-plan-price-annual="3399">339</span>
+												<span class="fs-7 opacity-50">/
+												<span data-kt-element="period">Mon</span></span>
+											</div>
+											<!--end::Price-->
+										</div>
+										<!--end::Tab link-->
+										<!--begin::Tab link-->
+										<div class="nav-link btn btn-outline btn-outline-dashed btn-color-dark btn-active btn-active-primary d-flex flex-stack text-start p-6 mb-6" data-bs-toggle="tab" data-bs-target="#kt_upgrade_plan_enterprise">
+											<!--end::Description-->
+											<div class="d-flex align-items-center me-2">
+												<!--begin::Radio-->
+												<div class="form-check form-check-custom form-check-solid form-check-success me-6">
+													<input class="form-check-input" type="radio" name="plan" value="enterprise" />
+												</div>
+												<!--end::Radio-->
+												<!--begin::Info-->
+												<div class="flex-grow-1">
+													<h2 class="d-flex align-items-center fs-2 fw-bolder flex-wrap">Enterprise
+													<span class="badge badge-light-success ms-2 fs-7">Most popular</span></h2>
+													<div class="fw-bold opacity-50">Best value for 1000+ team</div>
+												</div>
+												<!--end::Info-->
+											</div>
+											<!--end::Description-->
+											<!--begin::Price-->
+											<div class="ms-5">
+												<span class="mb-2">$</span>
+												<span class="fs-3x fw-bolder" data-kt-plan-price-month="999" data-kt-plan-price-annual="9999">999</span>
+												<span class="fs-7 opacity-50">/
+												<span data-kt-element="period">Mon</span></span>
+											</div>
+											<!--end::Price-->
+										</div>
+										<!--end::Tab link-->
+										<!--begin::Tab link-->
+										<div class="nav-link btn btn-outline btn-outline-dashed btn-color-dark d-flex flex-stack text-start p-6">
+											<!--end::Description-->
+											<div class="d-flex align-items-center me-2">
+												<!--begin::Radio-->
+												<div class="form-check form-check-custom form-check-solid form-check-success me-6">
+													<input class="form-check-input" type="radio" name="plan" value="custom" />
+												</div>
+												<!--end::Radio-->
+												<!--begin::Info-->
+												<div class="flex-grow-1">
+													<h2 class="d-flex align-items-center fs-2 fw-bolder flex-wrap">Custom</h2>
+													<div class="fw-bold opacity-50">Requet a custom license</div>
+												</div>
+												<!--end::Info-->
+											</div>
+											<!--end::Description-->
+											<!--begin::Price-->
+											<div class="ms-5">
+												<a href="#" class="btn btn-sm btn-primary">Contact Us</a>
+											</div>
+											<!--end::Price-->
+										</div>
+										<!--end::Tab link-->
+									</div>
+									<!--end::Tabs-->
+								</div>
+								<!--end::Col-->
+								<!--begin::Col-->
+								<div class="col-lg-6">
+									<!--begin::Tab content-->
+									<div class="tab-content rounded h-100 bg-light p-10">
+										<!--begin::Tab Pane-->
+										<div class="tab-pane fade show active" id="kt_upgrade_plan_startup">
+											<!--begin::Heading-->
+											<div class="pb-5">
+												<h2 class="fw-bolder text-dark">What’s in Startup Plan?</h2>
+												<div class="text-muted fw-bold">Optimal for 10+ team size and new startup</div>
+											</div>
+											<!--end::Heading-->
+											<!--begin::Body-->
+											<div class="pt-1">
+												<!--begin::Item-->
+												<div class="d-flex align-items-center mb-7">
+													<span class="fw-bold fs-5 text-gray-700 flex-grow-1">Up to 10 Active Users</span>
+													<!--begin::Svg Icon | path: icons/duotone/Code/Done-circle.svg-->
+													<span class="svg-icon svg-icon-1 svg-icon-success">
+														<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+															<circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+															<path d="M16.7689447,7.81768175 C17.1457787,7.41393107 17.7785676,7.39211077 18.1823183,7.76894473 C18.5860689,8.1457787 18.6078892,8.77856757 18.2310553,9.18231825 L11.2310553,16.6823183 C10.8654446,17.0740439 10.2560456,17.107974 9.84920863,16.7592566 L6.34920863,13.7592566 C5.92988278,13.3998345 5.88132125,12.7685345 6.2407434,12.3492086 C6.60016555,11.9298828 7.23146553,11.8813212 7.65079137,12.2407434 L10.4229928,14.616916 L16.7689447,7.81768175 Z" fill="#000000" fill-rule="nonzero" />
+														</svg>
+													</span>
+													<!--end::Svg Icon-->
+												</div>
+												<!--end::Item-->
+												<!--begin::Item-->
+												<div class="d-flex align-items-center mb-7">
+													<span class="fw-bold fs-5 text-gray-700 flex-grow-1">Up to 30 Project Integrations</span>
+													<!--begin::Svg Icon | path: icons/duotone/Code/Done-circle.svg-->
+													<span class="svg-icon svg-icon-1 svg-icon-success">
+														<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+															<circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+															<path d="M16.7689447,7.81768175 C17.1457787,7.41393107 17.7785676,7.39211077 18.1823183,7.76894473 C18.5860689,8.1457787 18.6078892,8.77856757 18.2310553,9.18231825 L11.2310553,16.6823183 C10.8654446,17.0740439 10.2560456,17.107974 9.84920863,16.7592566 L6.34920863,13.7592566 C5.92988278,13.3998345 5.88132125,12.7685345 6.2407434,12.3492086 C6.60016555,11.9298828 7.23146553,11.8813212 7.65079137,12.2407434 L10.4229928,14.616916 L16.7689447,7.81768175 Z" fill="#000000" fill-rule="nonzero" />
+														</svg>
+													</span>
+													<!--end::Svg Icon-->
+												</div>
+												<!--end::Item-->
+												<!--begin::Item-->
+												<div class="d-flex align-items-center mb-7">
+													<span class="fw-bold fs-5 text-gray-700 flex-grow-1">Analytics Module</span>
+													<!--begin::Svg Icon | path: icons/duotone/Code/Done-circle.svg-->
+													<span class="svg-icon svg-icon-1 svg-icon-success">
+														<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+															<circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+															<path d="M16.7689447,7.81768175 C17.1457787,7.41393107 17.7785676,7.39211077 18.1823183,7.76894473 C18.5860689,8.1457787 18.6078892,8.77856757 18.2310553,9.18231825 L11.2310553,16.6823183 C10.8654446,17.0740439 10.2560456,17.107974 9.84920863,16.7592566 L6.34920863,13.7592566 C5.92988278,13.3998345 5.88132125,12.7685345 6.2407434,12.3492086 C6.60016555,11.9298828 7.23146553,11.8813212 7.65079137,12.2407434 L10.4229928,14.616916 L16.7689447,7.81768175 Z" fill="#000000" fill-rule="nonzero" />
+														</svg>
+													</span>
+													<!--end::Svg Icon-->
+												</div>
+												<!--end::Item-->
+												<!--begin::Item-->
+												<div class="d-flex align-items-center mb-7">
+													<span class="fw-bold fs-5 text-muted flex-grow-1">Finance Module</span>
+													<!--begin::Svg Icon | path: icons/duotone/Code/Error-circle.svg-->
+													<span class="svg-icon svg-icon-1">
+														<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+															<circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+															<path d="M12.0355339,10.6213203 L14.863961,7.79289322 C15.2544853,7.40236893 15.8876503,7.40236893 16.2781746,7.79289322 C16.6686989,8.18341751 16.6686989,8.81658249 16.2781746,9.20710678 L13.4497475,12.0355339 L16.2781746,14.863961 C16.6686989,15.2544853 16.6686989,15.8876503 16.2781746,16.2781746 C15.8876503,16.6686989 15.2544853,16.6686989 14.863961,16.2781746 L12.0355339,13.4497475 L9.20710678,16.2781746 C8.81658249,16.6686989 8.18341751,16.6686989 7.79289322,16.2781746 C7.40236893,15.8876503 7.40236893,15.2544853 7.79289322,14.863961 L10.6213203,12.0355339 L7.79289322,9.20710678 C7.40236893,8.81658249 7.40236893,8.18341751 7.79289322,7.79289322 C8.18341751,7.40236893 8.81658249,7.40236893 9.20710678,7.79289322 L12.0355339,10.6213203 Z" fill="#000000" />
+														</svg>
+													</span>
+													<!--end::Svg Icon-->
+												</div>
+												<!--end::Item-->
+												<!--begin::Item-->
+												<div class="d-flex align-items-center mb-7">
+													<span class="fw-bold fs-5 text-muted flex-grow-1">Accounting Module</span>
+													<!--begin::Svg Icon | path: icons/duotone/Code/Error-circle.svg-->
+													<span class="svg-icon svg-icon-1">
+														<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+															<circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+															<path d="M12.0355339,10.6213203 L14.863961,7.79289322 C15.2544853,7.40236893 15.8876503,7.40236893 16.2781746,7.79289322 C16.6686989,8.18341751 16.6686989,8.81658249 16.2781746,9.20710678 L13.4497475,12.0355339 L16.2781746,14.863961 C16.6686989,15.2544853 16.6686989,15.8876503 16.2781746,16.2781746 C15.8876503,16.6686989 15.2544853,16.6686989 14.863961,16.2781746 L12.0355339,13.4497475 L9.20710678,16.2781746 C8.81658249,16.6686989 8.18341751,16.6686989 7.79289322,16.2781746 C7.40236893,15.8876503 7.40236893,15.2544853 7.79289322,14.863961 L10.6213203,12.0355339 L7.79289322,9.20710678 C7.40236893,8.81658249 7.40236893,8.18341751 7.79289322,7.79289322 C8.18341751,7.40236893 8.81658249,7.40236893 9.20710678,7.79289322 L12.0355339,10.6213203 Z" fill="#000000" />
+														</svg>
+													</span>
+													<!--end::Svg Icon-->
+												</div>
+												<!--end::Item-->
+												<!--begin::Item-->
+												<div class="d-flex align-items-center mb-7">
+													<span class="fw-bold fs-5 text-muted flex-grow-1">Network Platform</span>
+													<!--begin::Svg Icon | path: icons/duotone/Code/Error-circle.svg-->
+													<span class="svg-icon svg-icon-1">
+														<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+															<circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+															<path d="M12.0355339,10.6213203 L14.863961,7.79289322 C15.2544853,7.40236893 15.8876503,7.40236893 16.2781746,7.79289322 C16.6686989,8.18341751 16.6686989,8.81658249 16.2781746,9.20710678 L13.4497475,12.0355339 L16.2781746,14.863961 C16.6686989,15.2544853 16.6686989,15.8876503 16.2781746,16.2781746 C15.8876503,16.6686989 15.2544853,16.6686989 14.863961,16.2781746 L12.0355339,13.4497475 L9.20710678,16.2781746 C8.81658249,16.6686989 8.18341751,16.6686989 7.79289322,16.2781746 C7.40236893,15.8876503 7.40236893,15.2544853 7.79289322,14.863961 L10.6213203,12.0355339 L7.79289322,9.20710678 C7.40236893,8.81658249 7.40236893,8.18341751 7.79289322,7.79289322 C8.18341751,7.40236893 8.81658249,7.40236893 9.20710678,7.79289322 L12.0355339,10.6213203 Z" fill="#000000" />
+														</svg>
+													</span>
+													<!--end::Svg Icon-->
+												</div>
+												<!--end::Item-->
+												<!--begin::Item-->
+												<div class="d-flex align-items-center">
+													<span class="fw-bold fs-5 text-muted flex-grow-1">Unlimited Cloud Space</span>
+													<!--begin::Svg Icon | path: icons/duotone/Code/Error-circle.svg-->
+													<span class="svg-icon svg-icon-1">
+														<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+															<circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+															<path d="M12.0355339,10.6213203 L14.863961,7.79289322 C15.2544853,7.40236893 15.8876503,7.40236893 16.2781746,7.79289322 C16.6686989,8.18341751 16.6686989,8.81658249 16.2781746,9.20710678 L13.4497475,12.0355339 L16.2781746,14.863961 C16.6686989,15.2544853 16.6686989,15.8876503 16.2781746,16.2781746 C15.8876503,16.6686989 15.2544853,16.6686989 14.863961,16.2781746 L12.0355339,13.4497475 L9.20710678,16.2781746 C8.81658249,16.6686989 8.18341751,16.6686989 7.79289322,16.2781746 C7.40236893,15.8876503 7.40236893,15.2544853 7.79289322,14.863961 L10.6213203,12.0355339 L7.79289322,9.20710678 C7.40236893,8.81658249 7.40236893,8.18341751 7.79289322,7.79289322 C8.18341751,7.40236893 8.81658249,7.40236893 9.20710678,7.79289322 L12.0355339,10.6213203 Z" fill="#000000" />
+														</svg>
+													</span>
+													<!--end::Svg Icon-->
+												</div>
+												<!--end::Item-->
+											</div>
+											<!--end::Body-->
+										</div>
+										<!--end::Tab Pane-->
+										<!--begin::Tab Pane-->
+										<div class="tab-pane fade" id="kt_upgrade_plan_advanced">
+											<!--begin::Heading-->
+											<div class="pb-5">
+												<h2 class="fw-bolder text-dark">What’s in Startup Plan?</h2>
+												<div class="text-muted fw-bold">Optimal for 100+ team size and grown company</div>
+											</div>
+											<!--end::Heading-->
+											<!--begin::Body-->
+											<div class="pt-1">
+												<!--begin::Item-->
+												<div class="d-flex align-items-center mb-7">
+													<span class="fw-bold fs-5 text-gray-700 flex-grow-1">Up to 10 Active Users</span>
+													<!--begin::Svg Icon | path: icons/duotone/Code/Done-circle.svg-->
+													<span class="svg-icon svg-icon-1 svg-icon-success">
+														<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+															<circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+															<path d="M16.7689447,7.81768175 C17.1457787,7.41393107 17.7785676,7.39211077 18.1823183,7.76894473 C18.5860689,8.1457787 18.6078892,8.77856757 18.2310553,9.18231825 L11.2310553,16.6823183 C10.8654446,17.0740439 10.2560456,17.107974 9.84920863,16.7592566 L6.34920863,13.7592566 C5.92988278,13.3998345 5.88132125,12.7685345 6.2407434,12.3492086 C6.60016555,11.9298828 7.23146553,11.8813212 7.65079137,12.2407434 L10.4229928,14.616916 L16.7689447,7.81768175 Z" fill="#000000" fill-rule="nonzero" />
+														</svg>
+													</span>
+													<!--end::Svg Icon-->
+												</div>
+												<!--end::Item-->
+												<!--begin::Item-->
+												<div class="d-flex align-items-center mb-7">
+													<span class="fw-bold fs-5 text-gray-700 flex-grow-1">Up to 30 Project Integrations</span>
+													<!--begin::Svg Icon | path: icons/duotone/Code/Done-circle.svg-->
+													<span class="svg-icon svg-icon-1 svg-icon-success">
+														<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+															<circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+															<path d="M16.7689447,7.81768175 C17.1457787,7.41393107 17.7785676,7.39211077 18.1823183,7.76894473 C18.5860689,8.1457787 18.6078892,8.77856757 18.2310553,9.18231825 L11.2310553,16.6823183 C10.8654446,17.0740439 10.2560456,17.107974 9.84920863,16.7592566 L6.34920863,13.7592566 C5.92988278,13.3998345 5.88132125,12.7685345 6.2407434,12.3492086 C6.60016555,11.9298828 7.23146553,11.8813212 7.65079137,12.2407434 L10.4229928,14.616916 L16.7689447,7.81768175 Z" fill="#000000" fill-rule="nonzero" />
+														</svg>
+													</span>
+													<!--end::Svg Icon-->
+												</div>
+												<!--end::Item-->
+												<!--begin::Item-->
+												<div class="d-flex align-items-center mb-7">
+													<span class="fw-bold fs-5 text-gray-700 flex-grow-1">Analytics Module</span>
+													<!--begin::Svg Icon | path: icons/duotone/Code/Done-circle.svg-->
+													<span class="svg-icon svg-icon-1 svg-icon-success">
+														<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+															<circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+															<path d="M16.7689447,7.81768175 C17.1457787,7.41393107 17.7785676,7.39211077 18.1823183,7.76894473 C18.5860689,8.1457787 18.6078892,8.77856757 18.2310553,9.18231825 L11.2310553,16.6823183 C10.8654446,17.0740439 10.2560456,17.107974 9.84920863,16.7592566 L6.34920863,13.7592566 C5.92988278,13.3998345 5.88132125,12.7685345 6.2407434,12.3492086 C6.60016555,11.9298828 7.23146553,11.8813212 7.65079137,12.2407434 L10.4229928,14.616916 L16.7689447,7.81768175 Z" fill="#000000" fill-rule="nonzero" />
+														</svg>
+													</span>
+													<!--end::Svg Icon-->
+												</div>
+												<!--end::Item-->
+												<!--begin::Item-->
+												<div class="d-flex align-items-center mb-7">
+													<span class="fw-bold fs-5 text-gray-700 flex-grow-1">Finance Module</span>
+													<!--begin::Svg Icon | path: icons/duotone/Code/Done-circle.svg-->
+													<span class="svg-icon svg-icon-1 svg-icon-success">
+														<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+															<circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+															<path d="M16.7689447,7.81768175 C17.1457787,7.41393107 17.7785676,7.39211077 18.1823183,7.76894473 C18.5860689,8.1457787 18.6078892,8.77856757 18.2310553,9.18231825 L11.2310553,16.6823183 C10.8654446,17.0740439 10.2560456,17.107974 9.84920863,16.7592566 L6.34920863,13.7592566 C5.92988278,13.3998345 5.88132125,12.7685345 6.2407434,12.3492086 C6.60016555,11.9298828 7.23146553,11.8813212 7.65079137,12.2407434 L10.4229928,14.616916 L16.7689447,7.81768175 Z" fill="#000000" fill-rule="nonzero" />
+														</svg>
+													</span>
+													<!--end::Svg Icon-->
+												</div>
+												<!--end::Item-->
+												<!--begin::Item-->
+												<div class="d-flex align-items-center mb-7">
+													<span class="fw-bold fs-5 text-gray-700 flex-grow-1">Accounting Module</span>
+													<!--begin::Svg Icon | path: icons/duotone/Code/Done-circle.svg-->
+													<span class="svg-icon svg-icon-1 svg-icon-success">
+														<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+															<circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+															<path d="M16.7689447,7.81768175 C17.1457787,7.41393107 17.7785676,7.39211077 18.1823183,7.76894473 C18.5860689,8.1457787 18.6078892,8.77856757 18.2310553,9.18231825 L11.2310553,16.6823183 C10.8654446,17.0740439 10.2560456,17.107974 9.84920863,16.7592566 L6.34920863,13.7592566 C5.92988278,13.3998345 5.88132125,12.7685345 6.2407434,12.3492086 C6.60016555,11.9298828 7.23146553,11.8813212 7.65079137,12.2407434 L10.4229928,14.616916 L16.7689447,7.81768175 Z" fill="#000000" fill-rule="nonzero" />
+														</svg>
+													</span>
+													<!--end::Svg Icon-->
+												</div>
+												<!--end::Item-->
+												<!--begin::Item-->
+												<div class="d-flex align-items-center mb-7">
+													<span class="fw-bold fs-5 text-muted flex-grow-1">Network Platform</span>
+													<!--begin::Svg Icon | path: icons/duotone/Code/Error-circle.svg-->
+													<span class="svg-icon svg-icon-1">
+														<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+															<circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+															<path d="M12.0355339,10.6213203 L14.863961,7.79289322 C15.2544853,7.40236893 15.8876503,7.40236893 16.2781746,7.79289322 C16.6686989,8.18341751 16.6686989,8.81658249 16.2781746,9.20710678 L13.4497475,12.0355339 L16.2781746,14.863961 C16.6686989,15.2544853 16.6686989,15.8876503 16.2781746,16.2781746 C15.8876503,16.6686989 15.2544853,16.6686989 14.863961,16.2781746 L12.0355339,13.4497475 L9.20710678,16.2781746 C8.81658249,16.6686989 8.18341751,16.6686989 7.79289322,16.2781746 C7.40236893,15.8876503 7.40236893,15.2544853 7.79289322,14.863961 L10.6213203,12.0355339 L7.79289322,9.20710678 C7.40236893,8.81658249 7.40236893,8.18341751 7.79289322,7.79289322 C8.18341751,7.40236893 8.81658249,7.40236893 9.20710678,7.79289322 L12.0355339,10.6213203 Z" fill="#000000" />
+														</svg>
+													</span>
+													<!--end::Svg Icon-->
+												</div>
+												<!--end::Item-->
+												<!--begin::Item-->
+												<div class="d-flex align-items-center">
+													<span class="fw-bold fs-5 text-muted flex-grow-1">Unlimited Cloud Space</span>
+													<!--begin::Svg Icon | path: icons/duotone/Code/Error-circle.svg-->
+													<span class="svg-icon svg-icon-1">
+														<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+															<circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+															<path d="M12.0355339,10.6213203 L14.863961,7.79289322 C15.2544853,7.40236893 15.8876503,7.40236893 16.2781746,7.79289322 C16.6686989,8.18341751 16.6686989,8.81658249 16.2781746,9.20710678 L13.4497475,12.0355339 L16.2781746,14.863961 C16.6686989,15.2544853 16.6686989,15.8876503 16.2781746,16.2781746 C15.8876503,16.6686989 15.2544853,16.6686989 14.863961,16.2781746 L12.0355339,13.4497475 L9.20710678,16.2781746 C8.81658249,16.6686989 8.18341751,16.6686989 7.79289322,16.2781746 C7.40236893,15.8876503 7.40236893,15.2544853 7.79289322,14.863961 L10.6213203,12.0355339 L7.79289322,9.20710678 C7.40236893,8.81658249 7.40236893,8.18341751 7.79289322,7.79289322 C8.18341751,7.40236893 8.81658249,7.40236893 9.20710678,7.79289322 L12.0355339,10.6213203 Z" fill="#000000" />
+														</svg>
+													</span>
+													<!--end::Svg Icon-->
+												</div>
+												<!--end::Item-->
+											</div>
+											<!--end::Body-->
+										</div>
+										<!--end::Tab Pane-->
+										<!--begin::Tab Pane-->
+										<div class="tab-pane fade" id="kt_upgrade_plan_enterprise">
+											<!--begin::Heading-->
+											<div class="pb-5">
+												<h2 class="fw-bolder text-dark">What’s in Startup Plan?</h2>
+												<div class="text-muted fw-bold">Optimal for 1000+ team and enterpise</div>
+											</div>
+											<!--end::Heading-->
+											<!--begin::Body-->
+											<div class="pt-1">
+												<!--begin::Item-->
+												<div class="d-flex align-items-center mb-7">
+													<span class="fw-bold fs-5 text-gray-700 flex-grow-1">Up to 10 Active Users</span>
+													<!--begin::Svg Icon | path: icons/duotone/Code/Done-circle.svg-->
+													<span class="svg-icon svg-icon-1 svg-icon-success">
+														<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+															<circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+															<path d="M16.7689447,7.81768175 C17.1457787,7.41393107 17.7785676,7.39211077 18.1823183,7.76894473 C18.5860689,8.1457787 18.6078892,8.77856757 18.2310553,9.18231825 L11.2310553,16.6823183 C10.8654446,17.0740439 10.2560456,17.107974 9.84920863,16.7592566 L6.34920863,13.7592566 C5.92988278,13.3998345 5.88132125,12.7685345 6.2407434,12.3492086 C6.60016555,11.9298828 7.23146553,11.8813212 7.65079137,12.2407434 L10.4229928,14.616916 L16.7689447,7.81768175 Z" fill="#000000" fill-rule="nonzero" />
+														</svg>
+													</span>
+													<!--end::Svg Icon-->
+												</div>
+												<!--end::Item-->
+												<!--begin::Item-->
+												<div class="d-flex align-items-center mb-7">
+													<span class="fw-bold fs-5 text-gray-700 flex-grow-1">Up to 30 Project Integrations</span>
+													<!--begin::Svg Icon | path: icons/duotone/Code/Done-circle.svg-->
+													<span class="svg-icon svg-icon-1 svg-icon-success">
+														<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+															<circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+															<path d="M16.7689447,7.81768175 C17.1457787,7.41393107 17.7785676,7.39211077 18.1823183,7.76894473 C18.5860689,8.1457787 18.6078892,8.77856757 18.2310553,9.18231825 L11.2310553,16.6823183 C10.8654446,17.0740439 10.2560456,17.107974 9.84920863,16.7592566 L6.34920863,13.7592566 C5.92988278,13.3998345 5.88132125,12.7685345 6.2407434,12.3492086 C6.60016555,11.9298828 7.23146553,11.8813212 7.65079137,12.2407434 L10.4229928,14.616916 L16.7689447,7.81768175 Z" fill="#000000" fill-rule="nonzero" />
+														</svg>
+													</span>
+													<!--end::Svg Icon-->
+												</div>
+												<!--end::Item-->
+												<!--begin::Item-->
+												<div class="d-flex align-items-center mb-7">
+													<span class="fw-bold fs-5 text-gray-700 flex-grow-1">Analytics Module</span>
+													<!--begin::Svg Icon | path: icons/duotone/Code/Done-circle.svg-->
+													<span class="svg-icon svg-icon-1 svg-icon-success">
+														<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+															<circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+															<path d="M16.7689447,7.81768175 C17.1457787,7.41393107 17.7785676,7.39211077 18.1823183,7.76894473 C18.5860689,8.1457787 18.6078892,8.77856757 18.2310553,9.18231825 L11.2310553,16.6823183 C10.8654446,17.0740439 10.2560456,17.107974 9.84920863,16.7592566 L6.34920863,13.7592566 C5.92988278,13.3998345 5.88132125,12.7685345 6.2407434,12.3492086 C6.60016555,11.9298828 7.23146553,11.8813212 7.65079137,12.2407434 L10.4229928,14.616916 L16.7689447,7.81768175 Z" fill="#000000" fill-rule="nonzero" />
+														</svg>
+													</span>
+													<!--end::Svg Icon-->
+												</div>
+												<!--end::Item-->
+												<!--begin::Item-->
+												<div class="d-flex align-items-center mb-7">
+													<span class="fw-bold fs-5 text-gray-700 flex-grow-1">Finance Module</span>
+													<!--begin::Svg Icon | path: icons/duotone/Code/Done-circle.svg-->
+													<span class="svg-icon svg-icon-1 svg-icon-success">
+														<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+															<circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+															<path d="M16.7689447,7.81768175 C17.1457787,7.41393107 17.7785676,7.39211077 18.1823183,7.76894473 C18.5860689,8.1457787 18.6078892,8.77856757 18.2310553,9.18231825 L11.2310553,16.6823183 C10.8654446,17.0740439 10.2560456,17.107974 9.84920863,16.7592566 L6.34920863,13.7592566 C5.92988278,13.3998345 5.88132125,12.7685345 6.2407434,12.3492086 C6.60016555,11.9298828 7.23146553,11.8813212 7.65079137,12.2407434 L10.4229928,14.616916 L16.7689447,7.81768175 Z" fill="#000000" fill-rule="nonzero" />
+														</svg>
+													</span>
+													<!--end::Svg Icon-->
+												</div>
+												<!--end::Item-->
+												<!--begin::Item-->
+												<div class="d-flex align-items-center mb-7">
+													<span class="fw-bold fs-5 text-gray-700 flex-grow-1">Accounting Module</span>
+													<!--begin::Svg Icon | path: icons/duotone/Code/Done-circle.svg-->
+													<span class="svg-icon svg-icon-1 svg-icon-success">
+														<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+															<circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+															<path d="M16.7689447,7.81768175 C17.1457787,7.41393107 17.7785676,7.39211077 18.1823183,7.76894473 C18.5860689,8.1457787 18.6078892,8.77856757 18.2310553,9.18231825 L11.2310553,16.6823183 C10.8654446,17.0740439 10.2560456,17.107974 9.84920863,16.7592566 L6.34920863,13.7592566 C5.92988278,13.3998345 5.88132125,12.7685345 6.2407434,12.3492086 C6.60016555,11.9298828 7.23146553,11.8813212 7.65079137,12.2407434 L10.4229928,14.616916 L16.7689447,7.81768175 Z" fill="#000000" fill-rule="nonzero" />
+														</svg>
+													</span>
+													<!--end::Svg Icon-->
+												</div>
+												<!--end::Item-->
+												<!--begin::Item-->
+												<div class="d-flex align-items-center mb-7">
+													<span class="fw-bold fs-5 text-gray-700 flex-grow-1">Network Platform</span>
+													<!--begin::Svg Icon | path: icons/duotone/Code/Done-circle.svg-->
+													<span class="svg-icon svg-icon-1 svg-icon-success">
+														<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+															<circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+															<path d="M16.7689447,7.81768175 C17.1457787,7.41393107 17.7785676,7.39211077 18.1823183,7.76894473 C18.5860689,8.1457787 18.6078892,8.77856757 18.2310553,9.18231825 L11.2310553,16.6823183 C10.8654446,17.0740439 10.2560456,17.107974 9.84920863,16.7592566 L6.34920863,13.7592566 C5.92988278,13.3998345 5.88132125,12.7685345 6.2407434,12.3492086 C6.60016555,11.9298828 7.23146553,11.8813212 7.65079137,12.2407434 L10.4229928,14.616916 L16.7689447,7.81768175 Z" fill="#000000" fill-rule="nonzero" />
+														</svg>
+													</span>
+													<!--end::Svg Icon-->
+												</div>
+												<!--end::Item-->
+												<!--begin::Item-->
+												<div class="d-flex align-items-center">
+													<span class="fw-bold fs-5 text-gray-700 flex-grow-1">Unlimited Cloud Space</span>
+													<!--begin::Svg Icon | path: icons/duotone/Code/Done-circle.svg-->
+													<span class="svg-icon svg-icon-1 svg-icon-success">
+														<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+															<circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+															<path d="M16.7689447,7.81768175 C17.1457787,7.41393107 17.7785676,7.39211077 18.1823183,7.76894473 C18.5860689,8.1457787 18.6078892,8.77856757 18.2310553,9.18231825 L11.2310553,16.6823183 C10.8654446,17.0740439 10.2560456,17.107974 9.84920863,16.7592566 L6.34920863,13.7592566 C5.92988278,13.3998345 5.88132125,12.7685345 6.2407434,12.3492086 C6.60016555,11.9298828 7.23146553,11.8813212 7.65079137,12.2407434 L10.4229928,14.616916 L16.7689447,7.81768175 Z" fill="#000000" fill-rule="nonzero" />
+														</svg>
+													</span>
+													<!--end::Svg Icon-->
+												</div>
+												<!--end::Item-->
+											</div>
+											<!--end::Body-->
+										</div>
+										<!--end::Tab Pane-->
+									</div>
+									<!--end::Tab content-->
+								</div>
+								<!--end::Col-->
+							</div>
+							<!--end::Row-->
+						</div>
+						<!--end::Plans-->
+						<!--begin::Actions-->
+						<div class="d-flex flex-center flex-row-fluid pt-12">
+							<button type="reset" class="btn btn-light me-3" data-bs-dismiss="modal">Cancel</button>
+							<button type="submit" class="btn btn-primary">Upgrade Plan</button>
+						</div>
+						<!--end::Actions-->
+					</div>
+					<!--end::Modal body-->
+				</div>
+				<!--end::Modal content-->
+			</div>
+			<!--end::Modal dialog-->
+		</div>
+		<!--end::Modal - Upgrade plan-->
+		<!--end::Modals-->
+		<!--begin::Scrolltop-->
+		<div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
+			<!--begin::Svg Icon | path: icons/duotone/Navigation/Up-2.svg-->
+			<span class="svg-icon">
+				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+					<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+						<polygon points="0 0 24 0 24 24 0 24" />
+						<rect fill="#000000" opacity="0.5" x="11" y="10" width="2" height="10" rx="1" />
+						<path d="M6.70710678,12.7071068 C6.31658249,13.0976311 5.68341751,13.0976311 5.29289322,12.7071068 C4.90236893,12.3165825 4.90236893,11.6834175 5.29289322,11.2928932 L11.2928932,5.29289322 C11.6714722,4.91431428 12.2810586,4.90106866 12.6757246,5.26284586 L18.6757246,10.7628459 C19.0828436,11.1360383 19.1103465,11.7686056 18.7371541,12.1757246 C18.3639617,12.5828436 17.7313944,12.6103465 17.3242754,12.2371541 L12.0300757,7.38413782 L6.70710678,12.7071068 Z" fill="#000000" fill-rule="nonzero" />
+					</g>
+				</svg>
+			</span>
+			<!--end::Svg Icon-->
+		</div>
+		<!--end::Scrolltop-->
+		<!--end::Main-->
+		<!--begin::Javascript-->
+		<!--begin::Global Javascript Bundle(used by all pages)-->
+		<script src="/static/plugins/global/plugins.bundle.js"></script>
+		<script src="/static/js/scripts.bundle.js"></script>
+		<!--end::Global Javascript Bundle-->
+		<!--begin::Page Custom Javascript(used by this page)-->
+		<script src="/static/js/custom/widgets.js"></script>
+		{% block script %}{% endblock script %}
+		<!--end::Page Custom Javascript-->
+		<!--end::Javascript-->
+	</body>
+	<!--end::Body-->
+</html>

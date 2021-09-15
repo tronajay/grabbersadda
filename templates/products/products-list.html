@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %}Shop - PirateDeals{% endblock title %}
+{% block pagetitle %} 
+
+  {% if category %}
+
+  Category: {{category.title}}
+
+  {% elif store %}
+
+  Store: {{store.title}}
+
+{% endif %}  
+
+{% endblock pagetitle %}
+
+{% block content %}
+{% load custom_tags %}
+   <div class="row g-10">
+			{% for p in products %}
+			  <!--begin::Col-->
+			<div class="col-md-3">
+				<!--begin::Hot sales post-->
+				<div class="card p-5 ribbon ribbon-top">
+					<!--begin::Overlay-->
+					
+					<div class="ribbon-label bg-primary"> {% discountp p.original_price p.sale_price %}% Off </div>
+					
+					<a class="" href="/shop/{{p.slug}}">
+						<!--begin::Image-->
+						<center><img src="{{p.featureimg}}" class="h-200px align-items-center" alt=""></center>
+						<!--end::Image-->
+						
+					</a>
+					<!--end::Overlay-->
+					<!--begin::Body-->
+					<div class="mt-5">
+						<!--begin::Title-->
+						<a href="/shop/{{p.slug}}" class="fs-5 text-dark fw-bolder text-hover-primary text-dark lh-base">{{p.title}}</a>
+						<!--end::Title-->
+						<!--begin::Text-->
+						<div class="fw-bold fs-5 text-gray-600 text-dark mt-3"></div>
+						<!--end::Text-->
+						<!--begin::Text-->
+						<div class="fs-6 fw-bolder mt-5 d-flex flex-stack">
+							<!--begin::Label-->
+							<span class="badge border-dashed fs-2 fw-bolder text-dark p-2">
+							<span class="fs-6 fw-bold text-gray-400">₹</span>{{p.sale_price}}</span>
+							<!--end::Label-->
+							<!--begin::Action-->
+							<a href="/shop/{{p.slug}}" class="btn-sm text-white btn-primary">Buy Now</a>
+							<!--end::Action-->
+						</div>
+						<!--end::Text-->
+					</div>
+					<!--end::Body-->
+				</div>
+				<!--end::Hot sales post-->
+			</div>
+			<!--end::Col-->
+			
+			{% endfor %}
+		</div>
+{% endblock content %}
+  
