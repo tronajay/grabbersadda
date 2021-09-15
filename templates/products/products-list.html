@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}Shop - PirateDeals{% endblock title %}
+{% block title %}{% endblock title %}
 {% block pagetitle %} 
 
   {% if category %}
@@ -61,5 +61,21 @@
 			
 			{% endfor %}
 		</div>
+		<ul class="pagination my-10">
+		{% if products.number != 1 and products.previous_page_number is not 1%}
+	<li class="page-item next"><a class="page-link" href="/">First</span></a></li>
+	{% endif %}
+		{% if products.has_previous %}
+		    <li class="page-item previous"><a href="?page={{products.previous_page_number}}" class="page-link">Previous</a></span></li>
+		{% endif %}
+
+    <li class="page-item disabled"><span class="page-link">Page {{products.number}} of {{products.paginator.num_pages}}</span></li>
+    {% if products.has_next %}
+	 <li class="page-item next"><a class="page-link" href="?page={{products.next_page_number}}">Next</span></a></li>
+	{% endif %}
+	{% if products.number != products.paginator.num_pages and products.next_page_number != products.paginator.num_pages %}
+	<li class="page-item next"><a class="page-link" href="?page={{products.paginator.num_pages}}">Last</span></a></li>
+	{% endif %}
+</ul>
 {% endblock content %}
   
