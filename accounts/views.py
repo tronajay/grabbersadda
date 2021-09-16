@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from .models import Profile
 from django.contrib.auth import authenticate, login as authlogin, logout
 from django.contrib.auth.decorators import login_required
+import os
 
 # Create your views here.
 def seo(request):
@@ -69,6 +70,13 @@ def updateprofile(request):
         user.last_name = lastname
         user.save()
         profile = Profile.objects.get(user__id=request.user.id)
+        try:
+            profileimg=request.FILES['profileimg']
+            oldimage=profile.profileimg.path
+            os.remove(oldimage)
+            profile.profileimg=profileimg
+        except:
+            pass
         profile.bio = bio
         profile.phone = phone
         profile.facebook = facebook

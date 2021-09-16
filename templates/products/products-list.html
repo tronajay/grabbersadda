@@ -1,15 +1,10 @@
 {% extends 'base.html' %}
-{% block title %}{% endblock title %}
+{% block title %}GrabbersAdda{% endblock title %}
 {% block pagetitle %} 
-
   {% if category %}
-
   Category: {{category.title}}
-
   {% elif store %}
-
   Store: {{store.title}}
-
 {% endif %}  
 
 {% endblock pagetitle %}
@@ -28,7 +23,7 @@
 					
 					<a class="" href="/shop/{{p.slug}}">
 						<!--begin::Image-->
-						<center><img src="{{p.featureimg}}" class="h-200px align-items-center" alt=""></center>
+						<center><img src="/media/{{p.thumbnail}}" class="h-200px align-items-center" alt=""></center>
 						<!--end::Image-->
 						
 					</a>

@@ -10,7 +10,7 @@
 										<!--begin: Pic-->
 										<div class="me-7 mb-4">
 											<div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
-												<img src="https://scontent-bom1-1.xx.fbcdn.net/v/t1.6435-9/65027506_758994481162632_575367348119142400_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=EKrPaY_XN6IAX8qW3MD&_nc_ht=scontent-bom1-1.xx&oh=7f6aa219061d208f84d246aee8d4cf19&oe=61654959" alt="image">
+												<img src="/media/{{request.user.profile.profileimg}}" alt="image">
 											</div>
 										</div>
 										<!--end::Pic-->
@@ -120,8 +120,60 @@
 								</div>
 								<!--begin::Card header-->
 								<!--begin::Card body-->
-                                <form action="/update-profile" method="post">{% csrf_token %}
+                                <form action="/update-profile" method="post" enctype="multipart/form-data">{% csrf_token %}
 								<div class="card-body p-9">
+									<!--begin::Row-->
+									<div class="row mb-3">
+										<!--begin::Label-->
+										<label class="col-lg-4 col-md-4 fw-bold text-muted">Profile Image</label>
+										<!--end::Label-->
+										<!--begin::Col-->
+										<div class="w-md-400px me-md-2">
+											<!--begin::Image input-->
+											<div class="image-input image-input-empty" data-kt-image-input="true" style="background-image: url(/media/{{request.user.profile.profileimg}})">
+												<!--begin::Image preview wrapper-->
+												<div class="image-input-wrapper w-125px h-125px"></div>
+												<!--end::Image preview wrapper-->
+
+												<!--begin::Edit button-->
+												<label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-white shadow"
+													data-kt-image-input-action="change"
+													data-bs-toggle="tooltip"
+													data-bs-dismiss="click"
+													title="Change avatar">
+													<i class="bi bi-pencil-fill fs-7"></i>
+													<!--begin::Inputs-->
+													<input type="file" name="profileimg" accept=".png, .jpg, .jpeg" />
+													<input type="hidden" name="avatar_remove" />
+													<!--end::Inputs-->
+												</label>
+												<!--end::Edit button-->
+
+												<!--begin::Cancel button-->
+												<span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-white shadow"
+													data-kt-image-input-action="cancel"
+													data-bs-toggle="tooltip"
+													data-bs-dismiss="click"
+													title="Cancel avatar">
+													<i class="bi bi-x fs-2"></i>
+												</span>
+												<!--end::Cancel button-->
+
+												<!--begin::Remove button-->
+												<span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-white shadow"
+													data-kt-image-input-action="remove"
+													data-bs-toggle="tooltip"
+													data-bs-dismiss="click"
+													title="Remove avatar">
+													<i class="bi bi-x fs-2"></i>
+												</span>
+												<!--end::Remove button-->
+											</div>
+											<!--end::Image input-->
+                                        </div>
+										<!--end::Col-->
+									</div>
+									<!--end::Row-->
 									<!--begin::Row-->
 									<div class="row mb-3">
 										<!--begin::Label-->

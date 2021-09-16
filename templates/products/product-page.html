@@ -39,7 +39,7 @@
         <!--begin::Wrapper-->
         <div class="mb-8">
             <!--begin::Info-->
-            <a href="/store/{{product.store.slug}}"><img class="float-end" style="width:80px" src="{{product.store.featureimg}}" alt=""> </a>
+            <a href="/store/{{product.store.slug}}"><img class="float-end" style="width:80px" src="/media/{{product.store.thumbnail}}" alt=""> </a>
             <div class="d-flex flex-wrap mb-6">
                 <!--begin::Item-->
                 <div class="me-9 my-1">
@@ -81,7 +81,7 @@
             <!--begin::Container-->
             <div class="row">
 			  <div class="col-md-5 p-5 ">
-                <center><img src="{{product.featureimg}}" class="h-200px align-items-center" alt=""></center>
+                <center><img src="/media/{{product.thumbnail}}" class="h-200px align-items-center" alt=""></center>
 			  </div>
 			  <div class="col-md-6 p-5">
 			    <h2>{{product.title}}</h2>
@@ -199,7 +199,7 @@
         <div class="d-flex flex-stack mb-7">
             <!--begin::Symbol-->
             <div class="symbol symbol-60px symbol-2by3 me-4">
-                <center><img src="{{r.featureimg}}" class="w-60px align-items-center" alt=""></center>
+                <center><img src="/media/{{r.thumbnail}}" class="w-60px align-items-center" alt=""></center>
             </div>
             <!--end::Symbol-->
             <!--begin::Title-->

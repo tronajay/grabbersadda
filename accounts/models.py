@@ -11,6 +11,7 @@ class WebInfo(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
+    profileimg=models.ImageField(upload_to='profile_images/',default="profile_images/user.png")
     phone = models.IntegerField(blank=True,null=True)
     bio = models.TextField(blank=True)
     facebook = models.CharField(max_length=100,blank=True)

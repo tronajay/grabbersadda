@@ -7,7 +7,7 @@ from django.core.paginator import Paginator
 
 # Create your views here.
 def shop(request):
-    p = Paginator(Products.objects.all()[::-1],2)
+    p = Paginator(Products.objects.all()[::-1],12)
     page = request.GET.get('page')
     products = p.get_page(page)
     params = {'products':products} 
