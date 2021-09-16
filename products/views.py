@@ -19,12 +19,16 @@ def productpage(request,slug):
     return render(request,'products/product-page.html',{'product':product,'recent':recent})
 
 def categorypage(request,slug):
-    products = Products.objects.filter(category__slug=slug)
+    p = Paginator(Products.objects.filter(category__slug=slug)[::-1],12)
+    page = request.GET.get('page')
+    products = p.get_page(page)
     category = Category.objects.get(slug=slug)
     return render(request,'products/products-list.html',{'products':products,'category':category})
 
 def store(request,slug):
-    products = Products.objects.filter(store__slug=slug)
+    p = Paginator(Products.objects.filter(store__slug=slug)[::-1],12)
+    page = request.GET.get('page')
+    products = p.get_page(page)
     store = Store.objects.get(slug=slug)
     return render(request,'products/products-list.html',{'products':products,'store':store})
 

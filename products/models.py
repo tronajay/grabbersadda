@@ -8,8 +8,8 @@ class Store(models.Model):
     title = models.CharField(max_length=100)
     slug=models.SlugField(max_length=100)
     afflink = models.CharField(max_length=100)
-    featureimg = models.CharField(max_length=100)
-
+    storeimg = models.ImageField(upload_to='store_images/',null=True)
+    
     def __str__(self):
         return self.title
     

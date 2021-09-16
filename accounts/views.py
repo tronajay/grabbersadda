@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from .models import Profile
 from django.contrib.auth import authenticate, login as authlogin, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 import os
 
 # Create your views here.
@@ -53,9 +54,11 @@ def loginuser(request):
     else:
         return redirect('/')
 
+@login_required(login_url='/')
 def profileview(request):
     return render(request,'accounts/profile.html')
 
+@login_required(login_url='/')
 def updateprofile(request):
     if request.method == "POST":
         fullname = request.POST['fullname']
@@ -89,9 +92,11 @@ def log_out(request):
     logout(request)
     return redirect('/')
 
+@login_required(login_url='/')
 def settings(request):
     return render(request,'accounts/profile.html')
 
+@login_required(login_url='/')
 def deleteaccount(request):
     username = request.user.username
     user = User.objects.get(username=username)
@@ -100,3 +105,23 @@ def deleteaccount(request):
 
 def membership(request):
     return render(request,'accounts/membership.html')
+
+def updatepass(request):
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            newpass = request.POST['new_password']
+            currentpass = request.POST['current_password']
+            user = User.objects.get(id=request.user.id)
+            us = authenticate(username=request.user,password=currentpass)
+            if us is not None:
+                user.set_password(newpass)
+                user.save()
+                messages.success(request,'Password Changed Successfully. Please Login Again')
+                return redirect('/settings')
+            else:
+                messages.error(request,'Current Password is wrong. Please Enter Correct Password.')
+                return redirect('/settings')
+        else:
+            messages.error(request,'Incorrect Url Accessed')    
+    else:
+        return redirect("/")

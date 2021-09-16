@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %} {{product.title}} - GrabbersAdda {% endblock title %}
+{% block title %} {{product.title}} - Coopn {% endblock title %}
 {% block breadcrumb %}
   	<ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
 		<!--begin::Item-->
@@ -39,7 +39,7 @@
         <!--begin::Wrapper-->
         <div class="mb-8">
             <!--begin::Info-->
-            <a href="/store/{{product.store.slug}}"><img class="float-end" style="width:80px" src="/media/{{product.store.thumbnail}}" alt=""> </a>
+            <a href="/store/{{product.store.slug}}"><img class="float-end" style="width:80px" src="/media/{{product.store.storeimg}}" alt=""> </a>
             <div class="d-flex flex-wrap mb-6">
                 <!--begin::Item-->
                 <div class="me-9 my-1">
@@ -148,18 +148,18 @@
                    {{product.author.profile.bio}}
                 </div>
                  <!--begin::Icons-->
-        <div class="float-start">
-            <!--begin::Icon-->
-            <a href="{{product.author.profile.facebook}}" class="mx-2">
-                <i class="fab fa-facebook fa-lg text-hover-primary"></i>
-            </a>
-            <!--end::Icon-->
-            <!--begin::Icon-->
-            <a href="{{product.author.profile.insta}}">
-                <i class="fab fa-instagram fa-lg text-hover-danger"></i>
-            </a>
-            <!--end::Icon-->
-        </div>
+                <div class="float-start">
+                    <!--begin::Icon-->
+                    <a href="{{product.author.profile.facebook}}" class="mx-2">
+                        <i class="fab fa-facebook fa-lg text-hover-primary"></i>
+                    </a>
+                    <!--end::Icon-->
+                    <!--begin::Icon-->
+                    <a href="{{product.author.profile.insta}}">
+                        <i class="fab fa-instagram fa-lg text-hover-danger"></i>
+                    </a>
+                    <!--end::Icon-->
+                </div>
         <!--end::Icons-->
             </div>
             <!--end::Text-->
@@ -196,7 +196,7 @@
         <h4 class="text-black mb-7">Recent Deals</h4>
         {% for r in recent %}
           <!--begin::Item-->
-        <div class="d-flex flex-stack mb-7">
+        <div class="d-flex mb-7">
             <!--begin::Symbol-->
             <div class="symbol symbol-60px symbol-2by3 me-4">
                 <center><img src="/media/{{r.thumbnail}}" class="w-60px align-items-center" alt=""></center>

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}GrabbersAdda{% endblock title %}
+{% block title %}Coopn{% endblock title %}
 {% block pagetitle %} 
   {% if category %}
   Category: {{category.title}}
@@ -31,7 +31,7 @@
 					<!--begin::Body-->
 					<div class="mt-5">
 						<!--begin::Title-->
-						<a href="/shop/{{p.slug}}" class="fs-5 text-dark fw-bolder text-hover-primary text-dark lh-base">{{p.title}}</a>
+						<a href="/shop/{{p.slug}}" class="fs-5 text-dark fw-bolder text-hover-primary text-dark lh-base">{{p.title | truncatechars:50}}</a>
 						<!--end::Title-->
 						<!--begin::Text-->
 						<div class="fw-bold fs-5 text-gray-600 text-dark mt-3"></div>
