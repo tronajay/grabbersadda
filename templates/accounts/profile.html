@@ -33,7 +33,11 @@
 															</span>
 															<!--end::Svg Icon-->
 														</span>
-														<a href="/membership" class="badge badge-light-primary fw-bolder ms-2 fs-8 py-1 px-3">{{request.user.profile.membership}}</a>
+														{% if request.user.profile.role == 'Subscriber' %}
+														  <a href="#" class="badge badge-light-warning fw-bolder ms-2 fs-8 py-1 px-3">{{request.user.profile.membership}}</a>
+														  {% else %}
+														  <a href="#" class="badge badge-light-primary fw-bolder ms-2 fs-8 py-1 px-3">{{request.user.profile.membership}}</a>
+														{% endif %}
 													</div>
 													<!--end::Name-->
 													<!--begin::Info-->

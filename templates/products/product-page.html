@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 {% block title %} {{product.title}} - Coopn {% endblock title %}
+{% block ogtitle %}{{product.title}}{% endblock ogtitle %}
+{% block ogdescription %}{{product.description}}{% endblock ogdescription %} 
+{% block ogurl %}https://coopn.in/shop/{{product.slug}}{% endblock ogurl %}
+{% block ogimage %}https://coopn.in/media/{{product.thumbnail}}{% endblock ogimage %}  
+{% block ogimagealt %} {{product.title}} {% endblock ogimagealt %} 
 {% block breadcrumb %}
   	<ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
 		<!--begin::Item-->
@@ -131,7 +136,7 @@
             <div class="text-center flex-shrink-0 me-7 me-lg-13">
                 <!--begin::Avatar-->
                 <div class="symbol symbol-70px symbol-circle mb-2">
-                    <img src="https://scontent-bom1-1.xx.fbcdn.net/v/t1.6435-9/65027506_758994481162632_575367348119142400_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=EKrPaY_XN6IAX8qW3MD&_nc_ht=scontent-bom1-1.xx&oh=7f6aa219061d208f84d246aee8d4cf19&oe=61654959" class="" alt="" />
+                    <img src="{{request.user.profile.profileimg}}" class="" alt="" />
                 </div>
                 <!--end::Avatar-->
                 <!--begin::Info-->

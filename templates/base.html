@@ -4,12 +4,23 @@
 	<head><base href="">
 		<meta charset="utf-8" />
         <title>{% block title %}{% endblock title %}</title>
-        <meta name="description" content="{{seo.description}}">
-        <meta name="keywords" content="{{seo.keywords}}">
-		<link rel="canonical" href="{{seo.url}}" />
+		<!--Seo Starts Here-->
+		<link rel="canonical" href="https://coopn.in/">
+		<link rel="next" href="https://coopn.in?page=2">
+		<meta property="og:locale" content="en_US">
+		<meta property="og:type" content="website">
+		<meta property="og:title" content="{% block ogtitle %}{% endblock ogtitle %}">
+		<meta property="og:description" content="{% block ogdescription %}{% endblock ogdescription %}">
+		<meta property="og:url" content="{% block ogurl %}{% endblock ogurl %}">
+		<meta property="og:site_name" content="Coopn">
+		<meta property="og:image" content="{% block ogimage %}{% endblock ogimage %}">
+		<meta property="og:image:width" content="720">
+		<meta property="og:image:height" content="720">
+		<meta property="og:image:alt" content="{% block ogimagealt %}{% endblock  %}">
+		<!--Seo Ends Here-->
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="shortcut icon" href="/static/images/site/ga-site-icon.png" />
-		<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+		<link rel="shortcut icon" href="/static/images/site/coopn-site-icon.png" />
+		<link rel="stylesheet" href="/static/css/fontawesome.css"/>
 		<!--begin::Fonts-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 		<!--end::Fonts-->
@@ -45,8 +56,8 @@
 							<!--begin::Header Logo-->
 							<div class="header-logo me-5 me-md-10 flex-grow-1 flex-lg-grow-0">
 								<a href="/">
-									<img alt="Logo" src="/static/images/site/grabbersadda.png" class="logo-default h-60px" />
-									<img alt="Logo" src="/static/images/site/Coopn.png" class="logo-sticky h-60px" />
+									<img alt="Logo" src="/static/images/site/coopn.png" class="logo-default h-60px" />
+									<img alt="Logo" src="/static/images/site/coopn.png" class="logo-sticky h-60px" />
 								</a>
 							</div>
 							<!--end::Header Logo-->
@@ -128,10 +139,10 @@
 							<!--begin::Menu-->
 							<ul class="menu menu-gray-600 menu-hover-primary fw-bold order-1">
 								<li class="menu-item">
-									<a href="https://coopn.in" target="_blank" class="menu-link px-2">About</a>
+									<a href="https://coopn./about" target="_blank" class="menu-link px-2">About</a>
 								</li>
 								<li class="menu-item">
-									<a href="https://coopn.in/support" target="_blank" class="menu-link px-2">Support</a>
+									<a href="mailto:support@coopn.in" target="_blank" class="menu-link px-2">Support</a>
 								</li>
 								<li class="menu-item">
 									<a href="https://coopn.in/privacy-policy" target="_blank" class="menu-link px-2">Privacy Policy</a>
