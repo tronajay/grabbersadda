@@ -27,7 +27,7 @@ SECRET_KEY = 'kdpyx)5-7s7owfk+#7-uz#(1pr(_ae!cr#t8dg#c-zf=%0)=cs'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["52.140.120.89","coopn.in","192.168.0.103"]
+ALLOWED_HOSTS = ["20.204.28.107","192.168.0.103"]
 
 
 # Application definition
