@@ -89,10 +89,10 @@ WSGI_APPLICATION = 'PirateDeals.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'coopnzwa_coopn',
-        'USER':'coopnzwa_coopn',
-        'PASSWORD':'tron@aj7257',
-        'HOST':'119.18.54.32',
+        'NAME': 'grabbersadda',
+        'USER':'ajaypatel',
+        'PASSWORD':'Ajay@7257',
+        'HOST':'localhost',
         'PORT': '3306',
     }
 }
