@@ -12,13 +12,21 @@ class WebInfo(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     profileimg=models.ImageField(upload_to='profile_images/',default="profile_images/user.png")
-    phone = models.IntegerField(blank=True,null=True)
+    phone = models.CharField(max_length=100,blank=True)
     bio = models.TextField(blank=True)
     facebook = models.CharField(max_length=100,blank=True)
     insta = models.CharField(max_length=100,blank=True)
     points = models.IntegerField(default=0)
     membership = models.CharField(default="Basic",max_length=100)
     role = models.CharField(default="Subscriber",max_length=100)
+
+class Useractivate(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    key = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.user.username
+    
 
     def __str__(self):
         return self.user.username

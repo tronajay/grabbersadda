@@ -1,4 +1,3 @@
-from django.contrib import admin
 from django.urls import path
 from . import views
 
@@ -13,4 +12,5 @@ urlpatterns = [
     path('delete-account',views.deleteaccount,name="deleteaccount"),
     path('membership',views.membership,name="membership"),
     path('change-password',views.updatepass,name="updatepass"),
+    path('activate',views.activate,name="activate"),
 ]

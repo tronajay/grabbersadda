@@ -1,11 +1,12 @@
 from django.shortcuts import redirect, render
 from .models import WebInfo
-from django.http import HttpResponse
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile, Useractivate
 from django.contrib.auth import authenticate, login as authlogin, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.mail import EmailMessage
+import string, random
 import os
 
 # Create your views here.
@@ -24,17 +25,26 @@ def registeruser(request):
         email.lower()
         password = request.POST['password']
         if User.objects.filter(username=username).exists():
-            return HttpResponse("username Already Exists")
+            messages.error(request,'Username Already Exists')
+            return redirect("/")
         elif User.objects.filter(email=email).exists():
-            return HttpResponse("Email Already Exists")
+            messages.error(request,'Email Already Exists')
+            return redirect("/")
         else:
             newuser = User.objects.create_user(username,email,password)
             newuser.first_name=first_name
             newuser.last_name=last_name
-            newuser.is_active=True
+            newuser.is_active=False
             newuser.save()
             profile = Profile(user=newuser)
             profile.save()
+            activationkey = ''.join(random.choices(string.ascii_uppercase + string.digits + string.ascii_lowercase, k = 15))
+            ukey = Useractivate(user=newuser,key=activationkey)
+            ukey.save()
+            emailbody = "Hello "+first_name+"! \n Your Account Has been Created Successfully. \n\n Click below link to Activate Your Account. \n http://20.204.28.107/activate?key="+activationkey
+            messages.success(request,'Your Account Has been Created Successfully. Check your Email to Activate your account.')
+            email = EmailMessage('Account Activation', emailbody, to=[email])
+            email.send()
             return redirect('/')
 
 def loginuser(request):
@@ -43,14 +53,22 @@ def loginuser(request):
         username = email.split("@")[0]
         password = request.POST['password']
         if User.objects.filter(username=username).exists():
-            user = authenticate(username=username,password=password)
-            if user is not None:
-                authlogin(request,user)
-                return redirect('/')
+            verify = User.objects.get(username=username)
+            if verify.is_active is False:
+                messages.error(request,'Your Account is Not activated. Please Check your Email.')
+                return redirect("/")
             else:
-                return HttpResponse("Invalid Email or Password")
+                user = authenticate(username=username,password=password)
+                if user is not None:
+                    authlogin(request,user)
+                    messages.success(request,'Login Successful.')
+                    return redirect('/')
+                else:
+                    messages.error(request,'Invalid Email ID or Password')
+                    return redirect("/")
         else:
-            return HttpResponse("Email Not Registered")
+            messages.error(request,'Email is Not Registered')
+            return redirect("/")
     else:
         return redirect('/')
 
@@ -75,8 +93,12 @@ def updateprofile(request):
         profile = Profile.objects.get(user__id=request.user.id)
         try:
             profileimg=request.FILES['profileimg']
-            oldimage=profile.profileimg.path
-            os.remove(oldimage)
+            oldimage=profile.profileimg
+            if oldimage=="profile_images/user.png":
+                pass
+            else:
+                oldimagepath = profile.profileimg.path
+                os.remove(oldimagepath)
             profile.profileimg=profileimg
         except:
             pass
@@ -122,6 +144,27 @@ def updatepass(request):
                 messages.error(request,'Current Password is wrong. Please Enter Correct Password.')
                 return redirect('/settings')
         else:
-            messages.error(request,'Incorrect Url Accessed')    
+            messages.error(request,'Incorrect Url Accessed')
+            return redirect('/')    
+    else:
+        return redirect("/")
+
+def activate(request):
+    if request.method == "GET":
+        key = request.GET.get('key')
+        if Useractivate.objects.filter(key=key).exists():
+            ukey = Useractivate.objects.get(key=key)
+            user = User.objects.get(id=ukey.user.id)
+            if user.is_active is False:
+                user.is_active = True
+                user.save()
+                messages.success("Your account has been Activated. You can Now login.")
+                return redirect("/")
+            else:
+                messages.success(request,'Your Account is already activated.')
+                return redirect("/")
+        else:
+            messages.error(request,'Invalid Activation Key Passed')
+            return redirect('/')
     else:
         return redirect("/")

@@ -112,24 +112,6 @@
 							</div>
 							<!--end::Navbar-->
 							<!--begin::details View-->
-							{% if messages %}
-							  <!--begin::Alert-->
-								{% for m in messages %}
-								   <div class="d-flex mb-5 align-items-center rounded py-5 px-5 bg-light-{{m.tags}}">
-										<!--begin::Icon-->
-										<!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
-										<span class="svg-icon svg-icon-3x svg-icon-primary me-5">
-											<i class="fas fa-info-circle text-{{m.tags}}"></i>
-										</span>
-										<!--end::Svg Icon-->
-										<!--end::Icon-->
-										<!--begin::Description-->
-										<div class="text-{{m.tags}} fw-bold fs-6">{{m}}</div>
-										<!--end::Description-->
-									</div>
-								{% endfor %}
-								<!--end::Alert-->
-							{% endif %}
 							{% if request.path == "/profile" %}
 							<div class="card mb-5 mb-xl-10" id="kt_profile_details_view">
 								<!--begin::Card header-->
@@ -206,7 +188,7 @@
 												<!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
 												<!--end::Svg Icon-->
                                             <div class="input-group mb-3">
-                                                <input type="text" readonly name="fullname" class="input form-control form-control-solid" value="{{request.user.first_name}} {{request.user.last_name}}" placeholder="Full Name" aria-label="Full Name">
+                                                <input type="text" readonly name="fullname" placeholder="Enter Full Name" class="input form-control form-control-solid" value="{{request.user.first_name}} {{request.user.last_name}}" aria-label="Full Name" required>
                                                 <span class="input-group-text btn editmode btn-light-primary" id="basic-addon2"><i class="fas fa-pencil-alt"></i></span>
                                             </div>
                                         </div>
@@ -223,7 +205,7 @@
 												<!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
 												<!--end::Svg Icon-->
                                             <div class="input-group mb-3">
-                                                <textarea type="text" readonly name="bio" class="input form-control form-control-solid" placeholder="Enter Bio" rows="4" aria-label="Full Name">{{request.user.profile.bio}}</textarea>
+                                                <textarea type="text" readonly name="bio" class="input form-control form-control-solid" placeholder="Enter Bio" rows="4" aria-label="Full Name" required>{% if request.user.profile.bio %} {{request.user.profile.bio}} {% endif %}</textarea>
                                                 <span class="input-group-text btn editmode btn-light-primary" id="basic-addon2"><i class="fas fa-pencil-alt"></i></span>
                                             </div>
                                         </div>

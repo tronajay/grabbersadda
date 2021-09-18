@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 # Create your models here.
 
@@ -28,7 +28,7 @@ class Products(models.Model):
     category = models.ForeignKey(Category,default=1,on_delete=models.PROTECT)
     store = models.ForeignKey(Store,on_delete=models.PROTECT,default=1)
     thumbnail = models.ImageField(upload_to='product_images/',null=True)
-    description = RichTextField()
+    description = RichTextUploadingField()
     sale_price = models.IntegerField(default=0)
     original_price = models.IntegerField(default=0)
     offers = models.TextField(blank=True)

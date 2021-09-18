@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-centered ">
         <div class="modal-content">
             <div class="modal-body">
-               <form class="form w-100 fv-plugins-bootstrap5 fv-plugins-framework" action="/login-user" method="post" novalidate="novalidate">{% csrf_token %}
+               <form class="form w-100 fv-plugins-bootstrap5 fv-plugins-framework" action="/login-user" method="post">{% csrf_token %}
 							<!--begin::Heading-->
                             <a href="#" class="float-end" data-bs-dismiss="modal"><i class="far fa-times-circle"></i></a>
 							<div class="mb-10 text-center">
@@ -18,7 +18,7 @@
 							<!--begin::Input group-->
 							<div class="fv-row mb-7 fv-plugins-icon-container">
 								<label class="form-label fw-bolder text-dark fs-6">Email</label>
-								<input class="form-control form-control-lg form-control-solid" type="email" placeholder="Enter Email" name="email" autocomplete="off">
+								<input class="form-control form-control-lg form-control-solid" type="email" placeholder="Enter Email" name="email" autocomplete="off"  required oninvalid="this.setCustomValidity('Please Enter Email Correctly')" oninput="setCustomValidity('')">
 							<div class="fv-plugins-message-container invalid-feedback"></div></div>
 							<!--end::Input group-->
 							<!--begin::Input group-->
@@ -30,7 +30,8 @@
 									<!--end::Label-->
 									<!--begin::Input wrapper-->
 									<div class="position-relative mb-3">
-										<input class="form-control form-control-lg form-control-solid" placeholder="Enter Password" type="password" name="password" autocomplete="off"><span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
+										<input class="form-control form-control-lg form-control-solid" placeholder="Enter Password" type="password" name="password" autocomplete="off" pattern=".{8,}"  required oninvalid="this.setCustomValidity('Please Enter Password Correctly')" oninput="setCustomValidity('')">
+										<span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
 											<i class="bi bi-eye-slash fs-2"></i>
 											<i class="bi bi-eye fs-2 d-none"></i>
 										</span>
@@ -38,7 +39,7 @@
 									<!--end::Input wrapper-->
 								</div>
 								<!--end::Wrapper-->
-							<div class="fv-plugins-message-container invalid-feedback"></div></div>
+							</div>
 							<!--end::Input group=-->
 							<!--begin::Actions-->
 							<div class="text-center">
@@ -46,6 +47,7 @@
 									Sign in
 								</button>
 							</div>
+							<a href="#" data-bs-toggle="modal" data-bs-target="#kt_modal_3" data-bs-dismiss="modal" class="link-primary fw-bolder">Forgot Password?</a>
 							<!--end::Actions-->
 						<div></div></form>
             </div>

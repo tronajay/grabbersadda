@@ -7,5 +7,5 @@ urlpatterns = [
     path('shop/<str:slug>',views.productpage,name="productpage"),
     path('category/<str:slug>',views.categorypage,name="categorypage"),
     path('store/<str:slug>',views.store,name="store"),
-    path('redirect/<str:id>',views.redirectpage,name="redirect"),
+    path('redirect',views.redirectpage,name="redirect"),
 ]

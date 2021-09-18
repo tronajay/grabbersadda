@@ -32,7 +32,8 @@ def store(request,slug):
     store = Store.objects.get(slug=slug)
     return render(request,'products/products-list.html',{'products':products,'store':store})
 
-def redirectpage(request,id):
+def redirectpage(request):
+    id = request.GET.get('id')
     product = Products.objects.get(id=id)
     return render(request,'products/redirect.html',{'product':product})
 
