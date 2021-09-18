@@ -71,7 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                # 'accounts.views.seo',
+                'accounts.views.seo',
             ],
             'libraries':{
             'custom_tags': 'products.templatetags.custom_tags',
@@ -87,14 +87,21 @@ WSGI_APPLICATION = 'PirateDeals.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'grabbersadda',
+#         'USER':'ajaypatel',
+#         'PASSWORD':'Ajay@7257',
+#         'HOST':'localhost',
+#         'PORT': '3306',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'grabbersadda',
-        'USER':'ajaypatel',
-        'PASSWORD':'Ajay@7257',
-        'HOST':'localhost',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': str(os.path.join(BASE_DIR, "db.sqlite3"))
     }
 }
 

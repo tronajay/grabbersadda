@@ -3,11 +3,13 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class WebInfo(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=200)
     keywords = models.CharField(max_length=200)
     url = models.CharField(max_length=100)
+    mail = models.CharField(max_length=100,default='support@grabbersadda.in')
+    siteicon = models.ImageField(upload_to='site_images/',default="site_images/siteicon.png")
+    logo = models.ImageField(upload_to='site_images/',default="site_images/logo.png")
 
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)

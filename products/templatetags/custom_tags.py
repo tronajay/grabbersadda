@@ -1,7 +1,6 @@
 from django import template
 from products.models import Category
 from django.db.models import Count
-import re
 
 register = template.Library()
 

@@ -13,4 +13,5 @@ urlpatterns = [
     path('membership',views.membership,name="membership"),
     path('change-password',views.updatepass,name="updatepass"),
     path('activate',views.activate,name="activate"),
+    path('reset-password',views.resetpass,name="resetpass"),
 ]

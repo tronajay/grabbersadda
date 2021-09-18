@@ -12,14 +12,14 @@
 		<meta property="og:title" content="{% block ogtitle %}{% endblock ogtitle %}">
 		<meta property="og:description" content="{% block ogdescription %}{% endblock ogdescription %}">
 		<meta property="og:url" content="{% block ogurl %}{% endblock ogurl %}">
-		<meta property="og:site_name" content="Coopn">
+		<meta property="og:site_name" content="{{site.title}}">
 		<meta property="og:image" content="{% block ogimage %}{% endblock ogimage %}">
 		<meta property="og:image:width" content="720">
 		<meta property="og:image:height" content="720">
 		<meta property="og:image:alt" content="{% block ogimagealt %}{% endblock  %}">
 		<!--Seo Ends Here-->
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="shortcut icon" href="/static/images/site/coopn-site-icon.png" />
+		<link rel="shortcut icon" href="/media/{{site.siteicon}}" />
 		<link rel="stylesheet" href="/static/css/fontawesome.css"/>
 		<!--begin::Fonts-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
@@ -56,8 +56,8 @@
 							<!--begin::Header Logo-->
 							<div class="header-logo me-5 me-md-10 flex-grow-1 flex-lg-grow-0">
 								<a href="/">
-									<img alt="Logo" src="/static/images/site/coopn.png" class="logo-default h-60px" />
-									<img alt="Logo" src="/static/images/site/coopn.png" class="logo-sticky h-60px" />
+									<img alt="Logo" src="/media/{{site.logo}}" class="logo-default h-60px" />
+									<img alt="Logo" src="/media/{{site.logo}}" class="logo-sticky h-60px" />
 								</a>
 							</div>
 							<!--end::Header Logo-->
@@ -151,7 +151,7 @@
 							<!--begin::Copyright-->
 							<div class="text-dark order-2 order-md-1">
 								<span class="text-muted fw-bold me-1">2021©</span>
-								<a href="/" target="_blank" class="text-gray-800 text-hover-primary">Coopn</a>
+								<a href="/" target="_blank" class="text-gray-800 text-hover-primary">{{site.title}}</a>
 							</div>
 							<!--end::Copyright-->
 							<!--begin::Menu-->
@@ -160,7 +160,7 @@
 									<a href="/about" class="menu-link px-2">About</a>
 								</li>
 								<li class="menu-item">
-									<a href="mailto:support@coopn.in" class="menu-link px-2">Support</a>
+									<a href="mailto:{{site.mail}}" class="menu-link px-2">Support</a>
 								</li>
 								<li class="menu-item">
 									<a href="/privacy-policy" class="menu-link px-2">Privacy Policy</a>

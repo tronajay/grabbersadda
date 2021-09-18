@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, resolve_url
 from .models import WebInfo
 from django.contrib.auth.models import User
 from .models import Profile, Useractivate
@@ -11,7 +11,7 @@ import os
 
 # Create your views here.
 def seo(request):
-    return {'seo': WebInfo.objects.get(id=1)}
+    return {'site': WebInfo.objects.first()}
 
 def registeruser(request):
     if request.method=="POST":
@@ -168,3 +168,21 @@ def activate(request):
             return redirect('/')
     else:
         return redirect("/")
+
+def resetpass(request):
+    if request.method == "POST":
+        email = request.POST['email']
+        if User.objects.filter(email=email).exists():
+            user = User.objects.get(email=email)
+            newpass = ''.join(random.choices(string.ascii_uppercase + string.digits + string.ascii_lowercase, k = 8))
+            emailbody = "Hello "+user.first_name+"! \n You recently requested to Reset Your Password. \n Here is Your new System Generated Password: "+newpass+" \n You can Change Your Password in your Account Settings."
+            email = EmailMessage('Reset Password', emailbody, to=[email])
+            email.send()
+            messages.success(request,'Your Password has been reset Successfully. Please Check your Mail.')
+            return redirect("/")
+        else:
+            messages.error(request,'Looks Like! This Email is not registered to Our Website.')
+            return redirect("/")
+    else:
+        messages.error(request,'Invalid Url Accessed')
+        return redirect('/')
