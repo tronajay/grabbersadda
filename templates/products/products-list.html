@@ -53,7 +53,12 @@
 						<div class="fs-6 fw-bolder mt-5 d-flex flex-stack">
 							<!--begin::Label-->
 							<span class="badge border-dashed fs-2 fw-bolder text-dark p-2">
-							<span class="fs-6 fw-bold text-gray-400">₹</span>{{p.sale_price}}</span>
+							{% if p.sale_price == 0 %}
+							FREE
+							{% else %}
+							<span class="fs-6 fw-bold text-gray-400">₹</span>{{p.sale_price}}
+							{% endif %}
+							</span>
 							<!--end::Label-->
 							<!--begin::Action-->
 							<a href="/shop/{{p.slug}}" class="btn-sm text-white btn-primary">Buy Now</a>

@@ -1,5 +1,5 @@
 from django import template
-from products.models import Category
+from products.models import Store
 from django.db.models import Count
 
 register = template.Library()
@@ -11,6 +11,6 @@ def discountp(original,sale):
     return int(discountper)
 
 @register.simple_tag
-def categories(categories):
-    cate = Category.objects.all().exclude(title="Uncategorised").annotate(count=Count("products"))
-    return cate
+def stores(stores):
+    store = Store.objects.all().annotate(count=Count("products"))
+    return store

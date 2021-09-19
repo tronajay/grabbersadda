@@ -12,6 +12,7 @@ class WebInfo(models.Model):
     siteicon = models.ImageField(upload_to='site_images/',default="site_images/siteicon.png")
     logo = models.ImageField(upload_to='site_images/',default="site_images/logo.png")
     featureimg = models.ImageField(upload_to='site_images/',default="site_images/feature.jpg")
+    verify = models.TextField(blank=True)
 
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)

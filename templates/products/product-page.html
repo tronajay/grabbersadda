@@ -126,7 +126,7 @@
         <!--begin::Description-->
         <div class="fs-5 fw-bold text-gray-600">
            <p>
-		     {{product.description | safe}}
+		     {{product.content | safe}}
 		   </p>
         </div>
         <!--end::Description-->
@@ -179,17 +179,17 @@
      <div class="card p-7 flex-column flex-lg-row-auto w-100 mb-10">
     <!--begin::Catigories-->
     <div class="mb-16">
-        <h4 class="text-black mb-7">Categories</h4>
-        {% categories cate as cate %}
-        {% for c in cate %}
+        <h4 class="text-black mb-7">Popular Stores</h4>
+        {% stores store as store %}
+        {% for s in store %}
           <!--begin::Item-->
-        <a href="/category/{{c.slug}}" class="d-flex flex-stack fw-bold btn btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary fs-5 text-muted mb-4">
+        <a href="/store/{{s.slug}}" class="d-flex flex-stack fw-bold btn btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary fs-5 text-muted mb-4">
             <!--begin::Text-->
             
-            <span class="text-muted text-hover-primary pe-2">{{c.title}}</span>
+            <span class="text-muted text-hover-primary pe-2">{{s.title}}</span>
             <!--end::Text-->
             <!--begin::Number-->
-            <div class="m-0">{{c.count}}</div>
+            <div class="m-0">{{s.count}}</div>
             <!--end::Number-->
         </a>
         <!--end::Item-->
