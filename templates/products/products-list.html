@@ -24,10 +24,33 @@
 
 {% block content %}
 {% load custom_tags %}
+
+<!--Feature Deals Starts Here-->
+{% if fdeals %}
+<div class="carousel mb-8 carousel-custom slide" data-bs-ride="carousel" data-bs-interval="3000">
+<!--begin::Carousel-->
+<div class="carousel-inner">
+	{% for f in fdeals %}
+	<!--begin::Item-->
+	<div class="carousel-item {% if forloop.first %}active{% endif %} ">
+		<center>
+			<a href="/shop/{{f.title.slug}}">
+				<img class="rounded w-100" src="/media/{{f.image}}" alt="">
+			</a>
+		</center>
+	</div>
+	<!--end::Item-->
+	{% endfor %}
+</div>
+<!--end::Carousel-->
+</div>
+{% endif %}
+<!--Feature Deals Ends Here-->
+
    <div class="row g-10">
 			{% for p in products %}
 			  <!--begin::Col-->
-			<div class="col-md-3">
+			<div class="col-md-4 col-sm-4 col-lg-3">
 				<!--begin::Hot sales post-->
 				<div class="card p-5 ribbon ribbon-top">
 					<!--begin::Overlay-->

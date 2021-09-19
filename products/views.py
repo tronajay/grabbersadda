@@ -1,16 +1,14 @@
-from django.core import paginator
-from django.http.response import HttpResponse
-from accounts.models import Profile
 from django.shortcuts import render
-from .models import Products,Category,Store
+from .models import FeaturedDeals, Products,Category,Store
 from django.core.paginator import Paginator
 
 # Create your views here.
 def shop(request):
     p = Paginator(Products.objects.all()[::-1],12)
+    fdeals = FeaturedDeals.objects.all()
     page = request.GET.get('page')
     products = p.get_page(page)
-    params = {'products':products} 
+    params = {'products':products,'fdeals':fdeals} 
     return render(request,'products/products-list.html',params)
 
 def productpage(request,slug):

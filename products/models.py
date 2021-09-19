@@ -42,4 +42,12 @@ class Products(models.Model):
     def __str__(self):
         return self.title
 
+class FeaturedDeals(models.Model):
+    title = models.OneToOneField(Products,on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='product_images/')
+
+    def __str__(self):
+        return self.title.title
+    
+
     
