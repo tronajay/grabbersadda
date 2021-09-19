@@ -27,7 +27,7 @@ SECRET_KEY = 'kdpyx)5-7s7owfk+#7-uz#(1pr(_ae!cr#t8dg#c-zf=%0)=cs'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["20.204.28.107","192.168.0.103","www.grabbersadda.in","grabbersadda.in"]
+ALLOWED_HOSTS = ["20.204.28.107","192.168.0.103","www.grabbersadda.in","grabbersadda.in","127.0.0.1"]
 
 
 # Application definition
@@ -46,6 +46,11 @@ INSTALLED_APPS = [
     'mathfilters',
     'ckeditor',
     'ckeditor_uploader',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -164,3 +169,25 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'iot.androinterest@gmail.com'
 EMAIL_HOST_PASSWORD = 'Ajay@iot'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend'
+]
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = '/google-login'
+LOGOUT_REDIRECT_URL = '/'

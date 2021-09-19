@@ -47,6 +47,21 @@ def registeruser(request):
             # email.send()
             return redirect('/')
 
+def googlelogin(request):
+    if Profile.objects.filter(user_id=request.user.id).exists():
+        return redirect('/') 
+    else:
+        user=User.objects.get(id=request.user.id)
+        uname=str(user.email).split('@')[0]
+        if len(user.email)==0:
+            pass 
+        else:
+            user.username=uname 
+            user.save()
+        newuser=Profile(user=user)
+        newuser.save()
+        return redirect('/')
+
 def loginuser(request):
     if request.method=="POST":
         email = request.POST['email']
