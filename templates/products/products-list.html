@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
 {% block title %}
 {% if category %}
- {{category.title}} - Coopn
+ {{category.title}} - {{site.title}}
 {% elif store %}
-{{store.title}} - Coopn
+{{store.title}} - {{site.title}}
  {% else %}
- Coopn - Best Deals and Offers
+ {{site.title}}
 {% endif %}
 {% endblock title %}
-{% block ogtitle %}Coopn - Best Deals and Offers{% endblock ogtitle %}
-{% block ogdescription %}Coopn provides best shopping deals and Offers, Coupons, Cashback offers, Free recharge tricks 2021, earning apps, loot deals and more.{% endblock ogdescription %} 
-{% block ogurl %}https://coopn.in{% endblock ogurl %}
-{% block ogimage %}https://coopn.in/static/images/site/coopn-feature-image.jpg{% endblock ogimage %}  
-{% block ogimagealt %} Coopn - Get Latest Shopping deals and Offers {% endblock ogimagealt %} 
+{% block ogtitle %}{{site.title}} -Coopn {{site.tagline}}{% endblock ogtitle %}
+{% block ogdescription %}{{site.description}}{% endblock ogdescription %} 
+{% block ogurl %}{{site.url}}{% endblock ogurl %}
+{% block ogimage %}{{site.url}}/media/{{site.featureimg}}{% endblock ogimage %}  
+{% block ogimagealt %}{{site.title}} - {{site.tagline}} {% endblock ogimagealt %} 
 {% block pagetitle %} 
   {% if category %}
   Category: {{category.title}}

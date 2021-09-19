@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
-{% block title %} {{product.title}} - Coopn {% endblock title %}
+{% block title %} {{product.title}} - {{seo.title}} {% endblock title %}
 {% block ogtitle %}{{product.title}}{% endblock ogtitle %}
 {% block ogdescription %}{{product.description}}{% endblock ogdescription %} 
-{% block ogurl %}https://coopn.in/shop/{{product.slug}}{% endblock ogurl %}
-{% block ogimage %}https://coopn.in/media/{{product.thumbnail}}{% endblock ogimage %}  
+{% block ogurl %}{{seo.url}}/shop/{{product.slug}}{% endblock ogurl %}
+{% block ogimage %}{{seo.url}}/media/{{product.thumbnail}}{% endblock ogimage %}  
 {% block ogimagealt %} {{product.title}} {% endblock ogimagealt %} 
 {% block breadcrumb %}
   	<ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">

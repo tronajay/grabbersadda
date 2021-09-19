@@ -43,8 +43,8 @@ def registeruser(request):
             ukey.save()
             emailbody = "Hello "+first_name+"! \n Your Account Has been Created Successfully. \n\n Click below link to Activate Your Account. \n http://20.204.28.107/activate?key="+activationkey
             messages.success(request,'Your Account Has been Created Successfully. Check your Email to Activate your account.')
-            email = EmailMessage('Account Activation', emailbody, to=[email])
-            email.send()
+            # email = EmailMessage('Account Activation', emailbody, to=[email])
+            # email.send()
             return redirect('/')
 
 def loginuser(request):
@@ -176,8 +176,8 @@ def resetpass(request):
             user = User.objects.get(email=email)
             newpass = ''.join(random.choices(string.ascii_uppercase + string.digits + string.ascii_lowercase, k = 8))
             emailbody = "Hello "+user.first_name+"! \n You recently requested to Reset Your Password. \n Here is Your new System Generated Password: "+newpass+" \n You can Change Your Password in your Account Settings."
-            email = EmailMessage('Reset Password', emailbody, to=[email])
-            email.send()
+            # email = EmailMessage('Reset Password', emailbody, to=[email])
+            # email.send()
             messages.success(request,'Your Password has been reset Successfully. Please Check your Mail.')
             return redirect("/")
         else:
