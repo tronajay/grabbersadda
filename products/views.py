@@ -1,6 +1,8 @@
-from django.shortcuts import render
-from .models import FeaturedDeals, Products,Category,Store
+from django.shortcuts import redirect, render
+from .models import Comments, FeaturedDeals, Products,Category,Store
 from django.core.paginator import Paginator
+from django.contrib.auth.models import User
+from django.contrib import messages
 
 # Create your views here.
 def shop(request):
@@ -35,3 +37,29 @@ def redirectpage(request):
     product = Products.objects.get(id=id)
     return render(request,'products/redirect.html',{'product':product})
 
+def addcomment(request):
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            pid = request.POST['id']
+            comment = request.POST['comment']
+            user = User.objects.get(id=request.user.id)
+            product = Products.objects.get(id=pid)
+            newcom = Comments()
+            try:
+                rcom = request.POST['bcomm']
+                bcomm = Comments.objects.get(id=rcom)
+                newcom.bcomm=bcomm
+            except:
+                pass
+            newcom.user = user
+            newcom.product = product
+            newcom.comment = comment
+            newcom.save()
+            messages.success(request,'Comment Posted Successfully')
+            return redirect("/shop/"+product.slug+"#pcomments")
+        else:
+            messages.error(request,'Invalid Url')
+            return redirect('/')
+    else:
+        messages.error(request,'Invalid Url')
+        return redirect('/')

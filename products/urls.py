@@ -8,4 +8,5 @@ urlpatterns = [
     path('category/<str:slug>',views.categorypage,name="categorypage"),
     path('store/<str:slug>',views.store,name="store"),
     path('redirect',views.redirectpage,name="redirect"),
+    path('add-comment',views.addcomment,name="addcomment"),
 ]

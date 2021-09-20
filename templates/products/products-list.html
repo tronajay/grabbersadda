@@ -24,6 +24,7 @@
 
 {% block content %}
 {% load custom_tags %}
+{% load humanize %}
 
 <!--Feature Deals Starts Here-->
 {% if fdeals %}
@@ -73,19 +74,23 @@
 						<div class="fw-bold fs-5 text-gray-600 text-dark mt-3"></div>
 						<!--end::Text-->
 						<!--begin::Text-->
-						<div class="fs-6 fw-bolder mt-5 d-flex flex-stack">
+						<div class="fs-4 fw-bolder mt-5 d-flex flex-stack">
 							<!--begin::Label-->
-							<span class="badge border-dashed fs-2 fw-bolder text-dark p-2">
+							<span class="badge border-dashed fs-4 fw-bolder text-dark p-2">
 							{% if p.sale_price == 0 %}
 							FREE
 							{% else %}
 							<span class="fs-6 fw-bold text-gray-400">₹</span>{{p.sale_price}}
 							{% endif %}
 							</span>
+							
 							<!--end::Label-->
 							<!--begin::Action-->
 							<a href="/shop/{{p.slug}}" class="btn-sm text-white btn-primary">Buy Now</a>
 							<!--end::Action-->
+						</div>
+						<div class="float-start mt-2">
+						  <i><i class="far fa-clock mx-1"></i>{{p.date | naturaltime}}</i>
 						</div>
 						<!--end::Text-->
 					</div>
