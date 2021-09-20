@@ -55,7 +55,7 @@
                     <!--end::Svg Icon-->
                     <!--end::Icon-->
                     <!--begin::Label-->
-                    <span class="fw-bolder text-gray-400">{{product.date}}</span>
+                    <span class="fw-bolder text-gray-400">{{product.date | date:"d M Y"}}</span>
                     <!--end::Label-->
                 </div>
                 <!--end::Item-->
@@ -70,12 +70,15 @@
                 </div>
                 <!--end::Item-->
                 <!--begin::Item-->
-                <div class="my-1">
+                <div class="my-1 ">
                     <!--begin::Icon-->
-                    <i class="fas fa-comment"></i>
+                     <a href="#pcomments" data-kt-scroll-toggle>
+                    <span class="fw-bolder text-hover-primary text-gray-400">
+                         <i class="fas fa-comment"></i>
                     <!--end::Icon-->
                     <!--begin::Label-->
-                    <span class="fw-bolder text-gray-400">24 Comments</span>
+                    {{product.comments_set.all.count}} Comments</span>
+                    </a>
                     <!--end::Label-->
                 </div>
                 <!--end::Item-->
