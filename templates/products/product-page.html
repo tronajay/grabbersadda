@@ -42,8 +42,9 @@
     <!--begin::Post content-->
     <div class="mb-17">
         <!--begin::Wrapper-->
+            <i class="fas fa-info-circle float-end" data-bs-toggle="tooltip" data-bs-placement="top" title="If you are seeing any Price change in partner website, this means the deal or offer has been ended."> </i>
         <div class="mb-8">
-            <!--begin::Info-->
+            <!--begin::Info-->            
             <a href="/store/{{product.store.slug}}"><img class="float-end" style="width:80px" src="/media/{{product.store.storeimg}}" alt=""> </a>
             <div class="d-flex flex-wrap mb-6">
                 <!--begin::Item-->
@@ -79,7 +80,6 @@
                 </div>
                 <!--end::Item-->
             </div>
-            
             <!--end::Info-->
             <!--begin::Title-->
             <!--end::Title-->
@@ -170,6 +170,7 @@
             <!--end::Text-->
         </div>
         <!--end::Block-->
+        {% include 'accounts/comments.html' %}
     </div>
     <!--end::Post content-->
 </div>
@@ -183,15 +184,16 @@
         {% stores store as store %}
         {% for s in store %}
           <!--begin::Item-->
-        <a href="/store/{{s.slug}}" class="d-flex flex-stack fw-bold btn btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary fs-5 text-muted mb-4">
+        {% if s.count >= 5 %}
+           <a href="/store/{{s.slug}}" class="d-flex flex-stack fw-bold btn btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary fs-5 text-muted mb-4">
             <!--begin::Text-->
-            
             <span class="text-muted text-hover-primary pe-2">{{s.title}}</span>
             <!--end::Text-->
             <!--begin::Number-->
             <div class="m-0">{{s.count}}</div>
             <!--end::Number-->
         </a>
+        {% endif %}
         <!--end::Item-->
         {% endfor %}
     </div>

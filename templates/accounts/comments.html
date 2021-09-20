@@ -1,11 +1,72 @@
-<!--begin::basic autosize textarea-->
-<div class="rounded border d-flex flex-column p-10">
+<div id="pcomments">
+    <!--begin::basic autosize textarea-->
+{% load humanize %}
+{% if request.user.is_authenticated %}
+  <form action="/add-comment" method="post">{% csrf_token %}
+     <div class="rounded border d-flex flex-column p-10">
     <div class="py-5">
         <label for="" class="form-label">Comment Here</label>
-        <textarea class="form-control" data-kt-autosize="true"></textarea>
+        <textarea class="form-control" name="comment" data-kt-autosize="true"></textarea>
+        <input hidden type="text" name="id" value="{{product.id}}">
     </div>
     <div class="d-flex">
-       <button class="btn btn-primary float-end">Comment</button>
+       <button type="submit" class="btn btn-primary float-end">Comment</button>
     </div>
 </div>
+  </form>
+{% else %}
+<div class="rounded border d-flex p-5 py-10 justify-content-center">
+    <a href="#" data-bs-toggle="modal" data-bs-target="#kt_modal_2" class="btn btn-primary">Login to Comment</a>
+</div>
+{% endif %}
+
+{% if product.comments_set.all %}
+    {% for c in product.comments_set.all|dictsortreversed:"id" %}
+       {% if c.bcomm is None %}
+        <div class="rounded border my-5 p-5">
+            <div class="">
+                <div class="">
+                    <img class=" float-start w-40px rounded-circle" src="/media/{{c.user.profile.profileimg}}" alt="">
+                </div>
+                <div class="">
+                    <span class="mx-2 float-start fw-bold">{{c.user.first_name}}</span>
+                     <span><i class="far fa-clock mx-1"></i>{{c.datetime | naturaltime}}</span>
+                     <a href="#" class="float-end" data-bs-toggle="collapse" data-bs-target="#caccord-{{c.id}}">Reply</a>
+                    <div class="comment">
+                        <span class="mx-4">{{c.comment}}</span>
+                    </div>
+                </div>
+                <div class="py-2 mt-5 me-md-2 accordion-collapse collapse" id="caccord-{{c.id}}">
+                    <form action="/add-comment" method="post">{% csrf_token %}
+                        <div class="input-group mb-3">
+                        <input type="text" name="comment" placeholder="Enter Reply" class="input form-control form-control-solid" aria-label="Full Name" required="">
+                        <input type="text" name="id" value="{{product.id}}" hidden>
+                        <input type="text" name="bcomm" value="{{c.id}}" hidden>
+                        <button type="submit" class="input-group-text btn btn-light-primary">Reply</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+            {% if c.comments_set.all %}
+               {% for rc in c.comments_set.all|dictsortreversed:"id" %}
+            <div class=" my-4" style="margin-left:40px;">
+                <div class="">
+                    <img class=" float-start w-40px rounded-circle" src="/media/{{rc.user.profile.profileimg}}" alt="">
+                </div>
+                <div class="">
+                    <span class="mx-2 float-start fw-bold">{{rc.user.first_name}}</span>
+                     <span><i class="far fa-clock mx-1"></i>{{rc.datetime | naturaltime}}</span>
+                    <div class="comment">
+                        <span class="mx-4">{{rc.comment}}</span>
+                    </div>
+                </div>
+            </div>
+               {% endfor %}
+            {% endif %}
+        </div>
+       {% endif %}
+    {% endfor %}
+{% endif %}
+
 <!--end::basic autosize textarea-->
+</div>

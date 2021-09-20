@@ -47,6 +47,7 @@ def registeruser(request):
             # email.send()
             return redirect('/')
 
+@login_required(login_url='/')
 def googlelogin(request):
     if Profile.objects.filter(user_id=request.user.id).exists():
         return redirect('/') 
