@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-from products.models import FeaturedDeals
+
 from django.conf import global_settings
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -26,7 +26,7 @@ SETTINGS_PATH = os.path.normpath(os.path.dirname(__file__))
 SECRET_KEY = 'kdpyx)5-7s7owfk+#7-uz#(1pr(_ae!cr#t8dg#c-zf=%0)=cs'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["20.204.28.107","192.168.0.103","www.grabbersadda.in","grabbersadda.in","127.0.0.1"]
 

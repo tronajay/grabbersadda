@@ -52,7 +52,7 @@ class FeaturedDeals(models.Model):
 class Comments(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     product = models.ForeignKey(Products,on_delete=models.CASCADE)
-    bcomm = models.ForeignKey('products.comments',on_delete=models.CASCADE,null=True,blank=True)
+    bcomm = models.ForeignKey('self',on_delete=models.CASCADE,null=True,blank=True)
     datetime = models.DateTimeField(auto_now=True)
     comment = models.TextField()
 
