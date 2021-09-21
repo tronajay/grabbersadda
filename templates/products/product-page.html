@@ -41,6 +41,7 @@
 {% endblock breadcrumb %}
 {% block content %}
 {% load custom_tags %}
+
   <div class="row">
    <div class="col-md-8">
 	<div class="card p-7 sflex-lg-row-fluid ">
@@ -88,6 +89,17 @@
                 </div>
                 <!--end::Item-->
             </div>
+            <button class="btn bg-body btn-color-gray-700 shadow-sm position-fixed px-5 py-5 fw-bolder zindex-2 top-50 mt-10 end-0 transform-90 fs-6 rounded-top-0" >
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{site.url}}/shop/{{product.slug}}">
+                    <i class="fab fs-2x fa-facebook text-hover-primary"></i> 
+                </a>
+                <a href="https://telegram.me/share/url?text={{product.title}}&url={{site.url}}/shop/{{product.slug}}">
+                    <i class="fab text-hover-primary fs-2x fa-telegram"></i>
+                </a>
+                <a href="whatsapp://send?text={{product.title}} at ₹{{product.sale_price}} {{site.url}}/shop/{{product.slug}}">
+                    <i class="fab text-hover-primary fs-2x fa-whatsapp"></i>
+                </a>
+            </button>
             <!--end::Info-->
             <!--begin::Title-->
             <!--end::Title-->
@@ -138,6 +150,7 @@
 		   </p>
         </div>
         <!--end::Description-->
+        {% include 'products/price-comparison.html' %}
         <!--begin::Block-->
         <div class="d-flex align-items-center border-dashed card-rounded my-5 p-5 p-lg-10 mb-14">
             <!--begin::Section-->
@@ -156,6 +169,7 @@
             </div>
             <!--end::Section-->
             <!--begin::Text-->
+            
             <div class="mb-0 fs-6">
                 <div class="text-muted fw-bold lh-lg mb-2">
                    {{product.author.profile.bio}}

@@ -11,3 +11,6 @@ def page(request):
 
 def error404(request,exception):
     return render(request,'pages/error-404.html')
+
+def error500(request):
+    return render(request,'pages/error-404.html')

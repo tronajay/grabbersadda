@@ -4,6 +4,8 @@
  {{category.title}} - {{site.title}}
 {% elif store %}
 {{store.title}} - {{site.title}}
+{% elif search %}
+Search Results: {{search}} - {{site.title}}
  {% else %}
  {{site.title}}
 {% endif %}
@@ -27,6 +29,8 @@
   Category: {{category.title}}
   {% elif store %}
   Store: {{store.title}}
+  {% elif search %}
+  Search: {{search}}
 {% endif %}  
 
 {% endblock pagetitle %}

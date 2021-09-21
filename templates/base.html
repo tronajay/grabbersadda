@@ -1,3 +1,6 @@
+{% load pwa %} 
+{% progressive_web_app_meta %}
+
 <!DOCTYPE html>
 <html lang="en">
 	<!--begin::Head-->
@@ -32,8 +35,8 @@
 			"name" : "{{site.title}}",
 			"potentialAction": {
 				"@type": "SearchAction",
-				"target": "{{site.url}}/search?q={search_term}",
-				"query-input": "required name=search_term"
+				"target": "{{site.url}}/search?q={q}",
+				"query-input": "required name=q"
 			}
 			}
 		</script>
@@ -88,31 +91,41 @@
 									<div class="header-menu align-items-stretch" data-kt-drawer="true" data-kt-drawer-name="header-menu" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="start" data-kt-drawer-toggle="#menu_mobile_toggle" data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_body', lg: '#kt_header_nav'}">
 										<!--begin::Menu-->
 										<div class="menu menu-lg-rounded menu-column menu-lg-row menu-state-bg menu-title-gray-700 menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-400 fw-bold my-5 my-lg-0 align-items-stretch" id="#kt_header_menu" data-kt-menu="true">
+											<div class="menu-item d-block d-md-none p-3 me-lg-1">
+												{% include 'pages/search.html' %}
+											</div>
+											<div class="separator my-2 d-block d-md-none"></div>
 											<div class="menu-item me-lg-1">
 												<a class="menu-link py-3" href="/">
-													<span class="menu-title">Home</span>
+													<span class="menu-title d-block fs-2 d-md-none mx-5">Home</span>
+													<span class="menu-title d-none d-lg-block">Home</span>
 												</a>
 											</div>
 											<div class="menu-item me-lg-1">
 												<a class="menu-link py-3" href="/store/amazon">
-													<span class="menu-title">Amazon</span>
+													<span class="menu-title d-block fs-2 mx-5 d-md-none">Amazon</span>
+													<span class="menu-title d-none d-lg-block">Amazon</span>
 												</a>
 											</div>
 											<div class="menu-item me-lg-1">
 												<a class="menu-link py-3" href="/store/flipkart">
-													<span class="menu-title">Flipkart</span>
+													<span class="menu-title d-block fs-2 mx-5 d-md-none">Flipkart</span>
+													<span class="menu-title d-none d-lg-block">Flipkart</span>
 												</a>
 											</div>
 											<div class="menu-item me-lg-1">
 												<a class="menu-link py-3" href="/store/paytm">
-													<span class="menu-title">Paytm</span>
+													<span class="menu-title d-block fs-2 mx-5 d-md-none">Paytm</span>
+													<span class="menu-title d-none d-lg-block">Paytm</span>
 												</a>
 											</div>
 											<div class="menu-item me-lg-1">
 												<a class="menu-link py-3" href="/store/coupons">
-													<span class="menu-title">Coupons</span>
+													<span class="menu-title d-block fs-2 mx-5 d-md-none">Coupons</span>
+													<span class="menu-title d-none d-lg-block">Coupons</span>
 												</a>
 											</div>
+											
 										</div>
 										<!--end::Menu-->
 									</div>
@@ -120,6 +133,9 @@
 								</div>
 								<!--end::Navbar-->
 								<!--begin::Profile-->
+								<div class="d-none d-lg-block">
+									{% include 'pages/search.html' %}
+								</div>
 								{% include 'accounts/profilenav.html' %}
 								<!--end::Profile-->
 							</div>
@@ -158,6 +174,7 @@
 								{% endfor %}
 								<!--end::Alert-->
 							{% endif %}
+							
 						{% block content %}
                            
                         {% endblock content %}

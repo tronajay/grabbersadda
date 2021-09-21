@@ -36,7 +36,9 @@
                         <span class="mx-4">{{c.comment}}</span>
                     </div>
                 </div>
-                <div class="py-2 mt-5 me-md-2 accordion-collapse collapse" id="caccord-{{c.id}}">
+                
+                    <div class="py-2 mt-5 me-md-2 accordion-collapse collapse" id="caccord-{{c.id}}">
+                    {% if request.user.is_authenticated %}
                     <form action="/add-comment" method="post">{% csrf_token %}
                         <div class="input-group mb-3">
                         <input type="text" name="comment" placeholder="Enter Reply" class="input form-control form-control-solid" aria-label="Full Name" required="">
@@ -45,7 +47,11 @@
                         <button type="submit" class="input-group-text btn btn-light-primary">Reply</button>
                     </div>
                     </form>
+                    {% else %}
+                    <center> <a href="#" data-bs-toggle="modal" data-bs-target="#kt_modal_2" class="btn-sm text-white btn-primary">Login to Reply</a></center>
+                    {% endif %}
                 </div>
+                
             </div>
             {% if c.comments_set.all %}
                {% for rc in c.comments_set.all|dictsortreversed:"id" %}

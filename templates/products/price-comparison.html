@@ -1,0 +1,75 @@
+<div class="rounded border d-flex flex-column">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">
+                Price Comparison: {{product.title}}
+            </div>
+        </div>
+        <div class="card-body">
+            {% if product.store.title != 'Amazon' %}
+                <div class="notice d-flex bg-light-primary rounded border-primary border border-dashed mb-5 p-3 px-3">
+            <!--begin::Wrapper-->
+                <div class="d-flex flex-stack flex-grow-1">
+                    <!--begin::Content-->
+                    <div class="fw-bold">
+                        <div class="fs-6 fw-bolder text-gray-700">Amazon</div>
+                    </div>
+                    <a href="https://www.amazon.in/s?k={{product.title}}" class="btn btn-sm btn-primary">
+                        Check Price
+                    </a>
+                    <!--end::Content-->
+                </div>
+                <!--end::Wrapper-->
+            </div>
+            {% endif %}
+            {% if product.store.title != 'Flipkart' %}
+                <div class="notice d-flex bg-light-primary rounded border-primary border border-dashed p-3 px-3 mb-5">
+            <!--begin::Wrapper-->
+                <div class="d-flex flex-stack flex-grow-1">
+                    <!--begin::Content-->
+                    <div class="fw-bold">
+                        <div class="fs-6 fw-bolder text-gray-700">Flipkart</div>
+                    </div>
+                    <a href="https://www.flipkart.com/search?q={{product.title}}" class="btn btn-sm btn-primary">
+                        Check Price
+                    </a>
+                    <!--end::Content-->
+                </div>
+                <!--end::Wrapper-->
+            </div>
+            {% endif %}
+            {% if product.store.title != 'Tata Cliq' %}
+                <div class="notice d-flex bg-light-primary rounded border-primary border border-dashed p-3 px-3 mb-5">
+                <!--begin::Wrapper-->
+                <div class="d-flex flex-stack flex-grow-1">
+                    <!--begin::Content-->
+                    <div class="fw-bold">
+                        <div class="fs-6 fw-bolder text-gray-700">Tata Cliq</div>
+                    </div>
+                    <a href="https://www.tatacliq.com/search/?searchCategory=all&text={{product.title}}" class="btn btn-sm btn-primary">
+                        Check Price
+                    </a>
+                    <!--end::Content-->
+                </div>
+                <!--end::Wrapper-->
+            </div>
+            {% endif %}
+            {% if product.store.title != 'Paytm Mall' %}
+                <div class="notice d-flex bg-light-primary rounded border-primary border border-dashed p-3 px-3 mb-5">
+                <!--begin::Wrapper-->
+                <div class="d-flex flex-stack flex-grow-1">
+                    <!--begin::Content-->
+                    <div class="fw-bold">
+                        <div class="fs-6 fw-bolder text-gray-700">Paytm Mall</div>
+                    </div>
+                    <a href="https://paytmmall.com/shop/search?q={{product.title}}" class="btn btn-sm btn-primary">
+                        Check Price
+                    </a>
+                    <!--end::Content-->
+                </div>
+                <!--end::Wrapper-->
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

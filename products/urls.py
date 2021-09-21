@@ -12,4 +12,5 @@ urlpatterns = [
     path('add-product',views.addproduct,name="addproduct"),
     path('scrap',views.productscrap,name="productscrap"),
     path('postproduct',views.postproduct,name="postproduct"),
+    path('search',views.search,name="search"),
 ]

@@ -128,3 +128,11 @@ def postproduct(request):
     else:
         messages.error(request,'Method Not Allowed')
         return redirect('/')
+
+def search(request):
+    search = request.GET.get('q')
+    pr = Products.objects.filter(title__icontains=search)
+    p = Paginator(pr,12)
+    page = request.GET.get('page')
+    products = p.get_page(page)
+    return render(request,'products/products-list.html',{'products':products,'search':search})
