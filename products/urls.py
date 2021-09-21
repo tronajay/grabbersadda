@@ -9,4 +9,7 @@ urlpatterns = [
     path('store/<str:slug>',views.store,name="store"),
     path('redirect',views.redirectpage,name="redirect"),
     path('add-comment',views.addcomment,name="addcomment"),
+    path('add-product',views.addproduct,name="addproduct"),
+    path('scrap',views.productscrap,name="productscrap"),
+    path('postproduct',views.postproduct,name="postproduct"),
 ]

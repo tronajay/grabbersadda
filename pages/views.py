@@ -8,3 +8,6 @@ def pagecontent(request,slug):
 
 def page(request):
     return {'pages': Page.objects.all()}
+
+def error404(request,exception):
+    return render(request,'pages/error-404.html')
