@@ -8,6 +8,15 @@
  {{site.title}}
 {% endif %}
 {% endblock title %}
+{% block mdescription %}
+   {% if category %}
+	  {{category.description}}
+	{% else %}
+	{{site.description}}
+   {% endif %}
+{% endblock mdescription %}
+
+
 {% block ogtitle %}{{site.title}} -Coopn {{site.tagline}}{% endblock ogtitle %}
 {% block ogdescription %}{{site.description}}{% endblock ogdescription %} 
 {% block ogurl %}{{site.url}}{% endblock ogurl %}

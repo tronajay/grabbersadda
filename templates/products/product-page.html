@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
-{% block title %} {{product.title}} - {{seo.title}} {% endblock title %}
+{% block mtitle %} {{product.title}} {% endblock mtitle %}  
+{% block mdescription %} {{product.description}} {% endblock mdescription %}  
+{% block title %} {{product.title}} - {{site.title}} {% endblock title %}
 {% block ogtitle %}{{product.title}}{% endblock ogtitle %}
 {% block ogdescription %}{{product.description}}{% endblock ogdescription %} 
-{% block ogurl %}{{seo.url}}/shop/{{product.slug}}{% endblock ogurl %}
-{% block ogimage %}{{seo.url}}/media/{{product.thumbnail}}{% endblock ogimage %}  
+{% block ogurl %}{{site.url}}/shop/{{product.slug}}{% endblock ogurl %}
+{% block ogimage %}{{site.url}}/media/{{product.thumbnail}}{% endblock ogimage %}  
 {% block ogimagealt %} {{product.title}} {% endblock ogimagealt %} 
+{% block metaextra %} 
+    <meta property="article:published_time" content="{{product.date}}"> 
+{% endblock metaextra %}   
 {% block breadcrumb %}
   	<ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
 		<!--begin::Item-->
