@@ -73,7 +73,7 @@ Search Results: {{search}} - {{site.title}}
 					
 					<a class="" href="/shop/{{p.slug}}">
 						<!--begin::Image-->
-						<center><img src="/media/{{p.thumbnail}}" class="h-200px align-items-center" alt=""></center>
+						<center><img src="/media/{{p.thumbnail}}" class="h-200px rounded align-items-center" alt=""></center>
 						<!--end::Image-->
 						
 					</a>
@@ -99,10 +99,18 @@ Search Results: {{search}} - {{site.title}}
 							
 							<!--end::Label-->
 							<!--begin::Action-->
-							<a href="/shop/{{p.slug}}" class="btn-sm text-white btn-primary">Buy Now</a>
+							<a href="/shop/{{p.slug}}" class="btn-sm text-white btn-primary">
+								{% if p.category.title == 'Amazon Quiz' or p.category.title == 'Flipkart Quiz' %}
+									Play Now
+								{% elif p.store.title == 'Amazon' or p.store.title == 'Flipkart' or p.store.title == 'Tata Cliq' or p.store.title == 'Paytm Mall' %}
+									Buy Now 
+								{% else %}
+								Read More
+								{% endif %}
+							</a>
 							<!--end::Action-->
 						</div>
-						<div class="float-start mt-2">
+						<div class="float-start mt-4">
 						  <i><i class="far fa-clock mx-1"></i>{{p.date | naturaltime}}</i>
 						</div>
 						<!--end::Text-->

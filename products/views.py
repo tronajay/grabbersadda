@@ -78,23 +78,24 @@ def addproduct(request):
         return redirect('/')
 
 def productscrap(request):
-    link = request.GET.get('link')
-    HEADERS = ({'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36','Accept-Language': 'en-US, en;q=0.5'})
-    product = requests.get(link,headers=HEADERS)
-    soup = BeautifulSoup(product.content,"lxml")
-    title = soup.select("#productTitle")[0].get_text().strip()
-    sprice = soup.select("#priceblock_ourprice")[0].get_text().strip()
-    oprice = soup.select(".priceBlockStrikePriceString")[0].get_text().strip()
-    content = soup.find("div",{'id':'feature-bullets'}).text
-    print(content)
-    params = {}
-    s = sprice.split("₹")
-    o = oprice.split("₹")
-    params = {'title':title,'sprice':s[1],'oprice':o[1],'content':content}
-    # params['title'] = json.dumps(str(title))
-    # params['sprice'] = json.dumps(s[1])
-    # params['oprice'] = json.dumps(o[1])
-    return JsonResponse(params)
+    if request.user.is_superuser and request.method == "POST":
+        link = request.POST['link']
+        se = requests.session()
+        se.headers['User-Agent'] = 'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0'
+        res = se.get(link)
+        data = res.content
+        # category = request.POST['category']
+        # store = request.POST['store']
+        # newp = Products()
+        # newp.title = title
+        # newp.sale_price = s
+        # newp.original_price = o
+        # newp.description = title
+        # newp.content = content
+        # newp.category = Category.objects.get(slug=category)
+        # newp.store = Store.objects.get(slug=store)
+        messages.success(request,'Product Added Successfully')
+        return redirect('/add-product')
 
 def postproduct(request):
     if request.method == "POST":

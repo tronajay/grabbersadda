@@ -10,7 +10,7 @@ urlpatterns = [
     path('redirect',views.redirectpage,name="redirect"),
     path('add-comment',views.addcomment,name="addcomment"),
     path('add-product',views.addproduct,name="addproduct"),
-    path('scrap',views.productscrap,name="productscrap"),
+    path('scrape-product',views.productscrap,name="productscrap"),
     path('postproduct',views.postproduct,name="postproduct"),
     path('search',views.search,name="search"),
 ]

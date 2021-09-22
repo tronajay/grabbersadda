@@ -10,11 +10,34 @@
 <div class="w-lg-800px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
 			<!--begin::Authentication - 404 Page-->
             <h3 class="fw-bold text-center fs-2 mb-5">Add a Product</h3>
-				<form action="/add-product" method="post">{% csrf_token %}
+				<form action="/scrape-product" method="post">{% csrf_token %}
+                    <div class="me-md-2 px-7">
+                        <div class="row">
+                        <div class="col-md-6">
+                            <div class=" fv-row mb-7 fv-plugins-icon-container">
+                                <label class="form-label fw-bolder text-dark fs-6">Select Store</label>
+                                <select name="store" aria-label="Select a Store" data-control="select2" data-placeholder="Select a Store" class="form-select form-select-solid form-select-lg fw-bold" tabindex="-1" aria-hidden="true">
+                                    <option value="amazon">Amazon</option>
+                                    <option value="flipkart">Flipkart</option>
+                                </select>
+						    </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class=" fv-row mb-7 fv-plugins-icon-container">
+                                <label class="form-label fw-bolder text-dark fs-6">Select Category</label>
+                                <select name="category" aria-label="Select a Category" data-control="select2" data-placeholder="Select a Category" class="form-select form-select-solid form-select-lg fw-bold select2-hidden-accessible" tabindex="-1" aria-hidden="true">
+                                    {% for c in category %}
+                                      <option value="{{c.slug}}">{{c.title}}</option>
+                                    {% endfor %}
+                                </select>
+						    </div>
+                        </div>
+                    </div>
+                    </div>
                     <div class="me-md-2">
                         <div class="input-group mb-3 px-7">
-                            <input type="text" name="link" id="link" placeholder="Enter the link" class="input form-control">
-                            <span onclick="scrap()" class="input-group-text btn btn-light-primary">Scrape Now</span>
+                            <input type="text" name="link" placeholder="Enter the link" class="input form-control">
+                            <button type='submit' class="input-group-text btn btn-light-primary">Add Product</button>
                         </div>
                     </div>
                 </form>
@@ -100,23 +123,6 @@
             console.error(error);
         });
   </script>
-   <script>
-        function scrap(){
-             $.ajax({
-            type: "GET",
-            url: '/scrap',
-            data:{
-                link:$('#link').val(),
-            },
-            success: function(data){
-                $("#p-title").val(data['title']);
-                $("#sprice").val(data.sprice);
-                $("#oprice").val(data.oprice);
-                $("#pcontent").val(data.oprice);
-            }
-        })
-        }
-   </script>
   {% endblock script %}
  
 
