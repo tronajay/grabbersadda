@@ -34,7 +34,9 @@ def store(request,slug):
     page = request.GET.get('page')
     products = p.get_page(page)
     store = Store.objects.get(slug=slug)
-    return render(request,'products/products-list.html',{'products':products,'store':store})
+    otherstores = Store.objects.all().exclude(slug=slug)
+    print(otherstores)
+    return render(request,'products/store.html',{'products':products,'store':store,'otherstores':otherstores})
 
 def redirectpage(request):
     id = request.GET.get('id')
