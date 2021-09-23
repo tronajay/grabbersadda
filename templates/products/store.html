@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
-{% block title %} {{store.title}}  {% endblock title %}
+{% block title %} {{store.title}} - {{site.title}} {% endblock title %}
+{% block description %} {{store.description}} {% endblock description %}
+{% block mtitle %} {{store.title}} - {{site.title}} {% endblock mtitle %}  
+{% block ogtitle %}{{store.title}} {{site.title}}{% endblock ogtitle %}
+{% block ogdescription %}{{store.description}}{% endblock ogdescription %} 
+{% block ogurl %}{{site.url}}/store/{{store.slug}}{% endblock ogurl %}
+{% block ogimage %}{{site.url}}/media/{{store.storeimg}}{% endblock ogimage %}  
+{% block ogimagealt %}{{store.title}} - {{site.title}} {% endblock ogimagealt %} 
 {% block content %}
 {% load custom_tags %}
 {% load humanize %}
@@ -34,9 +41,10 @@
                                 <div class="col-6 my-2">
                                     <div class="h-50px px-3 border rounded justify-content-center align-items-center">
                                         <a href="/store/{{s.slug}}">
-                                            <img src="/media/{{s.storeimg}}" alt="" class="w-100">
+                                            <img src="/media/{{s.storeimg}}" alt="{{s.title}} - {{site.title}}" class="w-100">
                                         </a>
                                     </div>
+									
                                 </div>
                             {% endfor %}
                         </div>
@@ -49,7 +57,7 @@
         <div class="row">
             {% for p in products %}
 			  <!--begin::Col-->
-			<div class="col-md-4 col-sm-6 col-lg-4 mb-3">
+			<div class="col-md-4 col-sm-6 col-lg-4 mb-5">
 				<!--begin::Hot sales post-->
 				<div class="card p-5 ribbon ribbon-top">
 					<!--begin::Overlay-->
@@ -58,7 +66,7 @@
 					
 					<a class="" href="/shop/{{p.slug}}">
 						<!--begin::Image-->
-						<center><img src="/media/{{p.thumbnail}}" class="h-200px rounded align-items-center" alt=""></center>
+						<center><img src="/media/{{p.thumbnail}}" class="h-200px rounded align-items-center" alt="{{p.title}}"></center>
 						<!--end::Image-->
 						
 					</a>

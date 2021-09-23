@@ -106,7 +106,10 @@
             <!--begin::Container-->
             <div class="row">
 			  <div class="col-md-5 p-5 ">
-                <center><img src="/media/{{product.thumbnail}}" class="h-200px align-items-center" alt=""></center>
+                <center>
+                <img src="/media/{{product.thumbnail}}" class="h-200px align-items-center" alt="">
+                
+                </center>
 			  </div>
 			  <div class="col-md-6 p-5">
 			    <h2>{{product.title}}</h2>
@@ -114,7 +117,15 @@
                  <a href="#" id="clipboard" data-clipboard-text="{{product.coupon}}"  class="btn float-end btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary">{{product.coupon}}</a>
                {% endif %}
 				<h3 class="pt-3 text-gray-700 mb-5">₹{{product.sale_price}} <del class="text-gray-400">₹{{product.original_price}}</del></h3>
-				<a href="/redirect?id={{product.id}}" class="btn-sm text-white btn-primary">Buy Now</a>
+				<a href="/redirect?id={{product.id}}" class="btn-sm text-white btn-primary">
+                    {% if product.category.title == 'Amazon Quiz' or product.category.title == 'Flipkart Quiz' %}
+                        Play Now
+                    {% elif product.store.title == 'Amazon' or product.store.title == 'Flipkart' or product.store.title == 'Tata Cliq' or product.store.title == 'Paytm Mall' %}
+                        Buy Now 
+                    {% else %}
+                     Download
+                    {% endif %}
+                </a>
 			  </div>
 			</div>
             <!--end::Container-->
@@ -233,7 +244,7 @@
         <div class="d-flex mb-7">
             <!--begin::Symbol-->
             <div class="symbol symbol-2by3 me-4">
-                <center><img src="/media/{{r.thumbnail}}" class="w-100 h-60px align-items-center" alt=""></center>
+                <center><img src="/media/{{r.thumbnail}}" class="w-100 h-60px align-items-center" alt="{{product.title}}"></center>
             </div>
             <!--end::Symbol-->
             <!--begin::Title-->

@@ -168,11 +168,16 @@ def updateproduct(request):
 
 def search(request):
     search = request.GET.get('q')
-    pr = Products.objects.filter(title__icontains=search)
+    pr = Products.objects.filter(title__icontains=search)[::-1]
     p = Paginator(pr,12)
     page = request.GET.get('page')
     products = p.get_page(page)
-    return render(request,'products/products-list.html',{'products':products,'search':search})
+    if len(pr) == 0:
+        products = Products.objects.all()[::-1][:8]
+        params = {'products':products,'search':search,'results':'Not found'}
+    else:
+        params = {'products':products,'search':search}
+    return render(request,'products/products-list.html',params)
 
 def editproduct(request):
     id = request.GET.get('id')

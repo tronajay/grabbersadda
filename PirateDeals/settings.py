@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'django.contrib.sitemaps',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [

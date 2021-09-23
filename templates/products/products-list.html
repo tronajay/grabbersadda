@@ -7,7 +7,7 @@
 {% elif search %}
 Search Results: {{search}} - {{site.title}}
  {% else %}
- {{site.title}}
+ {{site.title}} - {{site.tagline}}
 {% endif %}
 {% endblock title %}
 {% block mdescription %}
@@ -18,10 +18,37 @@ Search Results: {{search}} - {{site.title}}
    {% endif %}
 {% endblock mdescription %}
 
+{% block mtitle %}
+	{% if category %}
+	  {{category.title}} - {{site.title}}
+	{% else %}
+	GrabbersAdda - Best Deals and Offers
+   {% endif %}
+{% endblock mtitle %}
 
-{% block ogtitle %}{{site.title}} -Coopn {{site.tagline}}{% endblock ogtitle %}
-{% block ogdescription %}{{site.description}}{% endblock ogdescription %} 
-{% block ogurl %}{{site.url}}{% endblock ogurl %}
+
+
+{% block ogtitle %}
+	{% if category %}
+	{{category.title}} - {{site.title}}
+	{% else %}
+	{{site.title}} - {{site.tagline}}
+	{% endif %}
+{% endblock ogtitle %}
+{% block ogdescription %}
+	{% if category %}
+	{{category.description}}
+	{% else %}
+	{{site.description}}
+	{% endif %}
+{% endblock ogdescription %} 
+{% block ogurl %}
+	{% if category %}
+	{{site.url}}/category/{{category.slug}}
+	{% else %}
+	{{site.url}}
+	{% endif %}
+{% endblock ogurl %}
 {% block ogimage %}{{site.url}}/media/{{site.featureimg}}{% endblock ogimage %}  
 {% block ogimagealt %}{{site.title}} - {{site.tagline}} {% endblock ogimagealt %} 
 {% block pagetitle %} 
@@ -49,7 +76,7 @@ Search Results: {{search}} - {{site.title}}
 	<div class="carousel-item {% if forloop.first %}active{% endif %} ">
 		<center>
 			<a href="/shop/{{f.title.slug}}">
-				<img class="rounded w-100" src="/media/{{f.image}}" alt="">
+				<img class="rounded w-100" src="/media/{{f.image}}" alt="{{f.title.title}}">
 			</a>
 		</center>
 	</div>
@@ -60,7 +87,16 @@ Search Results: {{search}} - {{site.title}}
 </div>
 {% endif %}
 <!--Feature Deals Ends Here-->
-
+	{% if results %}
+		<div class="my-5 text-center">
+			<img src="/static/svg/error-404.svg" class="w-200px" alt="">
+			<div class="fs-2 my-2 fw-bold">Nothing to See Here</div>
+			<a href="/" class="btn my-3 btn-primary">Return Home</a>
+		</div>
+		<div class="fs-2 fw-bolder mb-4">
+			Recent Deals
+		</div>
+	{% endif %}
    <div class="row g-10">
 			{% for p in products %}
 			  <!--begin::Col-->
@@ -73,7 +109,7 @@ Search Results: {{search}} - {{site.title}}
 					
 					<a class="" href="/shop/{{p.slug}}">
 						<!--begin::Image-->
-						<center><img src="/media/{{p.thumbnail}}" class="h-200px rounded align-items-center" alt=""></center>
+						<center><img src="/media/{{p.thumbnail}}" class="h-200px rounded align-items-center" alt="{{p.title}}"></center>
 						<!--end::Image-->
 						
 					</a>
@@ -128,6 +164,8 @@ Search Results: {{search}} - {{site.title}}
 			
 			{% endfor %}
 		</div>
+		{% if results %}
+		{% else %}
 		<ul class="pagination my-10">
 		{% if products.number != 1 and products.previous_page_number is not 1%}
 	<li class="page-item next"><a class="page-link" href="/">First</span></a></li>
@@ -144,5 +182,7 @@ Search Results: {{search}} - {{site.title}}
 	<li class="page-item next"><a class="page-link" href="?page={{products.paginator.num_pages}}">Last</span></a></li>
 	{% endif %}
 </ul>
+
+		{% endif %}
 {% endblock content %}
   
