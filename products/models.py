@@ -16,6 +16,14 @@ class Store(models.Model):
     def __str__(self):
         return self.title
     
+    def save(self):
+        super().save() 
+        img = Image.open(self.storeimg.path)
+        if img.height > 100 or img.width > 200:
+            new_img = (200, 100)
+            img.thumbnail(new_img)
+            img.save(self.storeimg.path)
+
     
 class Category(models.Model):
     title = models.CharField(max_length=50)
@@ -59,6 +67,14 @@ class FeaturedDeals(models.Model):
 
     def __str__(self):
         return self.title.title
+    
+    def save(self):
+        super().save()
+        img = Image.open(self.image.path)
+        if img.height > 300 or img.width > 1200:
+            new_img = (1200, 300)
+            img.thumbnail(new_img)
+            img.save(self.image.path)
 
 class Comments(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
