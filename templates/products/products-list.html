@@ -113,6 +113,11 @@ Search Results: {{search}} - {{site.title}}
 						<div class="float-start mt-4">
 						  <i><i class="far fa-clock mx-1"></i>{{p.date | naturaltime}}</i>
 						</div>
+						{% if request.user.is_superuser %}
+							<div class="float-end mt-4">
+							<a href="/edit-product?id={{p.id}}">Edit Post</a>
+						</div>
+						{% endif %}
 						<!--end::Text-->
 					</div>
 					<!--end::Body-->

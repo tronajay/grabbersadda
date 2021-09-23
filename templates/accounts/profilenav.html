@@ -46,6 +46,13 @@
                     <a href="/settings" class="menu-link px-5">Account Settings</a>
                 </div>
                 <!--end::Menu item-->
+                {% if request.user.is_superuser %}
+                    <!--begin::Menu item-->
+                <div class="menu-item px-5 my-1">
+                    <a href="/add-product" class="menu-link px-5">Add Product</a>
+                </div>
+                <!--end::Menu item-->
+                {% endif %}
                 <!--begin::Menu item-->
                 <div class="menu-item px-5">
                     <a href="/logout" class="menu-link px-5">Sign Out</a>

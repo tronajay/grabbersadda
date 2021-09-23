@@ -10,6 +10,7 @@ class Store(models.Model):
     slug=models.SlugField(max_length=100)
     afflink = models.CharField(max_length=100)
     storeimg = models.ImageField(upload_to='store_images/',null=True)
+    description = models.TextField(blank=True)
     
     def __str__(self):
         return self.title
@@ -38,6 +39,7 @@ class Products(models.Model):
     coupon = models.CharField(max_length=50,blank=True)
     author = models.ForeignKey(User,on_delete=models.CASCADE,default=1)
     date=models.DateTimeField(auto_now=True,blank=True)
+    tags = models.CharField(max_length=150,blank=True)
 
     def __str__(self):
         return self.title

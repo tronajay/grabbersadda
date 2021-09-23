@@ -31,7 +31,7 @@
                         </div>
                         <div class="row my-2">
                             {% for s in otherstores %}
-                                <div class="col-6">
+                                <div class="col-6 my-2">
                                     <div class="h-50px px-3 border rounded justify-content-center align-items-center">
                                         <a href="/store/{{s.slug}}">
                                             <img src="/media/{{s.storeimg}}" alt="" class="w-100">
@@ -49,7 +49,7 @@
         <div class="row">
             {% for p in products %}
 			  <!--begin::Col-->
-			<div class="col-md-4 col-sm-6 col-lg-4">
+			<div class="col-md-4 col-sm-6 col-lg-4 mb-3">
 				<!--begin::Hot sales post-->
 				<div class="card p-5 ribbon ribbon-top">
 					<!--begin::Overlay-->
@@ -110,5 +110,21 @@
             </div>
         </div>
     </div>
+	<ul class="pagination my-10">
+		{% if products.number != 1 and products.previous_page_number is not 1%}
+	<li class="page-item next"><a class="page-link" href="/">First</span></a></li>
+	{% endif %}
+		{% if products.has_previous %}
+		    <li class="page-item previous"><a href="?page={{products.previous_page_number}}" class="page-link">Previous</a></span></li>
+		{% endif %}
+
+    <li class="page-item disabled"><span class="page-link">Page {{products.number}} of {{products.paginator.num_pages}}</span></li>
+    {% if products.has_next %}
+	 <li class="page-item next"><a class="page-link" href="?page={{products.next_page_number}}">Next</span></a></li>
+	{% endif %}
+	{% if products.number != products.paginator.num_pages and products.next_page_number != products.paginator.num_pages %}
+	<li class="page-item next"><a class="page-link" href="?page={{products.paginator.num_pages}}">Last</span></a></li>
+	{% endif %}
+</ul>
 {% endblock content %}
     

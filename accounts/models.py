@@ -14,6 +14,10 @@ class WebInfo(models.Model):
     featureimg = models.ImageField(upload_to='site_images/',default="site_images/feature.jpg")
     verify = models.TextField(blank=True)
 
+    def __str__(self):
+        return self.title
+    
+
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     profileimg=models.ImageField(upload_to='profile_images/',default="profile_images/user.png")
@@ -25,13 +29,13 @@ class Profile(models.Model):
     membership = models.CharField(default="Basic",max_length=100)
     role = models.CharField(default="Subscriber",max_length=100)
 
-class Useractivate(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
-    key = models.CharField(max_length=20)
-
     def __str__(self):
         return self.user.username
     
+
+class Useractivate(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    key = models.CharField(max_length=20)
 
     def __str__(self):
         return self.user.username

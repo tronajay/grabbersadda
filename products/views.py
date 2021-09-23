@@ -1,12 +1,8 @@
-from django import contrib
-from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from .models import Comments, FeaturedDeals, Products,Category,Store
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 from django.contrib import messages
-from bs4 import BeautifulSoup
-import requests, json
 
 # Create your views here.
 def shop(request):
@@ -35,7 +31,6 @@ def store(request,slug):
     products = p.get_page(page)
     store = Store.objects.get(slug=slug)
     otherstores = Store.objects.all().exclude(slug=slug)
-    print(otherstores)
     return render(request,'products/store.html',{'products':products,'store':store,'otherstores':otherstores})
 
 def redirectpage(request):
@@ -79,26 +74,6 @@ def addproduct(request):
     else:
         return redirect('/')
 
-def productscrap(request):
-    if request.user.is_superuser and request.method == "POST":
-        link = request.POST['link']
-        se = requests.session()
-        se.headers['User-Agent'] = 'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0'
-        res = se.get(link)
-        data = res.content
-        # category = request.POST['category']
-        # store = request.POST['store']
-        # newp = Products()
-        # newp.title = title
-        # newp.sale_price = s
-        # newp.original_price = o
-        # newp.description = title
-        # newp.content = content
-        # newp.category = Category.objects.get(slug=category)
-        # newp.store = Store.objects.get(slug=store)
-        messages.success(request,'Product Added Successfully')
-        return redirect('/add-product')
-
 def postproduct(request):
     if request.method == "POST":
         if request.user.is_superuser:
@@ -110,9 +85,9 @@ def postproduct(request):
             oprice = request.POST['original']
             description = request.POST['desc']
             content = request.POST['content']
-            print(store)
+            affiliate_link = request.POST['afflink']
             store = Store.objects.get(id=store)
-            category = Store.objects.get(id=category)
+            category = Category.objects.get(id=category)
             newproduct = Products()
             newproduct.title = title
             newproduct.store = store
@@ -122,8 +97,67 @@ def postproduct(request):
             newproduct.original_price = oprice
             newproduct.description = description
             newproduct.content = content
+            newproduct.affiliate_link = affiliate_link
+            try:
+                coupon = request.POST['coupon']
+                newproduct.coupon = coupon
+            except:
+                pass
+            try:
+                thumbnail = request.FILES['thumbnail']
+                newproduct.thumbnail = thumbnail
+            except:
+                pass
+            newproduct.author = User.objects.get(id=request.user.id)
             newproduct.save()
             messages.success(request,'Product Published Successfully')
+            return redirect('/add-product')
+        else:
+            messages.error("User not Allowed")
+            return redirect('/')
+    else:
+        messages.error(request,'Method Not Allowed')
+        return redirect('/')
+
+
+def updateproduct(request):
+    if request.method == "POST":
+        if request.user.is_superuser:
+            id = int(request.POST['id'])
+            title = request.POST['title']
+            slug = request.POST['slug']
+            store = request.POST['store']
+            category = request.POST['category']
+            sprice = request.POST['sale']
+            oprice = request.POST['original']
+            description = request.POST['desc']
+            content = request.POST['content']
+            affiliate_link = request.POST['afflink']
+            store = Store.objects.get(id=store)
+            category = Category.objects.get(id=category)
+            newproduct = Products.objects.get(id=id)
+            newproduct.title = title
+            newproduct.store = store
+            newproduct.category = category
+            newproduct.slug = slug
+            newproduct.sale_price = sprice
+            newproduct.original_price = oprice
+            newproduct.description = description
+            newproduct.content = content
+            newproduct.affiliate_link = affiliate_link
+            try:
+                coupon = request.POST['coupon']
+                newproduct.coupon = coupon
+            except:
+                pass
+            try:
+                thumbnail = request.FILES['thumbnail']
+                newproduct.thumbnail = thumbnail
+            except:
+                pass
+            newproduct.author = User.objects.get(id=request.user.id)
+            newproduct.save()
+            messages.success(request,'Product Updated Successfully')
             return redirect('/add-product')
         else:
             messages.error("User not Allowed")
@@ -139,3 +173,11 @@ def search(request):
     page = request.GET.get('page')
     products = p.get_page(page)
     return render(request,'products/products-list.html',{'products':products,'search':search})
+
+def editproduct(request):
+    id = request.GET.get('id')
+    product = Products.objects.get(id=id)
+    store = Store.objects.all()
+    category = Category.objects.all()
+    params = {'product':product,'store':store,'category':category}
+    return render(request,'products/add-product.html',params)
