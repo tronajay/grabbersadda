@@ -117,7 +117,7 @@
                  <a href="#" id="clipboard" data-clipboard-text="{{product.coupon}}"  class="btn float-end btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary">{{product.coupon}}</a>
                {% endif %}
 				<h3 class="pt-3 text-gray-700 mb-5">₹{{product.sale_price}} <del class="text-gray-400">₹{{product.original_price}}</del></h3>
-				{% if product.expiry > date %}
+				{% if product.expiry < date and p.expiry is not "No" and p.expiry != "" %}
                     <a href="/redirect?id={{product.id}}" class="btn btn-sm btn-danger">
                         Expired
                     </a>

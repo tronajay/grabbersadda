@@ -12,14 +12,15 @@ def shop(request):
     page = request.GET.get('page')
     products = p.get_page(page)
     date = str(datetime.datetime.now())
-    dt = date.strip(" ")[0]
+    dt = date.split(" ")[0]
+    print(dt)
     topdeals = Products.objects.filter(pinned=True)
     params = {'products':products,'fdeals':fdeals,'date':dt,'topdeals':topdeals} 
     return render(request,'products/products-list.html',params)
 
 def productpage(request,slug):
     date = str(datetime.datetime.now())
-    dt = date.strip(" ")[0]
+    dt = date.split(" ")[0]
     product = Products.objects.get(slug=slug)
     recent = Products.objects.all().exclude(slug=slug)[::-1][:4]
     return render(request,'products/product-page.html',{'product':product,'recent':recent,'date':dt})
@@ -30,7 +31,7 @@ def categorypage(request,slug):
     products = p.get_page(page)
     category = Category.objects.get(slug=slug)
     date = str(datetime.datetime.now())
-    dt = date.strip(" ")[0]
+    dt = date.split(" ")[0]
     return render(request,'products/products-list.html',{'products':products,'category':category,'date':dt})
 
 def store(request,slug):
@@ -39,7 +40,7 @@ def store(request,slug):
     products = p.get_page(page)
     store = Store.objects.get(slug=slug)
     date = str(datetime.datetime.now())
-    dt = date.strip(" ")[0]
+    dt = date.split(" ")[0]
     otherstores = Store.objects.all().exclude(slug=slug)
     return render(request,'products/store.html',{'products':products,'store':store,'otherstores':otherstores,'date':dt})
 
@@ -110,7 +111,10 @@ def postproduct(request):
             newproduct.description = description
             newproduct.content = content
             newproduct.tags = tags
-            newproduct.expiry = expiry
+            if expiry == "":
+               newproduct.expiry = "No"
+            else:
+                newproduct.expiry = expiry
             try:
                 price_comp = request.POST['price_comp']
                 newproduct.price_compare = True
@@ -159,8 +163,6 @@ def updateproduct(request):
             affiliate_link = request.POST['afflink']
             tags = request.POST['tags']
             expiry = request.POST['expiry']
-            
-            
             store = Store.objects.get(id=store)
             category = Category.objects.get(id=category)
             newproduct = Products.objects.get(id=id)
@@ -178,7 +180,10 @@ def updateproduct(request):
             newproduct.store = store
             newproduct.category = category
             newproduct.slug = slug
-            newproduct.expiry = expiry
+            if expiry == "":
+               newproduct.expiry = "No"
+            else:
+                newproduct.expiry = expiry
             newproduct.sale_price = sprice
             newproduct.original_price = oprice
             newproduct.description = description
