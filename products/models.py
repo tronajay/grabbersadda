@@ -49,6 +49,9 @@ class Products(models.Model):
     author = models.ForeignKey(User,on_delete=models.CASCADE,default=1)
     date=models.DateTimeField(auto_now=True,blank=True)
     tags = models.CharField(max_length=150,blank=True)
+    expiry = models.CharField(max_length=20,blank=True)
+    price_compare = models.BooleanField(default=0)
+    pinned = models.BooleanField(default=0)
 
     def __str__(self):
         return self.title

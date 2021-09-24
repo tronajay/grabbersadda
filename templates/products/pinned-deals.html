@@ -1,0 +1,77 @@
+{% load custom_tags %}
+{% load humanize %}
+<div class="top-header my-3">
+    <span>
+    <a href="/top-deals" class="btn btn-primary float-end"> View All </a>
+</span>
+<span class="fs-2 fw-bolder">Top Deals and Offers</span>
+</div>
+<div class="row mb-5">
+        <!--begin::Item-->
+            {% for p in topdeals %}
+			  <!--begin::Col-->
+			<div class="col-md-4 col-sm-4 col-lg-3">
+				<!--begin::Hot sales post-->
+				<div class="card p-5 ribbon ribbon-top">
+					<!--begin::Overlay-->
+					
+					<div class="ribbon-label bg-primary"> {% discountp p.original_price p.sale_price %}% Off </div>
+					
+					<a class="" href="/shop/{{p.slug}}">
+						<!--begin::Image-->
+						<center><img src="/media/{{p.thumbnail}}" class="h-200px rounded align-items-center" alt="{{p.title}}"></center>
+						<!--end::Image-->
+						
+					</a>
+					<!--end::Overlay-->
+					<!--begin::Body-->
+					<div class="mt-5">
+						<!--begin::Title-->
+						<a href="/shop/{{p.slug}}" class="fs-5 text-dark fw-bolder text-hover-primary text-dark lh-base">{{p.title | truncatechars:50}}</a>
+						<!--end::Title-->
+						<!--begin::Text-->
+						<div class="fw-bold fs-5 text-gray-600 text-dark mt-3"></div>
+						<!--end::Text-->
+						<!--begin::Text-->
+						<div class="fs-4 fw-bolder mt-5 d-flex flex-stack">
+							<!--begin::Label-->
+							<span class="badge border-dashed fs-4 fw-bolder text-dark p-2">
+							{% if p.sale_price == 0 %}
+							FREE
+							{% else %}
+							<span class="fs-6 fw-bold text-gray-400">₹</span>{{p.sale_price}}
+							{% endif %}
+							</span>
+							
+							<!--end::Label-->
+							<!--begin::Action-->
+							<a href="/shop/{{p.slug}}" class="btn-sm text-white btn-primary">
+								{% if p.category.title == 'Amazon Quiz' or p.category.title == 'Flipkart Quiz' %}
+									Play Now
+								{% elif p.store.title == 'Amazon' or p.store.title == 'Flipkart' or p.store.title == 'Tata Cliq' or p.store.title == 'Paytm Mall' %}
+									Buy Now 
+								{% else %}
+								Read More
+								{% endif %}
+							</a>
+							<!--end::Action-->
+						</div>
+						<div class="float-start mt-4">
+						  <i><i class="far fa-clock mx-1"></i>{{p.date | naturaltime}}</i>
+						</div>
+						{% if request.user.is_superuser %}
+							<div class="float-end mt-4">
+							<a href="/edit-product?id={{p.id}}">Edit Post</a>
+						</div>
+						{% endif %}
+						<!--end::Text-->
+					</div>
+					<!--end::Body-->
+				</div>
+				<!--end::Hot sales post-->
+			</div>
+			<!--end::Col-->
+			
+			{% endfor %}
+        <!--end::Item-->
+</div>

@@ -63,10 +63,16 @@
                         <label class="form-label fw-bolder text-dark fs-6">Affiliate Link</label>
                         <input class="form-control form-control-lg maxlength" type="text" value="{{product.affiliate_link}}" maxlength="100" placeholder="Enter Affiliate Link" name="afflink" required="">
                     </div>
-                    <div class="fv-row mb-7 fv-plugins-icon-container">
-                        <label class="form-label fw-bolder text-dark fs-6">Coupon</label>
-                        <input class="form-control form-control-lg maxlength" type="text" value="{{product.coupon}}" maxlength="80" placeholder="Enter Coupon Code (if Any)" name="coupon">
-                    </div>
+                   <div class="row">
+                        <div class="col-lg-6 fv-row mb-7 fv-plugins-icon-container">
+                            <label class="form-label fw-bolder text-dark fs-6">Coupon</label>
+                            <input class="form-control form-control-lg maxlength" type="text" value="{{product.coupon}}" maxlength="80" placeholder="Enter Coupon Code (if Any)" name="coupon">
+                        </div>
+                        <div class="mb-0 col-lg-6">
+                            <label for="" class="form-label">Select Expiry Date</label>
+                            <input class="form-control form-control-solid" name="expiry" value="{{product.expiry}}" placeholder="Pick a date" id="exp_date"/>
+                        </div>
+                   </div>
                     <div class="fv-row mb-7 fv-plugins-icon-container">
                         <label class="form-label fw-bolder text-dark fs-6">Offer</label>
                         <input class="form-control form-control-lg maxlength" type="text" value="{{product.offers}}" maxlength="120" placeholder="Enter Offer (if Any)" name="offers">
@@ -129,9 +135,27 @@
                             <!--end::Remove button-->
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-lg-6 mb-5">
+                            <div class="form-check form-switch form-check-custom form-check-solid">
+                                <input class="form-check-input h-20px w-30px" type="checkbox" value="yes"  {% if product.price_compare is True %}checked="checked"{% endif %} name="price_comp" />
+                                <label class="form-check-label" for="flexSwitchDefault">
+                                    Enable Price Comparison
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mb-5">
+                            <div class="form-check form-switch form-check-custom form-check-solid">
+                                <input class="form-check-input h-20px w-30px" type="checkbox" value="yes" {% if product.pinned is True %}checked="checked"{% endif %} name="topdeals" />
+                                <label class="form-check-label" for="flexSwitchDefault">
+                                    Enable Top Deals
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                     <div class="mb-10">
                         <label class="form-label">Enter Keywords/Tags</label>
-                        <input class="form-control" value="{{product.tags}}" id="tags"/>
+                        <input class="form-control" name="tags" value="{{product.tags}}" id="tags"/>
                     </div>
                     <input type="text" name="id" value="{{product.id}}" hidden>
                     <div class="mb-10">
@@ -160,6 +184,7 @@
 });
   </script>
   <script>
+    $("#exp_date").flatpickr();
     var input1 = document.querySelector("#tags");
     new Tagify(input1)
   </script>

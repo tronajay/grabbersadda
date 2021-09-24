@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
+from django.db.models.fields import CharField, TextField
 
 # Create your models here.
 class WebInfo(models.Model):
@@ -13,7 +14,7 @@ class WebInfo(models.Model):
     siteicon = models.ImageField(upload_to='site_images/',default="site_images/siteicon.png")
     logo = models.ImageField(upload_to='site_images/',default="site_images/logo.png")
     featureimg = models.ImageField(upload_to='site_images/',default="site_images/feature.jpg")
-    verify = models.TextField(blank=True)
+    verify = CharField(max_length=200,blank=True)
 
     def __str__(self):
         return self.title

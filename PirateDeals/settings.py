@@ -24,7 +24,7 @@ SETTINGS_PATH = os.path.normpath(os.path.dirname(__file__))
 SECRET_KEY = 'kdpyx)5-7s7owfk+#7-uz#(1pr(_ae!cr#t8dg#c-zf=%0)=cs'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["20.204.28.107","192.168.0.103","www.grabbersadda.in","grabbersadda.in","127.0.0.1"]
 
@@ -95,23 +95,23 @@ WSGI_APPLICATION = 'PirateDeals.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'grabbersadda',
-        'USER':'ajaypatel',
-        'PASSWORD':'Ajay@7257',
-        'HOST':'localhost',
-        'PORT': '3306',
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': str(os.path.join(BASE_DIR, "db.sqlite3"))
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'grabbersadda',
+#         'USER':'ajaypatel',
+#         'PASSWORD':'Ajay@7257',
+#         'HOST':'localhost',
+#         'PORT': '3306',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': str(os.path.join(BASE_DIR, "db.sqlite3"))
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

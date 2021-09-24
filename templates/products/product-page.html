@@ -117,7 +117,12 @@
                  <a href="#" id="clipboard" data-clipboard-text="{{product.coupon}}"  class="btn float-end btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary">{{product.coupon}}</a>
                {% endif %}
 				<h3 class="pt-3 text-gray-700 mb-5">₹{{product.sale_price}} <del class="text-gray-400">₹{{product.original_price}}</del></h3>
-				<a href="/redirect?id={{product.id}}" class="btn-sm text-white btn-primary">
+				{% if product.expiry > date %}
+                    <a href="/redirect?id={{product.id}}" class="btn btn-sm btn-danger">
+                        Expired
+                    </a>
+                {% else %}
+                <a href="/redirect?id={{product.id}}" class="btn-sm text-white btn-primary">
                     {% if product.category.title == 'Amazon Quiz' or product.category.title == 'Flipkart Quiz' %}
                         Play Now
                     {% elif product.store.title == 'Amazon' or product.store.title == 'Flipkart' or product.store.title == 'Tata Cliq' or product.store.title == 'Paytm Mall' %}
@@ -126,6 +131,7 @@
                      Download
                     {% endif %}
                 </a>
+                {% endif %}
 			  </div>
 			</div>
             <!--end::Container-->
@@ -161,7 +167,9 @@
 		   </p>
         </div>
         <!--end::Description-->
-        {% include 'products/price-comparison.html' %}
+        {% if product.price_compare is True %}
+            {% include 'products/price-comparison.html' %}
+        {% endif %}
         <!--begin::Block-->
         <div class="d-flex align-items-center border-dashed card-rounded my-5 p-5 p-lg-10 mb-14">
             <!--begin::Section-->

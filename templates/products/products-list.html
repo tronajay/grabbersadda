@@ -97,6 +97,12 @@ Search Results: {{search}} - {{site.title}}
 			Recent Deals
 		</div>
 	{% endif %}
+	{% if topdeals %}
+		{% include 'products/pinned-deals.html' %}
+			<div class="latest-deal-heading mb-3">
+				<span class="fs-2 fw-bolder">Latest Deals and Offers</span>
+			</div>
+	{% endif %}
    <div class="row g-10">
 			{% for p in products %}
 			  <!--begin::Col-->
@@ -135,15 +141,21 @@ Search Results: {{search}} - {{site.title}}
 							
 							<!--end::Label-->
 							<!--begin::Action-->
-							<a href="/shop/{{p.slug}}" class="btn-sm text-white btn-primary">
-								{% if p.category.title == 'Amazon Quiz' or p.category.title == 'Flipkart Quiz' %}
-									Play Now
-								{% elif p.store.title == 'Amazon' or p.store.title == 'Flipkart' or p.store.title == 'Tata Cliq' or p.store.title == 'Paytm Mall' %}
-									Buy Now 
+							
+								{% if p.expiry > date %}
+									<a href="/shop/{{p.slug}}" class="btn-sm text-white btn-danger">
+									Expired </a>
 								{% else %}
-								Read More
+								<a href="/shop/{{p.slug}}" class="btn-sm text-white btn-primary">
+									{% if p.category.title == 'Amazon Quiz' or p.category.title == 'Flipkart Quiz' %}
+									Play Now
+									{% elif p.store.title == 'Amazon' or p.store.title == 'Flipkart' or p.store.title == 'Tata Cliq' or p.store.title == 'Paytm Mall' %}
+									Buy Now 
+									{% else %}
+									Read More
+									{% endif %}
+								</a>
 								{% endif %}
-							</a>
 							<!--end::Action-->
 						</div>
 						<div class="float-start mt-4">
