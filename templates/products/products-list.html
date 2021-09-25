@@ -2,8 +2,8 @@
 {% block title %}
 {% if category %}
  {{category.title}} - {{site.title}}
-{% elif store %}
-{{store.title}} - {{site.title}}
+{% elif topd %}
+Top Deals - {{site.title}}
 {% elif search %}
 Search Results: {{search}} - {{site.title}}
  {% else %}
@@ -21,6 +21,8 @@ Search Results: {{search}} - {{site.title}}
 {% block mtitle %}
 	{% if category %}
 	  {{category.title}} - {{site.title}}
+	{% elif topd %}
+	 Top Deals - {{site.title}}
 	{% else %}
 	GrabbersAdda - Best Deals and Offers
    {% endif %}
@@ -31,6 +33,8 @@ Search Results: {{search}} - {{site.title}}
 {% block ogtitle %}
 	{% if category %}
 	{{category.title}} - {{site.title}}
+	{% elif topd %}
+	Top Deals - {{site.title}}
 	{% else %}
 	{{site.title}} - {{site.tagline}}
 	{% endif %}
@@ -103,7 +107,7 @@ Search Results: {{search}} - {{site.title}}
 				<span class="fs-2 fw-bolder">Latest Deals and Offers</span>
 			</div>
 	{% endif %}
-   <div class="row g-10">
+   <div class="row g-5">
 			{% for p in products %}
 			  <!--begin::Col-->
 			<div class="col-md-4 col-sm-4 col-lg-3">

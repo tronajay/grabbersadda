@@ -50,6 +50,7 @@ class Products(models.Model):
     date=models.DateTimeField(auto_now=True,blank=True)
     tags = models.CharField(max_length=150,blank=True)
     price_compare = models.BooleanField(default=0)
+    expiry = models.CharField(blank=True,max_length=20)
     pinned = models.BooleanField(default=0)
 
     def __str__(self):

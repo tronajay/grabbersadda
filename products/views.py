@@ -1,3 +1,5 @@
+import products
+import re
 from django.shortcuts import redirect, render
 from .models import Comments, FeaturedDeals, Products,Category,Store
 from django.core.paginator import Paginator
@@ -13,8 +15,7 @@ def shop(request):
     products = p.get_page(page)
     date = str(datetime.datetime.now())
     dt = date.split(" ")[0]
-    print(dt)
-    topdeals = Products.objects.filter(pinned=True)
+    topdeals = Products.objects.filter(pinned=True)[::-1][:4]
     params = {'products':products,'fdeals':fdeals,'date':dt,'topdeals':topdeals} 
     return render(request,'products/products-list.html',params)
 
@@ -43,6 +44,14 @@ def store(request,slug):
     dt = date.split(" ")[0]
     otherstores = Store.objects.all().exclude(slug=slug)
     return render(request,'products/store.html',{'products':products,'store':store,'otherstores':otherstores,'date':dt})
+
+def topdeals(request):
+    pr = Products.objects.filter(pinned=True)[::-1]
+    p = Paginator(pr,12)
+    page = request.GET.get('page')
+    products = p.get_page(page)
+    params = {'products':products,'topd':'topd'}
+    return render(request,'products/products-list.html',params)
 
 def redirectpage(request):
     id = request.GET.get('id')
