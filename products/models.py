@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from ckeditor_uploader.fields import RichTextUploadingField
 from PIL import Image
-
+from datetime import date
 
 # Create your models here.
 
@@ -50,7 +50,7 @@ class Products(models.Model):
     date=models.DateTimeField(auto_now=True,blank=True)
     tags = models.CharField(max_length=150,blank=True)
     price_compare = models.BooleanField(default=0)
-    expiry = models.CharField(blank=True,max_length=20)
+    expiry = models.DateField(null=True)
     pinned = models.BooleanField(default=0)
 
     def __str__(self):
@@ -63,6 +63,9 @@ class Products(models.Model):
             new_img = (300, 300)
             img.thumbnail(new_img)
             img.save(self.thumbnail.path)
+    @property
+    def isexp(self):
+        return date.today() > self.expiry
 
 class FeaturedDeals(models.Model):
     title = models.OneToOneField(Products,on_delete=models.CASCADE)

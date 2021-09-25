@@ -9,13 +9,13 @@ import datetime
 
 # Create your views here.
 def shop(request):
-    p = Paginator(Products.objects.order_by('date')[::-1],12)
+    p = Paginator(Products.objects.order_by('date').exclude(pinned=True)[::-1],12)
     fdeals = FeaturedDeals.objects.all()
     page = request.GET.get('page')
     products = p.get_page(page)
     date = str(datetime.datetime.now())
     dt = date.split(" ")[0]
-    topdeals = Products.objects.filter(pinned=True)[::-1][:4]
+    topdeals = Products.objects.filter(pinned=True).order_by('date')[::-1][:4]
     params = {'products':products,'fdeals':fdeals,'date':dt,'topdeals':topdeals} 
     return render(request,'products/products-list.html',params)
 
@@ -27,7 +27,7 @@ def productpage(request,slug):
     return render(request,'products/product-page.html',{'product':product,'recent':recent,'date':dt})
 
 def categorypage(request,slug):
-    p = Paginator(Products.objects.filter(category__slug=slug)[::-1],12)
+    p = Paginator(Products.objects.filter(category__slug=slug).order_by('date')[::-1],12)
     page = request.GET.get('page')
     products = p.get_page(page)
     category = Category.objects.get(slug=slug)
@@ -121,7 +121,7 @@ def postproduct(request):
             newproduct.content = content
             newproduct.tags = tags
             if expiry == "":
-               newproduct.expiry = "No"
+               pass
             else:
                 newproduct.expiry = expiry
             try:
@@ -190,7 +190,7 @@ def updateproduct(request):
             newproduct.category = category
             newproduct.slug = slug
             if expiry == "":
-               newproduct.expiry = "No"
+               pass
             else:
                 newproduct.expiry = expiry
             newproduct.sale_price = sprice

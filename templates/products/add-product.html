@@ -70,7 +70,7 @@
                         </div>
                         <div class="mb-0 col-lg-6">
                             <label for="" class="form-label">Select Expiry Date</label>
-                            <input class="form-control form-control-solid" name="expiry" value="{{product.expiry}}" placeholder="Pick a date" id="exp_date"/>
+                            <input class="form-control form-control-solid" name="expiry" value="{{product.expiry|date:'Y-m-d'}}" placeholder="Pick a date" id="exp_date"/>
                         </div>
                    </div>
                     <div class="fv-row mb-7 fv-plugins-icon-container">

@@ -146,7 +146,7 @@ Search Results: {{search}} - {{site.title}}
 							<!--end::Label-->
 							<!--begin::Action-->
 							
-								{% if p.expiry < date and p.expiry is not "No" and p.expiry != "" %}
+								{% if p.expiry is not None and p.isexp%}
 									<a href="/shop/{{p.slug}}" class="btn-sm text-white btn-danger">
 									Expired </a>
 								{% else %}
