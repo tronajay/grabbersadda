@@ -97,12 +97,12 @@
 											<!--begin::Nav item-->
 											<li class="nav-item">
 												<a class="nav-link text-active-primary me-6 
-												  {% if request.path == "/profile" %}active{% endif %}" href="/profile">Overview</a>
+												  {% if request.path == "/profile" or request.path == "/profile/" %}active{% endif %}" href="/profile">Overview</a>
 											</li>
 											<!--end::Nav item-->
 											<!--begin::Nav item-->
 											<li class="nav-item">
-												<a class="nav-link text-active-primary me-6 {% if request.path == "/settings" %}active{% endif %}" href="/settings">Settings</a>
+												<a class="nav-link text-active-primary me-6 {% if request.path == "/settings" or request.path == "/settings/" %}active{% endif %}" href="/settings">Settings</a>
 											</li>
 											<!--end::Nav item-->
 										</ul>
@@ -112,7 +112,7 @@
 							</div>
 							<!--end::Navbar-->
 							<!--begin::details View-->
-							{% if request.path == "/profile" %}
+							{% if request.path == "/profile/" or request.path == "/profile" %}
 							<div class="card mb-5 mb-xl-10" id="kt_profile_details_view">
 								<!--begin::Card header-->
 								<div class="card-header cursor-pointer">
@@ -271,7 +271,7 @@
                                 </div>
                                 </form>
 							</div>
-							{% elif request.path == "/settings" %}
+							{% elif request.path == "/settings/" or request.path == "/settings" %}
 							<div class="card mb-5 mb-xl-10">
 								<!--begin::Card header-->
 								<div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse" data-bs-target="#kt_account_signin_method">

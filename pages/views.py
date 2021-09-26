@@ -27,21 +27,25 @@ def giveaway(request):
         return render(request,'pages/giveaway.html')
 
 def addparticipant(request):
-    if request.method == "POST":
-        if GiveawayParticipants.objects.filter(user__id=request.user.id).exists():
-            messages.error(request,'You have Already Participated in this Giveaway.')
-            return redirect('/')
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            if GiveawayParticipants.objects.filter(user__id=request.user.id).exists():
+                messages.error(request,'You have Already Participated in this Giveaway.')
+                return redirect('/')
+            else:
+                user = User.objects.get(id = request.user.id)
+                paytm = request.POST['paytm']
+                telegram = request.POST['telegram']
+                giveaway = request.POST['givid']
+                givid = Giveaway.objects.get(id=giveaway)
+                newpart = GiveawayParticipants()
+                newpart.user = user
+                newpart.givid = givid
+                newpart.paytm = paytm
+                newpart.telegram = telegram
+                newpart.save()
+                messages.success(request,'You have Successfully Participated in the Giveaway')
+                return redirect('/')
         else:
-            user = User.objects.get(id = request.user.id)
-            paytm = request.POST['paytm']
-            telegram = request.POST['telegram']
-            giveaway = request.POST['givid']
-            givid = Giveaway.objects.get(id=giveaway)
-            newpart = GiveawayParticipants()
-            newpart.user = user
-            newpart.givid = givid
-            newpart.paytm = paytm
-            newpart.telegram = telegram
-            newpart.save()
-            messages.success(request,'You have Successfully Participated in the Giveaway')
             return redirect('/')
+    return redirect('/')

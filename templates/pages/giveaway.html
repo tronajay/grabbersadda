@@ -36,13 +36,13 @@
 
         <!--begin::Content-->
         <div class="mb-9 text-dark">
-           Sorry, There is No Giveaway Going On. <br> Join Our <strong><a href="https://t.me/grabbersadda">Telegram Channel</a> </strong> to Get notified when New Giveaway arrives.
+           Sorry, There is No Giveaway Going On. <br> Join Our <strong><a target="_blank" href="https://t.me/grabbersadda">Telegram Channel</a> </strong> to Get notified when New Giveaway arrives.
         </div>
         <!--end::Content-->
 
         <!--begin::Buttons-->
         <div class="d-flex flex-center flex-wrap">
-            <a href="#" class="btn btn-success m-2">Return Home</a>
+            <a href="/" class="btn btn-success m-2">Return Home</a>
         </div>
         <!--end::Buttons-->
     </div>
@@ -52,7 +52,7 @@
     {% endif %}
 </div>
 
-{% if giveaway %}
+{% if giveaway and request.user.is_authenticated%}
     <div class="w-lg-800px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
     <!--begin::Authentication - 404 Page-->
     <h3 class="fw-bold text-center fs-2 mb-5">Participate in the Giveaway</h3>
@@ -73,6 +73,12 @@
     
     <!--end::Authentication - 404 Page-->
 </div>
+{% endif %}
+{% if request.user.is_authenticated %}
+{% else %}
+ <div class="text-center">
+    <a href="#" data-bs-toggle="modal" data-bs-target="#kt_modal_2" class="btn btn-primary">Login to Participate</a>
+ </div>
 {% endif %}
 {% endblock content %}
 {% block script %}
