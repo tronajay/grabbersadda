@@ -1,5 +1,3 @@
-import products
-import re
 from django.shortcuts import redirect, render
 from .models import Comments, FeaturedDeals, Products,Category,Store
 from django.core.paginator import Paginator

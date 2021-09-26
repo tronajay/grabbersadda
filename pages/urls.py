@@ -3,5 +3,6 @@ from . import views
 
 urlpatterns = [
     path('page/<str:slug>',views.pagecontent,name="pagecontent"),
-    path('error-404',views.error404,name="error404"),
+    path('giveaway',views.giveaway,name="giveaway"),
+    path('add-participant',views.addparticipant,name="addparticipant"),
 ]

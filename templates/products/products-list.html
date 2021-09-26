@@ -71,7 +71,7 @@ Search Results: {{search}} - {{site.title}}
 {% load humanize %}
 
 <!--Feature Deals Starts Here-->
-{% if fdeals %}
+{% if fdeals and products.number == 1%}
 <div class="carousel mb-8 carousel-custom slide" data-bs-ride="carousel" data-bs-interval="3000">
 <!--begin::Carousel-->
 <div class="carousel-inner">
@@ -101,7 +101,7 @@ Search Results: {{search}} - {{site.title}}
 			Recent Deals
 		</div>
 	{% endif %}
-	{% if topdeals %}
+	{% if topdeals and products.number == 1 %}
 		{% include 'products/pinned-deals.html' %}
 			<div class="latest-deal-heading mb-3">
 				<span class="fs-2 fw-bolder">Latest Deals and Offers</span>
@@ -121,7 +121,6 @@ Search Results: {{search}} - {{site.title}}
 						<!--begin::Image-->
 						<center><img src="/media/{{p.thumbnail}}" class="h-200px rounded align-items-center" alt="{{p.title}}"></center>
 						<!--end::Image-->
-						
 					</a>
 					<!--end::Overlay-->
 					<!--begin::Body-->
