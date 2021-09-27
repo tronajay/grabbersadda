@@ -4,6 +4,7 @@ from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 from django.contrib import messages
 import datetime
+from advertisement.models import Ads
 
 # Create your views here.
 def shop(request):
@@ -15,6 +16,9 @@ def shop(request):
     dt = date.split(" ")[0]
     topdeals = Products.objects.filter(pinned=True).order_by('date')[::-1][:4]
     params = {'products':products,'fdeals':fdeals,'date':dt,'topdeals':topdeals} 
+    if Ads.objects.filter(title='adhome1').exists():
+        adhome1 = Ads.objects.get(title="adhome1")
+        params['adhome1']=adhome1
     return render(request,'products/products-list.html',params)
 
 def productpage(request,slug):
@@ -22,7 +26,17 @@ def productpage(request,slug):
     dt = date.split(" ")[0]
     product = Products.objects.get(slug=slug)
     recent = Products.objects.all().exclude(slug=slug)[::-1][:4]
-    return render(request,'products/product-page.html',{'product':product,'recent':recent,'date':dt})
+    params = {'product':product,'recent':recent,'date':dt}
+    if Ads.objects.filter(title='adpost1').exists():
+        adpost1 = Ads.objects.get(title="adpost1")
+        params['adpost1']=adpost1
+    if Ads.objects.filter(title='adpost2').exists():
+        adpost2 = Ads.objects.get(title="adpost2")
+        params['adpost2']=adpost2
+    if Ads.objects.filter(title='adsidebar1').exists():
+        adsidebar1 = Ads.objects.get(title="adsidebar1")
+        params['adsidebar1']=adsidebar1
+    return render(request,'products/product-page.html',params)
 
 def categorypage(request,slug):
     p = Paginator(Products.objects.filter(category__slug=slug).order_by('date')[::-1],12)
@@ -54,7 +68,14 @@ def topdeals(request):
 def redirectpage(request):
     id = request.GET.get('id')
     product = Products.objects.get(id=id)
-    return render(request,'products/redirect.html',{'product':product})
+    params = {'product':product}
+    if Ads.objects.filter(title='redirect1').exists():
+        redirect1 = Ads.objects.get(title='redirect1')
+        params['redirect1']=redirect1
+    if Ads.objects.filter(title='redirect2').exists():
+        redirect2 = Ads.objects.get(title='redirect2')
+        params['redirect2']=redirect2
+    return render(request,'products/redirect.html',params)
 
 def addcomment(request):
     if request.user.is_authenticated:

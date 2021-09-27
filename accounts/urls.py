@@ -15,4 +15,6 @@ urlpatterns = [
     path('activate',views.activate,name="activate"),
     path('reset-password',views.resetpass,name="resetpass"),
     path('google-login',views.googlelogin,name="googlelogin"),
+    path('apply-refer',views.applyrefer,name="applyrefer"),
+    path('refer-and-earn',views.referearn,name="referearn"),
 ]

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %} Refer and Earn - {{site.title}} {% endblock title %}
+{% block content %}
+
+    <div class="w-lg-800px bg-light-success bg-body rounded shadow-sm p-10 p-lg-15 mb-5 mx-auto">
+
+            <!--begin::Alert-->
+<div class="">
+
+    <!--begin::Wrapper-->
+    <div class="text-center">
+        <!--begin::Title-->
+        <h1 class="fw-bolder mb-5">Refer and Earn</h1>
+        <!--end::Title-->
+            <img src="/static/svg/refer-and-earn.svg" class="w-200px mb-5" alt="">
+
+        <!--begin::Content-->
+        <div class="mb-9 fw-bold text-dark">
+            Share your Invite Link with your friends and <br> Get both 500 Points when they Signup using your Link and Apply Your Refer Code
+        </div>
+        <!--end::Content-->
+        <button class="btn btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary" data-clipboard-text="{{request.user.profile.refer}}" id="copy_refer_code">{{request.user.profile.refer}}</button>
+         <a href="whatsapp://send?text=Hey! Wanna Get Best Deals, Loot Offers, Cashback Offers. Signup in GrabbersAdda Now and Get 500 Points. {{site.url}}%23register?refer={{request.user.profile.refer}}. Use Refer Code: {{request.user.profile.refer}}" data-action="share/whatsapp/share" class="btn btn-primary"> <i class="fab fs-2 fa-whatsapp"></i> Share</a>
+    </div>
+    <!--end::Wrapper-->
+</div>
+<!--end::Alert-->
+
+    </div>
+
+{% endblock content %}
+{% block script %}
+    <script>
+        // Select element
+const target = document.getElementById('copy_refer_code');
+
+// Init clipboard -- for more info, please read the offical documentation: https://clipboardjs.com/
+clipboard = new ClipboardJS(target);
+
+// Success action handler
+clipboard.on('success', function (e) {
+    const currentLabel = target.innerHTML;
+
+    // Exit label update when already in progress
+    if (target.innerHTML === 'Copied!') {
+        return;
+    }
+
+    // Update button label
+    target.innerHTML = 'Copied!';
+
+    // Revert button label after 3 seconds
+    setTimeout(function () {
+        target.innerHTML = currentLabel;
+    }, 3000)
+});
+    </script>
+{% endblock script %}
+
+
+

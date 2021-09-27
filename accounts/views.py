@@ -1,4 +1,5 @@
-from django.shortcuts import redirect, render, resolve_url
+from django.db.models.query import RawQuerySet
+from django.shortcuts import redirect, render
 from .models import WebInfo
 from django.contrib.auth.models import User
 from .models import Profile, Useractivate
@@ -59,7 +60,10 @@ def googlelogin(request):
         else:
             user.username=uname 
             user.save()
-        newuser=Profile(user=user)
+        newuser=Profile()
+        newuser.user = user
+        newuser.points+=10
+        newuser.refer = ''.join(random.choices(string.ascii_uppercase + string.digits, k = 6))
         newuser.save()
         return redirect('/')
 
@@ -201,4 +205,41 @@ def resetpass(request):
             return redirect("/")
     else:
         messages.error(request,'Invalid Url Accessed')
+        return redirect('/')
+
+@login_required(login_url='/')
+def applyrefer(request):
+    if request.method == "POST":
+        user = Profile.objects.get(user__id=request.user.id)
+        if user.refercode == "":
+            code = request.POST['refercode']
+            if Profile.objects.filter(refer=code).exists():
+                if user.refer != code:
+                    user.refercode = code
+                    user.points+=500
+                    user.save()
+                    messages.success(request,'Refer Code Applied Successfully')
+                    return redirect('/profile')
+                else:
+                    messages.error(request,'You Cannot Apply Your Own Refer Code')
+                    return redirect('/profile')
+            else:
+                messages.error(request,'Invalid Refer Code')
+                return redirect('/profile')
+        else:
+            messages.success(request,'You Have already Applied the Refer Code.')
+            return redirect('/profile')
+    else:
+        return redirect('/')
+
+def referearn(request):
+    if request.user.is_authenticated:
+        user = Profile.objects.get(user__id=request.user.id)
+        if user.refer == "":
+            refer = ''.join(random.choices(string.ascii_uppercase + string.digits, k = 6))
+            user.refer = refer
+            user.save()
+        return render(request,'accounts/refer-n-earn.html')
+    else:
+        messages.error(request,'Please Login First')
         return redirect('/')

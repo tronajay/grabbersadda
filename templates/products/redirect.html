@@ -27,6 +27,12 @@
             <div class="d-flex flex-column flex-column-fluid">
                 <!--begin::Content-->
                 <div class="card justify-content-center d-flex flex-column flex-column-fluid text-center p-10 py-lg-15">
+
+                    <div class="w-100">
+                        {% if redirect1 %}
+                        {{redirect1.adcode | safe}}
+                    {% endif %}
+                    </div>
                     <!--begin::Wrapper-->
                     <div class="pt-lg-10 mb-10">
                         <!--begin::Logo-->
@@ -45,6 +51,11 @@
                                 Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
                             </span>
                         </button>
+                    </div>
+                    <div class="w-100">
+                        {% if redirect2 %}
+                        {{redirect2.adcode | safe}}
+                        {% endif %}
                     </div>
                     <!--end::Wrapper-->
                 </div>

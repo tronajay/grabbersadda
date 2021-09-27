@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'accounts',
     'pages',
     'blog',
+    'advertisement',
     'products',
     'mathfilters',
     'ckeditor',

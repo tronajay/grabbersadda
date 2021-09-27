@@ -113,6 +113,25 @@
 							<!--end::Navbar-->
 							<!--begin::details View-->
 							{% if request.path == "/profile/" or request.path == "/profile" %}
+							{% if request.user.profile.refercode == "" %}
+								<!--begin::Refer Code-->
+							<div class="alert text-center alert-dismissible bg-light-primary border border-primary flex-column flex-sm-row p-5 mb-10">
+								<!--begin::Wrapper-->
+								<div class="d-flex flex-column pe-0 pe-sm-10">
+									<!--begin::Title-->
+									<h5 class="mb-1">Apply Invite Code and Get 500 Points</h5>
+									<!--end::Title-->
+									<form action="/apply-refer" class="w-lg-800px mx-auto" method="post">{% csrf_token %}
+										<div class="input-group my-3">
+											<input type="text" name="refercode" placeholder="Enter Refer Code" class="input text-center form-control" required>
+											<button type="submit" class="input-group-text btn btn-primary">Apply</button>
+										</div>
+									</form>
+								</div>
+								<!--end::Wrapper-->
+							</div>
+							<!--end::Refer Code-->
+							{% endif %}
 							<div class="card mb-5 mb-xl-10" id="kt_profile_details_view">
 								<!--begin::Card header-->
 								<div class="card-header cursor-pointer">

@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
-from django.db.models.fields import CharField, TextField
+from django.db.models.fields import CharField
 
 # Create your models here.
 class WebInfo(models.Model):
@@ -25,6 +25,8 @@ class Profile(models.Model):
     profileimg=models.ImageField(upload_to='profile_images/',default="profile_images/user.png")
     phone = models.CharField(max_length=100,blank=True)
     bio = models.TextField(blank=True)
+    refer = models.CharField(max_length=10,blank=True)
+    refercode = models.CharField(max_length=10,blank=True)
     facebook = models.CharField(max_length=100,blank=True)
     insta = models.CharField(max_length=100,blank=True)
     points = models.IntegerField(default=0)

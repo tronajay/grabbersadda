@@ -69,6 +69,7 @@ Search Results: {{search}} - {{site.title}}
 {% block content %}
 {% load custom_tags %}
 {% load humanize %}
+{% load mathfilters %}
 
 <!--Feature Deals Starts Here-->
 {% if fdeals and products.number == 1%}
@@ -119,7 +120,13 @@ Search Results: {{search}} - {{site.title}}
 					
 					<a class="" href="/shop/{{p.slug}}">
 						<!--begin::Image-->
-						<center><img src="/media/{{p.thumbnail}}" class="h-200px rounded align-items-center" alt="{{p.title}}"></center>
+						<center><img 
+						src="{% if p.thumbnail %}
+						/media/{{p.thumbnail}}
+						{% else %}
+						/static/images/ga-default.jpg
+						{% endif %}" 
+						class="h-200px rounded align-items-center" alt="{{p.title}}"></center>
 						<!--end::Image-->
 					</a>
 					<!--end::Overlay-->
@@ -176,7 +183,15 @@ Search Results: {{search}} - {{site.title}}
 				<!--end::Hot sales post-->
 			</div>
 			<!--end::Col-->
-			
+			{% if adhome1 and forloop.counter|mod:'5' == 0 %}
+			<div class="col-md-4 col-sm-4 col-lg-3">
+				<!--begin::Hot sales post-->
+				<div class="card p-5">
+					<span class="mb-2 text-center">ADVERTISEMENT</span>
+					{{adhome1.adcode | safe}}
+				</div>
+			</div>
+			{% endif %}
 			{% endfor %}
 		</div>
 		{% if results %}
@@ -200,4 +215,15 @@ Search Results: {{search}} - {{site.title}}
 
 		{% endif %}
 {% endblock content %}
+{% block script %}
+	<script>   
+        $(document).ready(function() {
+        if(window.location.href.indexOf('#register') != -1) {
+            $('#kt_modal_1').modal('show');
+            }
+        });
+    </script>
+{% endblock script %}
+
+
   

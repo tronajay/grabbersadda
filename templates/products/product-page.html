@@ -138,6 +138,11 @@
 			</div>
             <!--end::Container-->
         </div>
+        {% if adpost1 %}
+            <div class="p-5"> 
+                {{adpost1.adcode | safe}}
+            </div>
+        {% endif %}
         <!--end::Wrapper-->
         {% if product.offers %}
           <!--begin::notice-->
@@ -169,6 +174,11 @@
 		   </p>
         </div>
         <!--end::Description-->
+        {% if adpost2 %}
+            <div class="p-5"> 
+                {{adpost2.adcode | safe}}
+            </div>
+        {% endif %}
         {% if product.price_compare is True %}
             {% include 'products/price-comparison.html' %}
         {% endif %}
@@ -240,6 +250,12 @@
         <!--end::Item-->
         {% endfor %}
     </div>
+    {% if adsidebar1 %}
+    <div class="p-5 text-center">
+        <span class="mb-2">ADVERTISEMENT</span>
+        {{adsidebar1.adcode | safe}}
+    </div>
+    {% endif %}
     <div class="my-5">
         <a target="_blank" href="https://t.me/grabbersadda">
             <img src="/static/images/join-telegram.jpg" alt="" class="w-100 rounded">
