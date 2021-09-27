@@ -37,12 +37,14 @@ def addparticipant(request):
                 paytm = request.POST['paytm']
                 telegram = request.POST['telegram']
                 giveaway = request.POST['givid']
+                reward = request.POST['reward']
                 givid = Giveaway.objects.get(id=giveaway)
                 newpart = GiveawayParticipants()
                 newpart.user = user
                 newpart.givid = givid
                 newpart.paytm = paytm
                 newpart.telegram = telegram
+                newpart.reward = reward
                 newpart.save()
                 messages.success(request,'You have Successfully Participated in the Giveaway')
                 return redirect('/')

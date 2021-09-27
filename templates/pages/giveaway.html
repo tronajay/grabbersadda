@@ -65,6 +65,25 @@
                 <label class="form-label fw-bolder text-dark fs-6">Your Telegram Username</label>
                 <input class="form-control form-control-lg maxlength" type="text" maxlength="50" id="p-slug" placeholder="Enter Telegram Username" name="telegram" required="">
             </div>
+            <div class="mb-4 fw-bolder">
+                What Do you Want?
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="form-check form-check-custom mb-3 form-check-solid">
+                        <input class="form-check-input" name="reward" type="radio" value="paytmcash" id="paytmcash"/>
+                        <label class="form-check-label" for="paytmcash">
+                        Paytm Cash
+                    </div>
+                </div>
+                 <div class="col-lg-3 col-md-4 col-6">
+                    <div class="form-check form-check-custom mb-3 form-check-solid">
+                        <input class="form-check-input" name="reward" type="radio" value="redeemcode" id="redeemcode"/>
+                        <label class="form-check-label" for="redeemcode">
+                        Redeem Code
+                    </div>
+                </div>
+            </div>
             <input type="text" name="givid" value="{{giveaway.id}}" hidden>
             <div class="mb-10 text-center">
                 <button class="btn btn-primary" type="submit">Participate</button>
