@@ -19,10 +19,11 @@
             Share your Invite Link with your friends and <br> Get both 500 Points when they Signup using your Link and Apply Your Refer Code
         </div>
         <!--end::Content-->
-        <button class="btn btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary" data-clipboard-text="{{request.user.profile.refer}}" id="copy_refer_code">{{request.user.profile.refer}}</button>
-        <a href="whatsapp://send?text=Hey! Wanna Get Best Deals, Loot Offers, Cashback Offers. Signup in GrabbersAdda Now and Get 500 Points. {{site.url}}%23register?refer={{request.user.profile.refer}}. Use Refer Code: {{request.user.profile.refer}}" data-action="share/whatsapp/share" class="btn btn-primary"> <i class="fab fs-2 fa-whatsapp"></i> Share</a><br>
+        {% comment %} <button class="btn btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary" data-clipboard-text="{{request.user.profile.refer}}" id="copy_refer_code">{{request.user.profile.refer}}</button> {% endcomment %}
+        <a href="whatsapp://send?text=Hey! Wanna Get Best Deals, Loot Offers, Cashback Offers. Signup in GrabbersAdda Now and Get 500 Points. {{site.url}}%23register. Use Refer Code: {{request.user.profile.refer}}" data-action="share/whatsapp/share" class="btn btn-primary"> <i class="fab fs-2 fa-whatsapp"></i> Share</a><br>
 
-        <span class="badge my-3 badge-info">Rewards Will be available Soon.</span>
+        <span class="badge my-3 badge-info">Refer and Earn Option is Currently Disabled.</span>
+        <span class="badge badge-info">Join our Telegram Channel to Get Informed.</span>
     </div>
     <!--end::Wrapper-->
 </div>

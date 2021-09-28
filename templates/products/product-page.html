@@ -266,21 +266,19 @@
     <div class="m-0">
         <h4 class="text-black mb-7">Recent Deals</h4>
         {% for r in recent %}
-          <!--begin::Item-->
-        <div class="d-flex mb-7">
-            <!--begin::Symbol-->
-            <div class="symbol symbol-2by3 me-4">
-                <center><img src="/media/{{r.thumbnail}}" class="w-100 h-60px align-items-center" alt="{{product.title}}"></center>
+        <div class="d-flex align-items-center mb-7">
+            <!--begin::Avatar-->
+            <div class=" w-50px me-5">
+                <img src="/media/{{r.thumbnail}}" class="w-100" alt="">
             </div>
-            <!--end::Symbol-->
-            <!--begin::Title-->
-            <div class="m-0">
-                <a href="/shop/{{r.slug}}" class="text-dark fw-bolder text-hover-primary fs-6">{{r.title}}</a>
-                <span class="text-gray-600 fw-bold d-block pt-1 fs-7">₹{{r.sale_price}} <del>₹{{r.original_price}}</del></span>
+            <!--end::Avatar-->
+            <!--begin::Text-->
+            <div class="flex-grow-1">
+                <a href="#" class="text-dark fw-bolder text-hover-primary fs-6">{{r.title | truncatechars:50}}</a>
+                <span class="text-muted d-block fw-bold">₹{{r.sale_price}} <del>₹{{r.original_price}}</del></span>
             </div>
-            <!--end::Title-->
+            <!--end::Text-->
         </div>
-        <!--end::Item-->
         {% endfor %}
     </div>
     <!--end::Recent deals-->

@@ -1,9 +1,8 @@
 from django.contrib.sitemaps import Sitemap
-from django.shortcuts import reverse
 from .models import Category, Products, Store
 
 class ProductsSitemap(Sitemap):
-    changefreq = "weekly"
+    changefreq = "daily"
     priority = 0.8
     protocol = 'https'
 
@@ -17,7 +16,7 @@ class ProductsSitemap(Sitemap):
         return '/shop/%s' % (obj.slug)
 
 class CategoryProducts(Sitemap):
-    changefreq = "weekly"
+    changefreq = "daily"
     priority = 0.8
     protocol = 'https'
 
@@ -28,7 +27,7 @@ class CategoryProducts(Sitemap):
         return '/category/%s' % (obj.slug)
 
 class StoreSitemap(Sitemap):
-    changefreq = "weekly"
+    changefreq = "daily"
     priority = 0.8
     protocol = 'https'
 
