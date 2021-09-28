@@ -3,12 +3,14 @@ from .models import Comments, FeaturedDeals, Products,Category,Store
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 from django.contrib import messages
+from datetime import date
 import datetime
 from advertisement.models import Ads
+from pages.models import Giveaway
 
 # Create your views here.
 def shop(request):
-    p = Paginator(Products.objects.order_by('date').exclude(pinned=True)[::-1],12)
+    p = Paginator(Products.objects.order_by('date').exclude(pinned=True)[::-1],14)
     fdeals = FeaturedDeals.objects.all()
     page = request.GET.get('page')
     products = p.get_page(page)
@@ -19,6 +21,8 @@ def shop(request):
     if Ads.objects.filter(title='adhome1').exists():
         adhome1 = Ads.objects.get(title="adhome1")
         params['adhome1']=adhome1
+    if Giveaway.objects.first():
+        params['giveaway']="Live Now"
     return render(request,'products/products-list.html',params)
 
 def productpage(request,slug):
@@ -36,6 +40,8 @@ def productpage(request,slug):
     if Ads.objects.filter(title='adsidebar1').exists():
         adsidebar1 = Ads.objects.get(title="adsidebar1")
         params['adsidebar1']=adsidebar1
+    if Giveaway.objects.first():
+        params['giveaway']="Live Now"
     return render(request,'products/product-page.html',params)
 
 def categorypage(request,slug):
@@ -45,17 +51,29 @@ def categorypage(request,slug):
     category = Category.objects.get(slug=slug)
     date = str(datetime.datetime.now())
     dt = date.split(" ")[0]
-    return render(request,'products/products-list.html',{'products':products,'category':category,'date':dt})
+    params = {'products':products,'category':category,'date':dt}
+    if Ads.objects.filter(title='adhome1').exists():
+        adhome1 = Ads.objects.get(title="adhome1")
+        params['adhome1']=adhome1
+    if Giveaway.objects.first():
+        params['giveaway']="Live Now"
+    return render(request,'products/products-list.html',params)
 
 def store(request,slug):
-    p = Paginator(Products.objects.filter(store__slug=slug)[::-1],12)
+    p = Paginator(Products.objects.filter(store__slug=slug)[::-1],14)
     page = request.GET.get('page')
     products = p.get_page(page)
     store = Store.objects.get(slug=slug)
     date = str(datetime.datetime.now())
     dt = date.split(" ")[0]
     otherstores = Store.objects.all().exclude(slug=slug)
-    return render(request,'products/store.html',{'products':products,'store':store,'otherstores':otherstores,'date':dt})
+    params = {'products':products,'store':store,'otherstores':otherstores,'date':dt}
+    if Ads.objects.filter(title='adstore1').exists():
+        adstore1 = Ads.objects.get(title="adstore1")
+        params['adstore1']=adstore1
+    if Giveaway.objects.first():
+        params['giveaway']="Live Now"
+    return render(request,'products/store.html',params)
 
 def topdeals(request):
     pr = Products.objects.filter(pinned=True)[::-1]
@@ -63,6 +81,9 @@ def topdeals(request):
     page = request.GET.get('page')
     products = p.get_page(page)
     params = {'products':products,'topd':'topd'}
+    if Ads.objects.filter(title='adtopdeals1').exists():
+        adtopdeals1 = Ads.objects.get(title="adtopdeals1")
+        params['adtopdeals1']=adtopdeals1
     return render(request,'products/products-list.html',params)
 
 def redirectpage(request):
@@ -250,6 +271,8 @@ def search(request):
         params = {'products':products,'search':search,'results':'Not found'}
     else:
         params = {'products':products,'search':search}
+    if Giveaway.objects.first():
+        params['giveaway']="Live Now"
     return render(request,'products/products-list.html',params)
 
 def editproduct(request):
@@ -259,3 +282,24 @@ def editproduct(request):
     category = Category.objects.all()
     params = {'product':product,'store':store,'category':category}
     return render(request,'products/add-product.html',params)
+
+def deleteproduct(request):
+    if request.user.is_superuser:
+        id = request.GET.get('id')
+        if Products.objects.filter(id=id).exists():
+            p = Products.objects.get(id=id)
+            p.delete()
+            messages.success(request,'Product Deleted Successfully')
+            return redirect('/')
+        else:
+            messages.error(request,'This Product Doesnot Exist')
+            return redirect('/edit-product?id='+id)
+    else:
+        return redirect('/')
+
+def expiredproduct(request):
+    if request.user.is_superuser:
+        dt = date.today()
+        products = Products.objects.filter(expiry__range=['2021-01-01',dt])
+        params = {'products':products}
+        return render(request,'products/products-list.html',params)

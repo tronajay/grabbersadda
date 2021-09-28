@@ -46,11 +46,26 @@
                     <a href="/settings" class="menu-link px-5">Account Settings</a>
                 </div>
                 <!--end::Menu item-->
+                <!--begin::Menu separator-->
+                <div class="separator my-2"></div>
+                <!--end::Menu separator-->
                 <!--begin::Menu item-->
                 <div class="menu-item px-5">
                     <a href="/refer-and-earn" class="menu-link px-5">Refer and Earn</a>
                 </div>
                 <!--end::Menu item-->
+                <!--begin::Menu item-->
+                <div class="menu-item px-5">
+                    <a href="/giveaway" class="menu-link px-5">Giveaway
+                    {% if giveaway %}
+                        <span class="badge badge-danger mx-2">LIVE</span>
+                    {% endif %}
+                    </a>
+                </div>
+                <!--end::Menu item-->
+                <!--begin::Menu separator-->
+                <div class="separator my-2"></div>
+                <!--end::Menu separator-->
                 {% if request.user.is_superuser %}
                     <!--begin::Menu item-->
                 <div class="menu-item px-5 my-1">

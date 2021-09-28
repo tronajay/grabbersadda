@@ -218,6 +218,9 @@ def applyrefer(request):
                     user.refercode = code
                     user.points+=500
                     user.save()
+                    referee = Profile.objects.get(refer=code)
+                    referee.refer+=500
+                    referee.save()
                     messages.success(request,'Refer Code Applied Successfully')
                     return redirect('/profile')
                 else:

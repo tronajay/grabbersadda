@@ -159,7 +159,10 @@
                     </div>
                     <input type="text" name="id" value="{{product.id}}" hidden>
                     <div class="mb-10">
-                        <button class="btn btn-primary float-end" placeholder="Enter Keywords/Tags here" type="submit">{% if product %}Update {% else %}Publish{% endif %}</button>
+                        <button class="btn btn-primary float-end" type="submit">{% if product %}Update {% else %}Publish{% endif %}</button>
+                        {% if product %}
+                            <a href="/delete-product?id={{product.id}}" class="btn btn-danger" type="submit">Delete</a>
+                        {% endif %}
                     </div>              
                 </form>
             

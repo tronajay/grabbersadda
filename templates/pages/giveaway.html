@@ -52,6 +52,14 @@
     {% endif %}
 </div>
 
+{% if adgiveaway1 %}
+        <div class="w-lg-800px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
+            <!--begin::Hot sales post-->
+            <span class="mb-2 text-center">ADVERTISEMENT</span>
+            {{adgiveaway1.adcode | safe}}
+        </div>
+{% endif %}
+
 {% if giveaway and request.user.is_authenticated%}
     <div class="w-lg-800px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
     <!--begin::Authentication - 404 Page-->

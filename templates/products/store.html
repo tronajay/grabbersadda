@@ -10,6 +10,7 @@
 {% block content %}
 {% load custom_tags %}
 {% load humanize %}
+{% load mathfilters %}
     <div class="row">
         <div class="col-md-3 mb-4">
             <div class="col">
@@ -119,8 +120,16 @@
 				<!--end::Hot sales post-->
 			</div>
 			<!--end::Col-->
-			
-			{% endfor %}
+			{% if adstore1 and forloop.counter|mod:'5' == 0 %}
+				<div class="col-md-4 col-sm-6 col-lg-4 mb-5">
+					<!--begin::Hot sales post-->
+					<div class="card p-5">
+						<span class="mb-2 text-center">ADVERTISEMENT</span>
+						{{adstore1.adcode | safe}}
+					</div>
+				</div>
+			{% endif %}
+		{% endfor %}
             </div>
         </div>
     </div>
