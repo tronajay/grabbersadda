@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render
 from .models import Page, GiveawayParticipants, Giveaway
 from django.contrib.auth.models import User
 from django.contrib import messages
+from advertisement.models import Ads
 
 # Create your views here.
 def pagecontent(request,slug):
@@ -22,6 +23,11 @@ def giveaway(request):
     if Giveaway.objects.first():
         give = Giveaway.objects.first()
         params = {'giveaway':give}
+        if Ads.objects.filter(title='adgiveaway1').exists():
+            adgiveaway1 = Ads.objects.get(title='adgiveaway1')
+            params['adgiveaway1']=adgiveaway1
+        participants = Ads.objects.all().count()
+        params['participants']=participants
         return render(request,'pages/giveaway.html',params)
     else:
         return render(request,'pages/giveaway.html')
