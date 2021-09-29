@@ -38,7 +38,7 @@ class Products(models.Model):
     slug = models.SlugField(max_length=100,default="/")
     category = models.ForeignKey(Category,default=1,on_delete=models.PROTECT)
     store = models.ForeignKey(Store,on_delete=models.PROTECT,default=1)
-    thumbnail = models.ImageField(upload_to='product_images/',blank="True")
+    thumbnail = models.ImageField(upload_to='product_images/',blank=True)
     description = models.TextField()
     content = RichTextUploadingField(blank=True)
     sale_price = models.IntegerField(default=0)

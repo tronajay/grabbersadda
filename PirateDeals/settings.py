@@ -26,7 +26,7 @@ SECRET_KEY = 'kdpyx)5-7s7owfk+#7-uz#(1pr(_ae!cr#t8dg#c-zf=%0)=cs'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["20.204.28.107","192.168.0.103","www.grabbersadda.in","grabbersadda.in","127.0.0.1"]
+ALLOWED_HOSTS = ["20.204.28.107","192.168.0.103","grabbersadda.in","127.0.0.1"]
 
 
 # Application definition
